@@ -4,15 +4,15 @@ import path from 'node:path';
 import configService from './config_service';
 import settingsService from './settings_service';
 
-// userDataDir 用户数据目录
-// └── volumeDir 数据卷目录
-//     ├── appSettingsPath 配置文件
-//     ├── achievementDir 成就目录
+// userDataDir                         用户数据目录
+// └── volume                          数据卷目录 volumeDir
+//     ├── settings.json               配置文件 appSettingsPath
+//     ├── achievement                 成就目录 achievementDir
 //     │   ├── uids.json
 //     │   ├── 000000000.json
 //     │   └── 137780448.json
-//     └── gachaDir 跃迁目录
-//         ├── uids.json
+//     └── gacha                       跃迁目录 gachaDir
+//         ├── uids.json               uid => username, gachaUidsPath
 //         ├── 000000000.json
 //         └── 137780448.json
 
@@ -27,7 +27,6 @@ class GachaService {
   gachaDir: string;
   gachaUidsPath: string;
   //! gachaUids: uid => username
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   gachaUids: Record<string, string>;
 
   constructor() {
@@ -130,8 +129,6 @@ class GachaService {
         JSON.parse(fs.readFileSync(path.join(this.gachaDir, `./${uid}.json`), 'utf-8'))
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ).forEach((item: any) => {
-        // todo 注释下一行
-        console.log(item);
         item['count'] = '1';
         if (item['item_id'].length === 4) {
           item['item_type'] = '角色';
@@ -182,10 +179,10 @@ class GachaService {
       const avatarConfig = loadJson('AvatarConfig');
       const equipmentConfig = loadJson('EquipmentConfig');
       const textMapCHS = loadJson('TextMapCHS');
-      const uidArr = Array.isArray(uid) && uid.length > 0 ? [uid] : Object.keys(this.gachaUids);
+      const uidArr: string[] = Array.isArray(uid) && uid.length > 0 ? uid : Object.keys(this.gachaUids);
       uidArr.forEach((uid) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const uidLangTzList: { uid: string; lang: string; timezone: number; list: any } = {
+        const hkrpgItem: { uid: string; lang: string; timezone: number; list: any } = {
           uid: `${uid}`,
           lang: 'zh-cn',
           timezone: 8,
@@ -205,11 +202,10 @@ class GachaService {
             item['name'] = textMapCHS[equipmentConfig[item['item_id']]['EquipmentName']['Hash']];
             item['rank_type'] = equipmentConfig[item['item_id']]['Rarity'].at(-1);
           }
-          uidLangTzList.list.push(item);
+          hkrpgItem.list.push(item);
         });
-        exportData.hkrpg.push(uidLangTzList);
+        exportData.hkrpg.push(hkrpgItem);
       });
-
       let msg = 'OK';
       try {
         await dialog
@@ -309,19 +305,19 @@ class GachaService {
             return { msg: 'No data' };
           }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data['hkrpg'].forEach((uidLangTzList: any) => {
-            if (!/^\d{9}$/.test(uidLangTzList['uid'])) {
+          data['hkrpg'].forEach((hkrpgItem: any) => {
+            if (!/^\d{9}$/.test(hkrpgItem['uid'])) {
               throw new Error('Invalid UID');
             }
-            if (uidLangTzList['list'] === undefined) {
+            if (hkrpgItem['list'] === undefined) {
               throw new Error('Invalid UIGF');
             }
-            if (uidLangTzList['timezone'] === undefined) {
+            if (hkrpgItem['timezone'] === undefined) {
               throw new Error('Invalid UIGF');
             }
             const itemKeys = ['gacha_id', 'gacha_type', 'item_id', 'time', 'id'];
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            uidLangTzList['list'].forEach((item: any) => {
+            hkrpgItem['list'].forEach((item: any) => {
               itemKeys.forEach((key) => {
                 if (item[key] === undefined) {
                   throw new Error('Invalid UIGF');
@@ -332,16 +328,16 @@ class GachaService {
           /////////////////////////////
           //! uigf_v4.0 => srgf_v1.0
           /////////////////////////////
-          for (const uidLangTzList of data['hkrpg']) {
+          for (const hkrpgItem of data['hkrpg']) {
             const srgfData = {
               info: {
-                region_time_zone: uidLangTzList['timezone'],
-                uid: uidLangTzList['uid'],
+                region_time_zone: hkrpgItem['timezone'],
+                uid: hkrpgItem['uid'],
               },
-              list: uidLangTzList['list'],
+              list: hkrpgItem['list'],
             };
             await this.importGachaData('srgf_v1.0', srgfData);
-            uid = uidLangTzList['uid'];
+            uid = hkrpgItem['uid'];
           }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
@@ -390,7 +386,6 @@ class GachaService {
     }
     list = Object.fromEntries(Object.entries(list).sort());
     fs.writeFileSync(path.join(this.gachaDir, `./${uid}.json`), JSON.stringify(list, null, 2), 'utf-8');
-    // todo 完成 settingsService
     settingsService.setAppSettings('LastGachaUid', uid);
     return { msg: 'OK', data: { uid: uid } };
   }

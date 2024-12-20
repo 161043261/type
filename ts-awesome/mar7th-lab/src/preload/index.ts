@@ -14,15 +14,15 @@ function createMar7thLabApi(): unknown {
       mar7thLabApi[serviceName][funcName] = (...args: any[]) => ipcRenderer.invoke(`${serviceName}.${funcName}`, ...args);
     });
   });
-  mar7thLabApi['sendMainWindowMsg'] = (msg: string) => ipcRenderer.send('sendMainWindowMsg', msg);
-  mar7thLabApi['loadJson'] = (fileName: string) => ipcRenderer.invoke('loadJson', fileName);
+  mar7thLabApi['send-msg2main-window'] = (msg: string) => ipcRenderer.send('sendMainWindowMsg', msg);
+  mar7thLabApi['load-json'] = (fileName: string) => ipcRenderer.invoke('loadJson', fileName);
   return mar7thLabApi;
 }
 
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI);
-    contextBridge.exposeInMainWorld('service', createMar7thLabApi());
+    contextBridge.exposeInMainWorld('mar7thLab', createMar7thLabApi());
   } catch (err) {
     console.error(err);
   }

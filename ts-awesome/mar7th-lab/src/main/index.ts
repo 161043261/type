@@ -70,7 +70,7 @@ const createMainWindow = () => {
       shell.openExternal(detail.url);
     }
   });
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 const switchWindowVisibility = (mainWindow: BrowserWindow) => {
@@ -86,7 +86,7 @@ const createTray = () => {
     return;
   }
   tray = new Tray(path.join(__dirname, '../static/image/icon.png'));
-  tray.setToolTip('Marth 7th Lab');
+  tray.setToolTip('Marth7th Lab');
   tray.on('click', () => {
     mainWindow!.isVisible() ? mainWindow!.focus() : switchWindowVisibility(mainWindow!);
   });
@@ -129,7 +129,8 @@ Object.entries(mar7thLabApi).forEach(([serviceName, funcNames]) => {
   });
 });
 
-ipcMain.on('sendMainWindowMsg', (_ev, msg) => {
+//! ipcMain.on(channel, listener) 的回调函数 listener 无返回值
+ipcMain.on('send-msg2main-window', (_ev, msg) => {
   switch (msg) {
     case 'close':
       settingsService.getAppSettingsSync()['CloseDirectly'] ? app.exit(0) : switchWindowVisibility(mainWindow!);
@@ -149,6 +150,7 @@ ipcMain.on('sendMainWindowMsg', (_ev, msg) => {
   }
 });
 
-ipcMain.handle('loadJson', async (_ev, funcName) => {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, `../static/json/${funcName}.json`), 'utf-8'));
+//! ipcMain.handle(channel, listener) 的回调函数 listener 返回一个 Promise 对象
+ipcMain.handle('load-json', async (_ev, fileName) => {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, `../static/json/${fileName}.json`), 'utf-8'));
 });

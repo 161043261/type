@@ -167,10 +167,10 @@ test('Test_exportGachaData_uigf', () => {
   const avatarConfig = loadJson('AvatarConfig');
   const equipmentConfig = loadJson('EquipmentConfig');
   const textMapCHS = loadJson('TextMapCHS');
-  const uidArr = Array.isArray(uid) && uid.length > 0 ? [uid] : Object.keys({ [uid]: uid });
+  const uidArr: string[] = Array.isArray(uid) && uid.length > 0 ? uid : Object.keys({ [uid]: uid });
   uidArr.forEach((uid) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const uidLangTzList: { uid: string; lang: string; timezone: number; list: any } = {
+    const hkrpgItem: { uid: string; lang: string; timezone: number; list: any } = {
       uid: `${uid}`,
       lang: 'zh-cn',
       timezone: 8,
@@ -191,9 +191,9 @@ test('Test_exportGachaData_uigf', () => {
         item['name'] = textMapCHS[equipmentConfig[item['item_id']]['EquipmentName']['Hash']];
         item['rank_type'] = equipmentConfig[item['item_id']]['Rarity'].at(-1);
       }
-      uidLangTzList.list.push(item);
+      hkrpgItem.list.push(item);
     });
-    exportData.hkrpg.push(uidLangTzList);
+    exportData.hkrpg.push(hkrpgItem);
   });
   fs.writeFileSync(`./src/static/json/GachaExport_v1.0.0_Trailblazer_${uid}.UIGF.json`, JSON.stringify(exportData, null, 2), 'utf-8');
 });
