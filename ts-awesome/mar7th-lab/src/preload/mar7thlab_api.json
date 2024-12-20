@@ -1,13 +1,5 @@
 {
   "config": ["getAppVersion"],
   "setting": ["getAppSettings", "setAppSettings"],
-  "gacha": [
-    "getGachaUids",
-    "getGachaData",
-    "addGachaData",
-    "removeGachaData",
-    "exportGachaData",
-    "importGachaData",
-    "getGachaURL"
-  ]
+  "gacha": ["getGachaUids", "getGachaData", "addGachaData", "removeGachaData", "exportGachaData", "importGachaData", "getGachaURL"]
 }
