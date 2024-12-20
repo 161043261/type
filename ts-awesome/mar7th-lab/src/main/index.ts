@@ -73,11 +73,11 @@ const createMainWindow = () => {
   mainWindow.webContents.openDevTools();
 };
 
-const switchWindowVisibility = (browserWindow: BrowserWindow) => {
-  if (browserWindow.isVisible()) {
-    browserWindow.hide();
+const switchWindowVisibility = (mainWindow: BrowserWindow) => {
+  if (mainWindow.isVisible()) {
+    mainWindow.hide();
   } else {
-    browserWindow.show();
+    mainWindow.show();
   }
 };
 
