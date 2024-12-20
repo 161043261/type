@@ -1,7 +1,7 @@
 # Type
 
-## [计算机基础](https://161043261.github.io/)
-
+- [计算机基础](https://161043261.github.io/)
+- [ECMAScript 6](https://tianchenghang.github.io/)
 - 网络
 - Linux
 - MySQL
@@ -9,7 +9,9 @@
 - Git
 - [Docker](./docker/)
 
-## Java
+## ~~Java~~
+
+> I cannot write any Java.
 
 - Java 基础 [java-playground](./java-playground/)
 - Java 并发 [java-concurrent](./java-concurrent/)
@@ -35,6 +37,8 @@
 - C/C++ 基础 [cc-playground](./cc-playground/)
 - C/C++ 并发 [cc-concurrent](./cc-concurrent/)
 - C/C++ 网络 IO [cc-socket](./cc-socket/)
+
+===========================================================
 
 - **feat**: 引入新功能
 - **fix**: 错误修正

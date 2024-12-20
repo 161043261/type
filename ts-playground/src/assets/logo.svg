@@ -10,7 +10,7 @@
   <!-- polygon 多边形 -->
   <polygon points="100,0 200,173 0,173" fill="lightblue" />
 
-  <text x="100" y="20">A (100, 0)</text>
-  <text x="200" y="170">B (200, 173)</text>
-  <text x="0" y="170">C (0, 173)</text>
+  <text x="100" y="20">a (100, 0)</text>
+  <text x="200" y="170">b (200, 173)</text>
+  <text x="0" y="170">c (0, 173)</text>
 </svg>

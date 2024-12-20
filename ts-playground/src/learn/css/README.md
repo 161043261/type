@@ -1261,6 +1261,16 @@ transform: 转换属性, 设置元素的位置
 - 传统布局: 基于传统盒模型: display + position + float
 - flex 布局: 广泛用于 Web 端, 移动端
 
+```css
+.selector {
+  /* 父元素开启 flex 布局, 成为伸缩盒 (弹性盒) 容器 */
+  /* 子元素成为伸缩盒 (弹性盒) 项目, 未脱离文档流, 可以撑开父元素的宽高 */
+  display: flex;
+  /* display: flex; 块级的缩盒容器, 独占一行 */
+  /* display: inline-flex; 行内块的伸缩盒容器, 不常用 */
+}
+```
+
 ### 伸缩容器, 伸缩项目
 
 - 伸缩容器: 开启了 `display: flex` 或 `display: inline-flex` 的元素
@@ -1276,6 +1286,8 @@ transform: 转换属性, 设置元素的位置
 - 侧轴: 侧轴默认垂直, 默认方向从上到下
 - 主轴与侧轴垂直, 伸缩项目沿主轴排列
 
+> 主轴默认压缩, 侧轴默认拉伸
+
 #### 主轴方向
 
 flex-direction: 设置主轴方向
@@ -1283,56 +1295,56 @@ flex-direction: 设置主轴方向
 | 属性: 值                       | 主轴方向       | 侧轴方向       |
 | ------------------------------ | -------------- | -------------- |
 | flex-direction: row            | 从左到右, 默认 | 从上到下, 默认 |
-| flex-direction: row-reverse    | 从右到左       | 从下到上       |
+| flex-direction: row-reverse    | 从右到左       | 从上到下       |
 | flex-direction: column         | 从上到下       | 从左到右       |
-| flex-direction: column-reverse | 从下到上       | 从右到左       |
+| flex-direction: column-reverse | 从下到上       | 从左到右       |
 
 #### 主轴换行方式
 
 - `flex-wrap: nowrap` 不换行, 默认
-- `flex-wrap: wrap` 自动换行
-- `flex-wrap: wrap-reverse` 反向换行
+- `flex-wrap: wrap` 自动换行 (侧轴方向换行)
+- `flex-wrap: wrap-reverse` 反向换行 (侧轴方向的反向换行)
 
-> flex-flow 是 flex-direction 和 flex-wrap 的复合属性 `flex-flow: row wrap;`
+> flex-flow 是 flex-direction 和 flex-wrap 的复合属性 `flex-flow: 主轴方向 主轴换行方式;`
 
 #### 主轴对齐方式
 
 默认情况下, 主轴方向从左到右, 主轴对齐方式即 (文本) 水平对齐方式
 
-| 属性: 值                       | 说明                                 |              |
-| ------------------------------ | ------------------------------------ | ------------ |
-| justify-content: flex-start    | 主轴起点对齐, 默认                   | 左对齐, 默认 |
-| justify-content: flex-end      | 主轴终点对齐                         | 右对齐       |
-| justify-content: center        | 主轴中点对齐                         | 水平居中     |
-| justify-content: space-between | 均匀分布: 两端距离等于 0             |              |
-| justify-content: space-around  | 均匀分布: 两端距离等于中间距离的一半 |              |
-| justify-content: space-evenly  | 均匀分布: 两端距离等于中间距离       |              |
+| 属性: 值                       | 说明                                     |                  |
+| ------------------------------ | ---------------------------------------- | ---------------- |
+| justify-content: flex-start    | 主轴起点对齐, 默认                       | 整体左对齐, 默认 |
+| justify-content: flex-end      | 主轴终点对齐                             | 整体右对齐       |
+| justify-content: center        | 主轴中点对齐                             | 整体水平居中     |
+| justify-content: space-between | 主轴均匀分布: 两端距离等于 0             |                  |
+| justify-content: space-around  | 主轴均匀分布: 两端距离等于中间距离的一半 |                  |
+| justify-content: space-evenly  | 主轴均匀分布: 两端距离等于中间距离       |                  |
 
 #### 侧轴对齐方式
 
 默认情况下, 侧轴方向从上到下, 侧轴对齐方式即 (文本) 垂直对齐方式
 
-**单行的情况 align-items**
-
-| 属性: 值                | 说明               |          |
-| ----------------------- | ------------------ | -------- |
-| align-items: flex-start | 侧轴起点对齐, 默认 | 行顶对齐 |
-| align-items: flex-end   | 侧轴终点对齐       | 行底对齐 |
-| align-items: center     | 侧轴中点对齐       | 垂直居中 |
-| align-items: baseline   | 基线对齐           |          |
-| align-items: stretch    | 填充整行           | 默认     |
-
 **多行的情况: align-content**
 
-| 属性: 值                     | 说明                                 |          |
-| ---------------------------- | ------------------------------------ | -------- |
-| align-content: flex-start    | 侧轴起点对齐, 默认                   | 上对齐   |
-| align-content: flex-end      | 侧轴终点对齐                         | 下对齐   |
-| align-content: center        | 侧轴中点对齐                         | 垂直居中 |
-| align-content: space-between | 均匀分布: 两端距离等于 0             |          |
-| align-content: space-around  | 均匀分布: 两端距离等于中间距离的一半 |          |
-| align-content: space-evenly  | 均匀分布: 两端距离等于中间距离       |          |
-| align-content: strech        | 填充整个侧轴                         | 默认     |
+| 属性: 值                     | 说明                                     |              |
+| ---------------------------- | ---------------------------------------- | ------------ |
+| align-content: flex-start    | 侧轴起点对齐, 默认                       | 整体上对齐   |
+| align-content: flex-end      | 侧轴终点对齐                             | 整体下对齐   |
+| align-content: center        | 侧轴中点对齐                             | 整体垂直居中 |
+| align-content: space-between | 侧轴均匀分布: 两端距离等于 0             |              |
+| align-content: space-around  | 侧轴均匀分布: 两端距离等于中间距离的一半 |              |
+| align-content: space-evenly  | 侧轴均匀分布: 两端距离等于中间距离       |              |
+| align-content: strech        | 如果没有指定高度, 则拉伸以填充整个侧轴   | 默认         |
+
+**单行的情况 align-items**
+
+| 属性: 值                | 说明                               |          |
+| ----------------------- | ---------------------------------- | -------- |
+| align-items: flex-start | 侧轴起点对齐, 默认                 | 行顶对齐 |
+| align-items: flex-end   | 侧轴终点对齐                       | 行底对齐 |
+| align-items: center     | 侧轴中点对齐                       | 垂直居中 |
+| align-items: baseline   | 侧轴基线 baseline 对齐             |          |
+| align-items: stretch    | 如果没有指定高度, 则拉伸以填充整行 | 默认     |
 
 #### flex 实现水平垂直居中
 
@@ -1347,7 +1359,7 @@ flex-direction: 设置主轴方向
   display: flex;
   /* 水平居中 */
   justify-content: center;
-  /* 垂直居中 */
+  /* 单行垂直居中 */
   align-items: center;
 }
 
@@ -1358,7 +1370,7 @@ flex-direction: 设置主轴方向
 }
 ```
 
-方法 2: 父元素开启 flex 布局, 子元素使用 margin: auto
+> 方法 2: 父元素开启 flex 布局, 子元素使用 `margin: auto`
 
 ```css
 .outer1 {
@@ -1381,45 +1393,49 @@ flex-direction: 设置主轴方向
 
 #### flex-basis
 
-flex-basis
+flex-basis: 设置伸缩项目主轴方向的基准长度
 
-- 主轴方向的基准长度, 会导致主轴水平方向时宽度失效; 主轴垂直方向时高度失效
-- 默认 `flex-basis: auto`, 即默认基准长度等于伸缩项目的宽或高
-- 浏览器根据 flex-basis 属性值, 计算主轴上是否有剩余空间
+- 设置伸缩项目主轴方向的基准长度
+- 主轴水平时, 伸缩项目的宽度失效; 主轴垂直时, 绳索项目的高度失效
+- 默认 `flex-basis: auto`, 即默认伸缩项目主轴方向的基准长度等于伸缩项目的宽或高
+- 浏览器根据 flex-basis 的属性值, 计算主轴上是否有剩余空间
 
 #### flex-grow 伸
 
-flex-grow: 设置伸缩项目的拉伸比例
+flex-grow: 主轴上有剩余时, 设置伸缩项目的拉伸比例
 
 1. 默认所有伸缩项目的 flex-grow 值都为 0: 不拉伸
-2. 如果 3 个伸缩项目的 flex-grow 值都为 1, 则拉伸剩余空间的 1/3, 1/3, 1/3
-3. 如果 3 个伸缩项目的 flex-grow 值分别为 1, 2, 3, 则拉伸剩余空间的 1/6, 2/6, 3/6
+2. 例: 如果 3 个伸缩项目的 flex-grow 值都为 1, 则分别拉伸剩余空间的 1/3, 1/3, 1/3
+3. 例: 如果 3 个伸缩项目的 flex-grow 值为 1, 2, 3, 则分别拉伸剩余空间的 1/6, 2/6, 3/6
 
 #### flex-shrink 缩
 
-flex-shrink: 设置伸缩项目的压缩比例
+flex-shrink: 主轴上有溢出时, 设置伸缩项目的压缩比例
 
 3 个伸缩项目宽度分别为 200px, 300px, 400px, 容器 500px
 
-1. 默认所有伸缩项目的 flex-grow 值都为 1: 压缩溢出空间 (400px) 的
+1. 默认 3 个伸缩项目的 flex-grow 值都为 1: 分别压缩溢出空间 (400px) 的 (对比 flex-grow: 1/3, 1/3, 1/3)
    - `200 / (200 + 300 + 400) = 2/9`
    - `300 / (200 + 300 + 400) = 3/9`
    - `400 / (200 + 300 + 400) = 4/9`
-2. 如果 3 个伸缩项目的 flex-grow 值为 1, 2, 3, 则压缩溢出空间 (400px) 的
+2. 如果 3 个伸缩项目的 flex-grow 值为 1, 2, 3, 则分别压缩溢出空间 (400px) 的 (对比 flex-grow: 1/6, 2/6, 3/6)
    - `(200 * 1) / (200 * 1 + 300 * 2 + 400 * 3) = 1/10`
    - `(300 * 2) / (200 * 1 + 300 * 2 + 400 * 3) = 3/10`
    - `(400 * 3) / (200 * 1 + 300 * 2 + 400 * 3) = 6/10`
 
 #### flex 复合属性
 
-flex: flex-grow, flex-shrink, flex-basis
+flex: flex-grow(有剩余时的拉伸比例) flex-shrink(有溢出时的压缩比例) flex-basis(主轴方向的基准长度)
 
-默认 `flex: 0 1 auto;`
+- `flex: 0 1 auto;` 不能拉伸, 可以压缩, 默认基准长度: 默认, 等价于 `flex: 0 auto;`
+- `flex: 1 1 auto;` 可以拉伸, 不能压缩, 默认基准长度: 等价于 `flex: auto;`
+- `flex: 1 1 0;` 可以拉伸, 可以压缩, 基准长度为 0 (伸缩项目的宽或高失效): **常用**, 等价于 `flex: 1;`
+- `flex: 0 0 auto;` 不能拉伸, 不能压缩, 默认基准长度: 等价于 `flex: none`
 
 **其他**
 
-- order 属性: 指定伸缩项目的排列顺序, 值越小, 排列顺序越靠前, 默认 0
-- align-self 属性: 单独指定某个伸缩项目的对齐方式, 默认 auto
+- order 属性: 指定伸缩项目在主轴上的排列顺序, 值越小, 排序越靠前, 默认 0
+- align-self 属性: 单独指定某个伸缩项目的侧轴对齐方式, 默认 auto
 
 ### 响应式布局
 
