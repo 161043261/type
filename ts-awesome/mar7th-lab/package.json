@@ -2,7 +2,7 @@
   "name": "mar7th-lab",
   "version": "1.0.0",
   "description": "An Electron application with Vue and TypeScript",
-  "main": "./out/main/index.js",
+  "main": "./dist/main/index.js",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "scripts": {

@@ -11,7 +11,7 @@ async function loadJson(fileName) {
 }
 
 async function createAvatarConfig() {
-  const avatarConfigArr = await loadJson('AvatarConfig_raw');
+  const avatarConfigArr = await loadJson('AvatarConfig.raw');
   const avatarConfig = {};
   avatarConfigArr.forEach((item) => {
     avatarConfig[item['AvatarID']] = item;
@@ -20,7 +20,7 @@ async function createAvatarConfig() {
 }
 
 async function createEquipmentConfig() {
-  const equipmentConfigArr = await loadJson('EquipmentConfig_raw');
+  const equipmentConfigArr = await loadJson('EquipmentConfig.raw');
   const equipmentConfig = {};
   equipmentConfigArr.forEach((item) => {
     equipmentConfig[item['EquipmentID']] = item;

@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import fs from 'node:fs';
 import path from 'node:path';
 
+// 拷贝静态资源
 function copyStatic(src: string, dst: string) {
   fs.mkdirSync(dst, { recursive: true });
   const files = fs.readdirSync(src);
@@ -13,16 +14,16 @@ function copyStatic(src: string, dst: string) {
     const stat = fs.statSync(srcFilePath);
     if (stat.isDirectory()) {
       copyStatic(srcFilePath, dstFilePath);
-    } else {
+    } else if (!file.endsWith('.js') && !file.endsWith('.raw.json')) {
       fs.copyFileSync(srcFilePath, dstFilePath);
     }
   }
   return null;
 }
 
+// todo
 const textMapFiles = ['TextMapCHS.json'];
 const hashFiles = ['AchievementData.json', 'AchievementSeries.json', 'AvatarConfig.json', 'EquipmentConfig.json', 'GachaBasicInfo.json'];
-
 function lessenTextMap(textMapFileDir: string, hashFileDir: string) {
   const hashs = new Set<string>();
   hashFiles.forEach((file) => {
@@ -51,13 +52,14 @@ function lessenTextMap(textMapFileDir: string, hashFileDir: string) {
   return null;
 }
 
-function unformatJson(jsonPath: string) {
+// 紧凑 JSON
+function compactJson(jsonPath: string) {
   const files = fs.readdirSync(jsonPath);
   for (const file of files) {
     const filePath = path.join(jsonPath, file);
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
-      unformatJson(filePath);
+      compactJson(filePath);
     } else {
       fs.writeFileSync(filePath, JSON.stringify(JSON.parse(fs.readFileSync(filePath, 'utf-8'))));
     }
@@ -70,7 +72,7 @@ export default defineConfig({
     build: {
       outDir: 'dist/main',
     },
-    plugins: [copyStatic('src/static', 'dist/static'), lessenTextMap('dist/static/json', 'dist/static/json'), unformatJson('dist/static/json'), externalizeDepsPlugin()],
+    plugins: [copyStatic('src/static', 'dist/static'), lessenTextMap('dist/static/json', 'dist/static/json'), compactJson('dist/static/json'), externalizeDepsPlugin()],
   },
   preload: {
     build: {
