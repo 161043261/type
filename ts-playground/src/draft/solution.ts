@@ -1,29 +1,33 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-function minAnagramLength(s: string): number {
-  tag: for (let len = 1; len < s.length; len++) {
-    if (s.length % len != 0) {
-      continue;
-    }
-    const ch2cnt = new Map<string, number>();
-    for (const ch of s.slice(0, len)) {
-      ch2cnt.set(ch, (ch2cnt.get(ch) || 0) + 1);
-    }
-    for (let start = len; start < s.length; start += len) {
-      const tmp = new Map<string, number>();
-      for (const ch of s.slice(start, start + len)) {
-        tmp.set(ch, (tmp.get(ch) || 0) + 1);
-      }
-      for (const [ch, cnt] of ch2cnt) {
-        if (!tmp.has(ch) || cnt != tmp.get(ch)) {
-          continue tag;
-        }
+function getKth(lo: number, hi: number, k: number): number {
+  const w2numArr = new Map<number, number[]>();
+  for (let num = lo; num <= hi; num++) {
+    let w = 0;
+    let val = num;
+    while (val !== 1) {
+      w++;
+      if (val % 2 === 0) {
+        val /= 2
+      } else {
+        val = 3 * val + 1
       }
     }
-    return len;
+    if (w2numArr.has(w)) {
+      w2numArr.get(w)!.push(num)
+    } else {
+      w2numArr.set(w, [num])
+    }
   }
-  return s.length;
+  let cnt = 0;
+  const sorted = [...w2numArr].sort((a, b) => a[0] - b[0])
+  // console.log(sorted)
+  for (const [, numArr] of sorted) {
+    if (cnt + numArr.length >= k) {
+      return (numArr.sort((a, b) => a - b))[k - cnt - 1];
+    } else {
+      cnt += numArr.length
+    }
+  }
+  return -1;
 }
 
-function sortTheStudents(score: number[][], k: number): number[][] {
-  return score.sort((a, b) => a[k] - b[k]);
-}
+console.log(getKth(1, 1000, 777))

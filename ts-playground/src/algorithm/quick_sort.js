@@ -5,11 +5,11 @@
  * @param {number} end
  */
 function quickSort(arr, start, end) {
-  ///////////////////////////////////////////////
+  /////////////////////////////////////////////
   if (end - start === 0 || end - start === 1) {
     return;
   }
-  ///////////////////////////////////////////////
+  /////////////////////////////////////////////
   const pivot = arr[start];
   console.log(
     `
@@ -49,4 +49,4 @@ pivot: ${pivot}
 
 let arr = [49, 38, 65, 97, 76, 13, 27, 49];
 quickSort(arr, 0, arr.length);
-console.log(`\nquickSort: [${arr}]`.replaceAll(",", " "));
+console.log(`\nQuick Sort: [${arr}]`.replaceAll(",", " "));

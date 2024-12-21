@@ -1,54 +1,62 @@
 [buildPlans.FiraNext]
-exportGlyphNames = false
 family = "Fira Next"
-noCvSs = true
-serifs = "sans"
 spacing = "fontconfig-mono"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
 
-[buildPlans.FiraNext.variants]
-inherits = "ss05"
+  [buildPlans.FiraNext.variants]
+  inherits = "ss05"
 
-[buildPlans.FiraNext.variants.design]
-ampersand = "closed"
-brace = "straight"
-capital-g = "toothed-serifless-hookless"
-capital-j = "serifless"
-f = "flat-hook-serifless"
-g = "single-storey-serifless"
-i = "serifed-flat-tailed"
-j = "serifless"
-r = "hookless-serifless"
-six = "open-contour"
+    [buildPlans.FiraNext.variants.design]
+    four = "closed-serifless"
+    six = "straight-bar"
+    nine = "straight-bar"
+    zero = "dotted"
+    capital-g = "toothed-serifless-hookless"
+    capital-j = "serifless"
+    capital-m = "hanging-serifless"
+    capital-q = "crossing"
+    f = "flat-hook-serifless-crossbar-at-x-height"
+    g = "single-storey-serifless"
+    i = "serifed-flat-tailed"
+    j = "serifless"
+    l = "serifed-flat-tailed"
+    r = "hookless-serifless"
+    lower-iota = "serifed-flat-tailed"
+    cyrl-em = "hanging-serifless"
+    brace = "straight"
+    ampersand = "closed"
 
-[buildPlans.FiraNext.ligations]
-inherits = "javascript"
+  [buildPlans.FiraNext.ligations]
+  inherits = "javascript"
 
 [buildPlans.FiraNext.weights.Light]
-css = 300
-menu = 300
 shape = 300
+menu = 300
+css = 300
 
 [buildPlans.FiraNext.weights.Regular]
-css = 400
-menu = 400
 shape = 400
+menu = 400
+css = 400
 
 [buildPlans.FiraNext.weights.Medium]
-css = 500
-menu = 500
 shape = 500
+menu = 500
+css = 500
 
 [buildPlans.FiraNext.weights.SemiBold]
-css = 600
-menu = 600
 shape = 600
+menu = 600
+css = 600
 
 [buildPlans.FiraNext.weights.Bold]
-css = 700
-menu = 700
 shape = 700
+menu = 700
+css = 700
 
 [buildPlans.FiraNext.widths.Normal]
-css = "normal"
-menu = 5
 shape = 500
+menu = 5
+css = "normal"
