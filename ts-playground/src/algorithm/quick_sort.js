@@ -49,4 +49,4 @@ pivot: ${pivot}
 
 let arr = [49, 38, 65, 97, 76, 13, 27, 49];
 quickSort(arr, 0, arr.length);
-console.log(`##### [${arr}] #####`.replaceAll(",", " "));
+console.log(`\nquickSort: [${arr}]`.replaceAll(",", " "));

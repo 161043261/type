@@ -49,11 +49,12 @@ function mergeSort(arr) {
         rIdx++;
       }
     }
-    console.log(`=== Merge sort ${cnt}, jump: ${jump} ===`);
+    console.log(`===== turn: ${cnt}, jump: ${jump} =====`);
     console.log(tmpStr.slice(0, -1));
-    console.log(`${arr}`.replaceAll(",", " "));
-    console.log();
+    console.log(`${arr}\n`.replaceAll(",", " "));
   }
 }
 
-mergeSort([2, 4, 7, 5, 9, 2, 0, 4, 9, 7]);
+let arr =[2, 4, 7, 5, 9, 2, 0, 4, 9, 7]
+mergeSort(arr);
+console.log(`mergeSort: [${arr}]`.replaceAll(',', ' '))
