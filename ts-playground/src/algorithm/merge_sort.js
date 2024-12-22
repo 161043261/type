@@ -57,4 +57,4 @@ function mergeSort(arr) {
 
 let arr = [2, 4, 7, 5, 9, 2, 0, 4, 9, 7];
 mergeSort(arr);
-console.log(`mergeSort: [${arr}]`.replaceAll(",", " "));
+console.log(`Merge Sort: [${arr}]`.replaceAll(",", " "));
