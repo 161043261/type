@@ -45,7 +45,7 @@ console.log(performance.now() - start1);
 
 /**
  *
- * @param w weights 每个物品的重量
+ * @param w eights 每个物品的重量
  * @param v values 每个物品的价值
  * @param n number 物品的数量, n === w.length
  * @param cap capacity 背包可以装入的最大物品重量
