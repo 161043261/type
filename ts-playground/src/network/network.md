@@ -78,7 +78,9 @@ https://www.example.com/path/to/index.html
 3. HTTP 请求/响应
 4. 强缓存/协商缓存 (HTML, CSS, JS)
 5. TCP 四次挥手
-6. 将 HTML 文件解析为 DOM 树
+6. 将 HTML 文件解析为 DOM 树 (DOM, Document Object Model)
+7. 将 CSS 文件解析为 CSSOM 树 (CSSOM, CSS Object Model)
+8. 将 DOM 树和 CSSOM 树合并为渲染树 (Render Tree)
 
 =================================================
 
@@ -93,7 +95,7 @@ DNS 查询顺序
 
 本地域名服务器 ====> 根域名服务器 .root-servers.net
 本地域名服务器 ====> 顶级域名服务器 gtld-servers.net (Generic Top-Level)
-本地域名服务器 ====> 权威域名服务器 ns1.alibabadns.com
+本地域名服务器 ====> 权威域名服务器 ns1.alibabadns.com (或智能 DNS)
 
 dns 迭代查询
 
@@ -172,3 +174,28 @@ Remore Address [::1]:3000
 - ETag: "hash_code_or_version_or..."
 
 如果请求头中的 If-None-Match 字段值和服务器资源的 ETag 值相等, 则服务器判断资源未更新, 返回 304 Not Modified, 响应体为空; 如果请求头中的 If-Modified-Since 字段值和服务器资源的 ETag 值不相等, 则服务器判断资源已更新, 返回 200 OK, 响应体中携带更新的资源
+
+=================================================
+
+### 回流和重绘
+
+回流也称为重排
+
+回流 (Reflow) 是指元素的尺寸、位置等改变时 (例如 weight, height, font-size) 渲染引擎重新计算**整个**页面布局, 回流后一定有重绘, 性能影响较大
+
+重绘 (Repaint) 是指元素的样式等改变时 (例如 color, background-color), 渲染引擎重新绘制**部分**元素, 重绘前不一定有回流, 性能影响较小
+
+会导致回流的操作
+
+1. 页面首次渲染
+2. 浏览器窗口 (视口 vw, vh) 尺寸改变
+3. 元素尺寸 (weight, height, margin, padding, ...) 或位置 (left, top, ...) 改变
+4. 元素字体大小改变
+5. 添加或删除可见的 DOM 元素
+6. 激活 CSS 伪类 (例如 :hover)
+
+=================================================
+
+### CDN, Content Delivery Network
+
+CDN 内容分发网络, 用于优化资源请求时间
