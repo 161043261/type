@@ -1,24 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-function eatenApples(apples: number[], days: number[]): number {
-  let numAndExpireDate: [number, number][] = [];
-  let ans = 0;
-  for (
-    let date = 0;
-    !(numAndExpireDate.length === 0 && date >= apples.length);
-    date++
-  ) {
-    if (date < apples.length) {
-      numAndExpireDate.push([apples[date], date + days[date]]);
-    }
-    numAndExpireDate = numAndExpireDate
-      .filter(([num, expireDate]) => {
-        return expireDate > date && num > 0;
-      })
-      .sort((a, b) => a[1] - b[1]);
-    if (numAndExpireDate.length > 0) {
-      ans++;
-      numAndExpireDate[0][0]--;
+function minimumCost(m: number, n: number, horizontalCut: number[], verticalCut: number[]): number {
+  horizontalCut.sort((a, b) => a - b);
+  verticalCut.sort((a, b) => a - b);
+  let ans = 0, i = 0, j = 0;
+  while (i < m - 1 || j < n - 1) {
+    if (j === n - 1 ||
+      i < m - 1 && horizontalCut[i] < verticalCut[j]) {
+      ans += horizontalCut[i++] * (n - j); // 上下连边
+    } else {
+      ans += verticalCut[j++] * (m - i); // 左右连边
     }
   }
   return ans;
 }
+
+console.log(
+  minimumCost(6, 3, [2, 3, 2, 3, 1], [1, 2])
+)

@@ -24,18 +24,11 @@ set(CMAKE_GENERATOR Ninja)
 
 # 设置 c 编译选项
 # set(CMAKE_C_FLAGS "-Wall -O3")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O1")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3")
 
 # 设置 c++ 编译选项
 # set(CMAKE_CXX_FLAGS "-Wall -O3")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O1")
-
-# 查找 gtest 库
-find_package(GTest REQUIRED)
-
-# 使用 ctest
-include(CTest)
-enable_testing()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3")
 
 # 使用 clang-format
 #! clang-format --style=google -dump-config > ./.clang-format
@@ -54,10 +47,6 @@ add_executable(auto_ptr_test ./src/auto_ptr.test.cpp)
 add_executable(solution src/1705.cpp)
 add_executable(closure ./src/closure.cpp)
 add_executable(backtrack ./src/backtrack.cpp)
-
-# 链接 gtest 库
-target_link_libraries(auto_ptr_test GTest::gtest_main)
-gtest_discover_tests(auto_ptr_test)
 
 # -S ./src   指定源代码目录为 ./src 目录
 # -B ./build 指定构建目录为 ./build 目录
