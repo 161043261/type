@@ -51,10 +51,9 @@ endif ()
 
 # 添加可执行文件
 add_executable(auto_ptr_test ./src/auto_ptr.test.cpp)
-add_executable(solution ./src/solution.cpp)
+add_executable(solution src/1705.cpp)
 add_executable(closure ./src/closure.cpp)
 add_executable(backtrack ./src/backtrack.cpp)
-add_executable(bronya ./src/bronya.cpp)
 
 # 链接 gtest 库
 target_link_libraries(auto_ptr_test GTest::gtest_main)
