@@ -5,45 +5,35 @@ function maxTotalValue(
   value: number[],
 ): number {
   // 初始化 dp 数组
-  // let rowCount = numGoods;
-  // let columnCount = bagCapacity;
-  const dp: number[][] = new Array(numGoods)
+  // let rowCount = numGoods + 1;
+  // let columnCount = bagCapacity + 1;
+  const dp: number[][] = new Array(numGoods + 1)
     .fill([])
     .map(() => new Array(bagCapacity + 1).fill(0));
 
-  for (
-    let j = 0;
-    j <= dp[0].length; // bagCapacity
-    j++
-  ) {
-    dp[0][j] = j >= weight[0] ? value[0] : 0;
-  }
-
   // console.log(dp)
-  for (let i = 1; i < numGoods; i++) {
-    for (let j = 0; j <= bagCapacity; j++) {
-      if (j < weight[i]) {
+  for (let i = 1; i <= numGoods; i++) {
+    for (let j = 1; j <= bagCapacity; j++) {
+      if (j < weight[i - 1]) {
         dp[i][j] = dp[i - 1][j];
         continue;
       }
-      dp[i][j] = // 下标 [0, i] 的物品, 放入容量为 j 的背包的最大收益
+      dp[i][j] = // 前 i 个物品, 放入容量为 j 的背包的最大收益
         Math.max(
           // 不放物品 i
-          // 则 dp[i][j] = 下标 [0, i-1] 的物品, 放入容量为 j 的背包的最大收益
+          // 则 dp[i][j] = 前 i-1 个物品, 放入容量为 j 的背包的最大收益
           dp[i - 1][j],
           // 放物品 i
-          // 则 dp[i][j] = 下标 [0, i-1] 的物品, 放入容量为 j-w[i] 的背包的最大收益,
-          // 再加上 物品 i 的收益
-          dp[i - 1][j - weight[i]] + value[i],
+          // 则 dp[i][j] = 前 i-1 个物品, 放入容量为 j-w[i-1] 的背包的最大收益,
+          // 再加上 物品 i-1 的收益 v[i-1]
+          dp[i - 1][j - weight[i - 1]] + value[i - 1],
         );
     } // inner for-loop
   } // outer for-loop
-  return dp[numGoods - 1][bagCapacity];
+  return dp[numGoods][bagCapacity];
 }
-
-const numGoods = 7;
-const bagCapacity = 15;
-const weight: number[] = [2, 3, 5, 7, 1, 4, 1];
-const value: number[] = [10, 5, 15, 7, 6, 18, 3];
-
+const numGoods = 4;
+const bagCapacity = 32;
+const weight = [10, 15, 6, 9];
+const value = [2, 5, 8, 1];
 console.log(maxTotalValue(numGoods, bagCapacity, weight, value));
