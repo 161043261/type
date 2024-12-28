@@ -283,3 +283,78 @@ server {
   }
 }
 ```
+
+=================================================
+
+### AJAX
+
+AJAX: Asynchronous JavaScript And XML
+
+1. AJAX 向服务器发送请求并获取数据, 而无需刷新整个页面, 减少请求次数, 减少响应数据量, 减少网络带宽的消耗, 减轻服务器压力, 实现异步、增量式更新页面
+2. AJAX 对 SEO 搜索引擎优化劣势较大, 可能有网络安全问题
+
+核心 API
+
+1. 创建 xhr 实例 `const xhr = new XMLHttpRequest();`
+2. open 方法: 初始化请求, 指定请求方法, 请求 URL, 是否异步 (默认 true)
+3. send 方法: 发送请求
+4. onreadystatechange: readyState 改变时, 调用的回调函数
+
+- readyState 0: 已创建 xhr 实例, 未调用 open 方法
+- readyState 1: 已调用 open 方法, 未调用 send 方法
+- readyState 2: 已调用 send 方法, 已收到服务器返回的响应头
+- readyState 3: 正在接收服务返回的数据
+- readyState 4: 已收到服务器返回的全部数据
+
+xhr 发送 GET 请求
+
+```js
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "http://localhost:3000/api/json");
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    console.log(xhr.responseText);
+  } else {
+    console.log(xhr.status);
+  }
+};
+xhr.send(/* params */);
+```
+
+=================================================
+
+### fetch
+
+fetch 默认只支持 GET 和 POST 请求方法
+
+- text() 将响应体解析为文本字符串
+- json() 将响应体解析为 JSON 并返回一个 JS 对象
+- blob() 将响应体解析为二进制数据, 并返回一个 Blob 对象
+- arrayBuffer() 将响应体解析为二进制数据, 并返回一个 ArrayBuffer 对象
+- formData() 将响应体解析为 FormData 对象
+
+```js
+fetch("http://localhost:3000/api/json")
+  .then((res) => res.text())
+  .then((res) => {
+    console.log(res);
+  });
+```
+
+=================================================
+
+### SSE
+
+SSE, Server-Sent Events 也称为事件流 Event Stream, 基于 HTTP 协议, 利用 HTTP 协议的长连接特性, 在客户端和服务器间建立一条持久化连接, 通过这条连接实现服务器向客户端实现服务器向客户端的实时数据推送
+
+SSE 的应用
+
+- chatGPT
+- 实时数据大屏
+
+SSE, Server-Sent Events 和 WebSocket 都可以实现服务器向客户端的实时数据推送, 不同点
+
+1. SSE 基于 HTTP 协议, 利用 HTTP 协议的长连接特性, 在客户端和服务器间建立一条持久化连接; WebSocket 通过特殊的升级协议 (HTTP/1.1 upgrade 或 HTTP/2) 建立新的 TCP 连接，与传统 HTTP 连接不同
+2. SSE 可以传输 text 文本字符串和 blob 二进制数据, 只支持单向数据流, 即只支持服务器向客户端推送数据; WebSocket 支持双向数据流, 没有消息大小限制
+3. SSE 的连接状态有 3 种: 连接中, 已连接, 已断开, 不能手动关闭或重新连接; WebSocket 可以手动开启, 关闭, 重新连接等
+4. SSE 基于 HTTP 协议, 没有 SSL/TLS 加密, 不安全; WebSocket 有 SSL/TLS 加密, 安全

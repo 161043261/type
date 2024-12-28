@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/api/json");
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      } else {
+        console.log(xhr.status);
+      }
+    };
+    xhr.send(null);
+  </script>
+
+  <script>
+    fetch("http://localhost:3000/api/json")
+      .then((res) => res.text())
+      .then((res) => {
+        console.log(res);
+      });
+  </script>
+</html>
