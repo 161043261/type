@@ -168,7 +168,7 @@ Remore Address [::1]:3000
 - If-Modified-Since: Mon Jan 01 2025 04:32:51 GMT+0800 (GMT+8:00)
 - Last-Modified: Mon Jan 01 2025 04:32:51 GMT+0800 (GMT+8:00)
 
-如果请求头中的 If-Modified-Since 字段值和服务器资源的最后修改时间 Last-Modified 值相等, 则服务器判断资源未更新, 返回 304 Not Modified, 响应体为空; 如果服务器资源的最后修改时间 Last-Modified **晚于** 请求头中的 If-Modified-Since 字段值, 则服务器判断资源已更新, 返回 200 OK, 响应体中携带更新的资源
+如果请求头中的 If-Modified-Since 字段值和服务器资源的最后修改时间 Last-Modified 值相等, 则服务器判断资源未更新, 返回 304 Not Modified, 响应体为空; 如果服务器资源的最后修改时间 Last-Modified **晚于**请求头中的 If-Modified-Since 字段值, 则服务器判断资源已更新, 返回 200 OK, 响应体中携带更新的资源
 
 - If-None-Match: "hash_code_or_version_or..."
 - ETag: "hash_code_or_version_or..."
@@ -199,3 +199,87 @@ Remore Address [::1]:3000
 ### CDN, Content Delivery Network
 
 CDN 内容分发网络, 用于优化资源请求时间
+
+## 跨域
+
+**同源策略**
+
+- 同源: 主机 (域名), 端口, 协议都相同
+- 跨域
+  1. 主机 (域名) 不同
+  2. 端口不同: 80, 8080
+  3. 协议不同: http, https
+
+**跨域的解决**
+
+1. 前后端协商 jsonp
+2. 前端解决: 使用代理, 只在开发环境中使用
+3. 后端解决: 设置请求头
+4. 使用 nginx 代理
+
+**前后端协商 jsonp**: script 标签的 src 不受同源策略的限制, 可以发送跨域请求, 但只能发送 GET 请求
+
+```shell
+pnpm i express @types/express
+```
+
+**前端解决**: 使用代理, 只在开发环境中使用
+
+```shell
+pnpm i vite -D # webpack
+vim /path/to/ts-playground/vite.config.ts
+```
+
+vite.config.ts
+
+```ts
+export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    },
+  },
+});
+```
+
+修改 package.json
+
+```json
+{
+  "scripts": {
+    "dev": "vite"
+  }
+}
+```
+
+**后端解决**
+
+```ts
+app.get("/api/json", (_req, res) => {
+  // 允许任何主机 (域名), 端口, 协议的请求
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  res.json({ name: "express" });
+});
+```
+
+**使用 nginx 代理**
+
+```shell
+sudo apt install nginx
+sudo vim /etc/nginx/sites-available/default
+```
+
+/etc/nginx/sites-available/default
+
+```conf
+server {
+  location /api {
+    proxy_pass http://127.0.0.1:3000;
+  }
+}
+```
