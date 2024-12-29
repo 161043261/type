@@ -1,3 +1,5 @@
+Author: Tiancheng Hang
+
 =================================================
 
 OSI
@@ -444,5 +446,11 @@ if ("connection" in navigator) {
 
 ### XSS, Cross-site scripting 跨站脚本攻击
 
-- 反射型 XSS
-- 存储型 XSS: 也称为 HTML注入型, 持久型 XSS, 最严重
+- 反射型 XSS: 非持久型 XSS `http://127.0.0.1:5500/index.html?a=<script>alert(1)</script>`
+- 存储型 XSS: 持久型 XSS, 会持久化存储, **最严重**
+- DOM 型 XSS: 例如 document.write, eval, innerHTML, location, v-html
+
+预防 XSS
+
+- 输入过滤, 输出转义
+- CSP, Content Security Policy 设置响应头的内容安全策略
