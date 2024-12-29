@@ -439,3 +439,10 @@ if ("connection" in navigator) {
   console.log("navigator.connection is not supported.");
 }
 ```
+
+=================================================
+
+### XSS, Cross-site scripting 跨站脚本攻击
+
+- 反射型 XSS
+- 存储型 XSS: 也称为 HTML注入型, 持久型 XSS, 最严重
