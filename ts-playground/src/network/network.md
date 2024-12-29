@@ -388,7 +388,7 @@ navigator.sendBeacon("http://localhost:3000/api/beacon");
 
 ### TLS, SSL
 
-TLS (Transport Layer Security) 和 SSL (Secure Sockets Layer) 提供加密和认证机制, 确保数据传输的私密性
+TLS (Transport Layer Security) 和 SSL (Secure Sockets Layer) 提供加密和认证机制, 确保数据传输的隐私
 
 - 对称加密: 密钥加密, 密钥解密, 例: AES
 - 非对称加密: 公钥加密, 私钥解密, 例: RSA, 发送方使用接收方的公钥加密数据, 接收方收到加密数据后使用私钥解密
@@ -397,10 +397,45 @@ TLS (Transport Layer Security) 和 SSL (Secure Sockets Layer) 提供加密和认
 
 ### JWT, JSON Web Token
 
-JWT 由 3 部分组成: 头部, 负载
-
-头部 Header
-
 ```shell
 pnpm i jsonwebtoken cors @types/jsonwebtoken @types/cors
+```
+
+=================================================
+
+1. 使用 online/offline 事件监听器, 监听网络连接状态的改变: 在线/离线
+2. 使用 navigator.onLine 属性, 获取当前的网络连接状态
+
+```js
+// 使用 online/offline 事件监听器
+window.addEventListener("online", () => {
+  console.log("online");
+});
+
+window.addEventListener("offline", () => {
+  console.log("offline");
+});
+
+// 使用 navigator.onLine 属性
+if (navigator.onLine) {
+  console.log("Online");
+} else {
+  console.log("Offline");
+}
+```
+
+```js
+if ("connection" in navigator) {
+  const networkInfo = navigator.connection;
+  // 当前网络连接的下载速率, 单位 Mbps
+  console.log("Network downlink:", networkInfo.downlink);
+  // 当前网络连接的类型: slow-2g, 2g, 3g, 4g
+  console.log("Network effective type:", networkInfo.effectiveType);
+  // 当前网络连接的 rtt, 单位 ms
+  console.log("Network round-trip time:", networkInfo.rtt);
+  // 是否处于数据节省模式
+  console.log("Network data-saving mode:", networkInfo.saveData);
+} else {
+  console.log("navigator.connection is not supported.");
+}
 ```
