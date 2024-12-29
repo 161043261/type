@@ -31,7 +31,7 @@
   <script>
     // fetch("/api/json")
     fetch("http://localhost:3000/api/json")
-      .then((res) => res.json()) // 指定 json 格式
+      .then((resp) => resp.json()) // 指定 json 格式
       .then((data) => {
         console.log(data);
       });

@@ -259,11 +259,11 @@ export default defineConfig({
 **后端解决**
 
 ```ts
-app.get("/api/json", (_req, res) => {
+app.get("/api/json", (_req, resp) => {
   // 允许任何主机 (域名), 端口, 协议的请求
-  // res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-  res.json({ name: "express" });
+  // resp.setHeader("Access-Control-Allow-Origin", "*");
+  resp.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  resp.json({ name: "express" });
 });
 ```
 
@@ -335,26 +335,72 @@ fetch 默认只支持 GET 和 POST 请求方法
 
 ```js
 fetch("http://localhost:3000/api/json")
-  .then((res) => res.text())
-  .then((res) => {
-    console.log(res);
+  .then((resp) => resp.text())
+  .then((resp) => {
+    console.log(resp);
   });
 ```
 
 =================================================
 
-### SSE
+### SSE, WebSocket
 
-SSE, Server-Sent Events 也称为事件流 Event Stream, 基于 HTTP 协议, 利用 HTTP 协议的长连接特性, 在客户端和服务器间建立一条持久化连接, 通过这条连接实现服务器向客户端实现服务器向客户端的实时数据推送
+SSE, Server-Sent Events, 也称为事件流 Event Stream, 基于 HTTP, 利用 HTTP 的长连接特性, 在客户端和服务器间建立持久连接, 实现服务器向客户端实现服务器向客户端的实时数据推送
 
-SSE 的应用
+WebSocket 基于握手协议 (Handshake Protocol), 使用 HTTP/HTTPS 握手以建立连接, 建立连接后, 在 TCP 连接上进行全双工通信. 在客户端和服务器间建立持久连接, 实现客户端和服务器间的实时, **全双工**通信
 
-- chatGPT
-- 实时数据大屏
+```shell
+pnpm i ws
+pnpm i @types/ws -D
+```
 
-SSE, Server-Sent Events 和 WebSocket 都可以实现服务器向客户端的实时数据推送, 不同点
+SSE, Server-Sent Events 和 WebSocket 都减少了不必要的请求, 可以实现服务器向客户端的实时数据推送, 不同点:
 
-1. SSE 基于 HTTP 协议, 利用 HTTP 协议的长连接特性, 在客户端和服务器间建立一条持久化连接; WebSocket 通过特殊的升级协议 (HTTP/1.1 upgrade 或 HTTP/2) 建立新的 TCP 连接，与传统 HTTP 连接不同
+1. SSE 基于 HTTP, 利用 HTTP 的长连接特性, 在客户端和服务器间建立持久连接; WebSocket 基于 TCP
 2. SSE 可以传输 text 文本字符串和 blob 二进制数据, 只支持单向数据流, 即只支持服务器向客户端推送数据; WebSocket 支持双向数据流, 没有消息大小限制
-3. SSE 的连接状态有 3 种: 连接中, 已连接, 已断开, 不能手动关闭或重新连接; WebSocket 可以手动开启, 关闭, 重新连接等
-4. SSE 基于 HTTP 协议, 没有 SSL/TLS 加密, 不安全; WebSocket 有 SSL/TLS 加密, 安全
+3. SSE 的 readyState:
+
+- CONNECTING 正在建立连接
+- OPEN 已建立连接, 正在接收服务器推送的数据
+- CLOSED 已关闭连接
+  SSE 不能手动关闭或重新连接; WebSocket 可以手动开启, 关闭, 重新连接等
+
+4. SSE 基于 HTTP, 没有 SSL/TLS 加密, 不安全; WebSocket 有 SSL/TLS 加密, 安全
+
+=================================================
+
+### navigator.sendBeacon
+
+使用 navigator.sendBeacon 实现高效的数据上报
+
+传统的数据上报, 例如 xhr, XMLHttpRequest 或 fetch, 页面卸载时可能丢失数据; navigator.sendBeacon 不受页面卸载的影响, 异步数据上报, 可以发送跨域请求
+
+- navigator.sendBeacon 只能发送 POST 请求
+- 不能自定义请求头
+- 只能传输少量数据 (<= 64KB)
+- 只能传输 ArrayBuffer, ArrayBufferView, Blob, DOMString、FormData 或 URLSearchParams 类型的数据
+
+```js
+navigator.sendBeacon("http://localhost:3000/api/beacon");
+```
+
+=================================================
+
+### TLS, SSL
+
+TLS (Transport Layer Security) 和 SSL (Secure Sockets Layer) 提供加密和认证机制, 确保数据传输的私密性
+
+- 对称加密: 密钥加密, 密钥解密, 例: AES
+- 非对称加密: 公钥加密, 私钥解密, 例: RSA, 发送方使用接收方的公钥加密数据, 接收方收到加密数据后使用私钥解密
+
+=================================================
+
+### JWT, JSON Web Token
+
+JWT 由 3 部分组成: 头部, 负载
+
+头部 Header
+
+```shell
+pnpm i jsonwebtoken cors @types/jsonwebtoken @types/cors
+```
