@@ -43,8 +43,14 @@
       <!-- react -->
       <div id="header"></div>
       <form id="extractForm">
-        <label for="sourceDir">Source Dir</label>
-        <input type="text" id="sourceDir" name="sourceDir" />
+        <label for="sourceDir">sourceDir</label>
+        <input
+          type="text"
+          id="sourceDir"
+          name="sourceDir"
+          value="C:\Program Files\N0vaDesktop\N0vaDesktopCache\game"
+          size="70%"
+        />
         <button type="submit" id="extractBtn">Extract!</button>
       </form>
       <div id="msgBox"></div>
@@ -65,30 +71,29 @@
         if (sourceDir === "") {
           document.getElementById("msgBox").textContent =
             "Please specify the sourceDir!";
-          return;
-        }
-      });
-
-    fetch("/extract", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ sourceDir }),
-    })
-      .then((resp) => resp.json())
-      .then((value /* { ok: boolean, msg: string, err: string } */) => {
-        if (!value.ok) {
-          document.getElementById("message").textContent =
-            "Extract fail! <br />" + value.err;
         } else {
-          document.getElementById("msgBox").textContent =
-            "Extract succeed! <br />" + value.msg;
+          fetch("/api/extract", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ sourceDir }),
+          })
+            .then((resp) => resp.json())
+            .then((value /* { msg: string, err: string } */) => {
+              if (value.err) {
+                document.getElementById("msgBox").textContent =
+                  "Extract fail! " + value.err;
+              } else {
+                document.getElementById("msgBox").textContent =
+                  "Congratulations! Extract succeed!";
+              }
+            })
+            .catch((err) => {
+              document.getElementById("msgBox").textContent =
+                "Extract error! " + err;
+            });
         }
-      })
-      .catch((err) => {
-        document.getElementById("msgBox").textContent =
-          "Extract fail! <br />" + err;
       });
   </script>
 </html>

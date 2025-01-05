@@ -1,51 +1,66 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import fs from "node:fs";
+import path from "node:path";
+import { Buffer } from "node:buffer";
 import express from "express";
-import multer from "multer";
-import path from "path";
-import fs from "fs";
-import { v4 as uuidv4 } from "uuid";
+import bodyParser from "body-parser";
+import { v4 as uuid } from "uuid";
 
 const app = express();
-const upload = multer();
+app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, "frontend")));
+app.get("/api/test", (_req, resp) => {
+  resp.end("test");
+});
 
-app.post("/convert", upload.none(), async (req, res) => {
+app.post("/api/extract", async function (req, resp) {
   const sourceDir = req.body.sourceDir;
-
   if (!sourceDir) {
-    return res.status(400).json({ error: "Source directory is required" });
+    resp.status(400).json({ err: "sourcedDir is required" });
+    return;
   }
-
   try {
-    const outputDir = await getOutputDir();
-    await convertFiles(sourceDir, outputDir);
-    res.status(200).json({ message: "Files converted successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const curWorkDir = process.cwd();
+    const outputDir = path.join(curWorkDir, "output");
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    await extractFiles(sourceDir, outputDir);
+    resp.status(200).json({ msg: "Extract succeed!" });
+  } catch (reason) {
+    resp.status(500).json({ err: reason });
   }
 });
 
-const getOutputDir = async (): Promise<string> => {
-  const exePath = process.cwd();
-  const outputDir = path.join(exePath, "output");
+const unrecognized_file = 0;
+const exif_file = 1;
+const ftyp_video_file = 2;
+const jpeg_file = 3;
+const png_file = 4;
 
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
+const exif_image_magic = Buffer.from([0xff, 0xd8, 0xff, 0xe1]);
+const ftypisom_video_magic = Buffer.from([
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x66, 0x74, 0x79, 0x70,
+]);
+const ftypmp42_video_magic = Buffer.from([
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x66, 0x74, 0x79, 0x70,
+]);
+const jpeg_image_magic = Buffer.from([0xff, 0xd8, 0xff, 0xe0]);
+const png_image_magic = Buffer.from([
+  0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+]);
 
-  return outputDir;
-};
+// console.log(exif_image_magic.toString());
+// console.log(ftypisom_video_magic.toString());
+// console.log(ftypmp42_video_magic.toString());
+// console.log(jpeg_image_magic.toString());
+// console.log(png_image_magic.toString());
 
-const convertFiles = async (
-  sourceDir: string,
-  targetDir: string
-): Promise<void> => {
+async function extractFiles(sourceDir: string, targetDir: string) {
   const files = fs.readdirSync(sourceDir);
-
   for (const file of files) {
     const filePath = path.join(sourceDir, file);
     const stat = fs.statSync(filePath);
-
     if (
       stat.isDirectory() ||
       !file.endsWith(".ndf") ||
@@ -53,89 +68,60 @@ const convertFiles = async (
     ) {
       continue;
     }
-
     const fileType = getFileType(filePath);
-    if (fileType === UNRECOGNIZED_FILE) {
+    if (fileType === unrecognized_file) {
       continue;
     }
-
-    const destPath = path.join(
-      targetDir,
-      uuidv4() + getFileExtension(fileType)
-    );
-    let data = fs.readFileSync(filePath);
-
-    if (fileType === FTYP_VIDEO_FILE && data.length > 2) {
-      data = data.slice(2);
+    const dstPath = path.join(targetDir, uuid() + getFileExtension(fileType));
+    let buf = fs.readFileSync(filePath);
+    if (fileType === ftyp_video_file && buf.length > 2) {
+      buf = buf.slice(2);
     }
-
-    fs.writeFileSync(destPath, data);
+    fs.writeFileSync(dstPath, buf);
   }
-};
+}
 
 const getFileType = (filePath: string): number => {
-  const data = fs.readFileSync(filePath);
-  if (compareFromHead(data, EXIF_IMAGE_MAGIC, 4)) {
-    return EXIF_FILE;
-  } else if (compareFromHead(data, PNG_IMAGE_MAGIC, 8)) {
-    return PNG_FILE;
-  } else if (compareFromHead(data, JPEG_IMAGE_MAGIC, 4)) {
-    return JPEG_FILE;
+  const buf = fs.readFileSync(filePath);
+  if (compareHead(buf, exif_image_magic, 4)) {
+    return exif_file;
+  } else if (compareHead(buf, png_image_magic, 8)) {
+    return png_file;
+  } else if (compareHead(buf, jpeg_image_magic, 4)) {
+    return jpeg_file;
   } else if (
-    compareFromHead(data, FTYPMP42_VIDEO_MAGIC, 10) ||
-    compareFromHead(data, FTYPISOM_VIDEO_MAGIC, 10)
+    compareHead(buf, ftypmp42_video_magic, 10) ||
+    compareHead(buf, ftypisom_video_magic, 10)
   ) {
-    return FTYP_VIDEO_FILE;
+    return ftyp_video_file;
   } else {
-    return UNRECOGNIZED_FILE;
+    return unrecognized_file;
   }
 };
 
-const compareFromHead = (
-  toBeCompared: Buffer,
-  pattern: Buffer,
-  nPattern: number
-): boolean => {
-  for (let i = 0; i < nPattern; i++) {
-    if (toBeCompared[i] !== pattern[i]) {
+function compareHead(buf: Buffer, pattern: Buffer, cnt: number): boolean {
+  for (let i = 0; i < cnt; i++) {
+    if (buf[i] !== pattern[i]) {
       return false;
     }
   }
   return true;
-};
+}
 
 const getFileExtension = (fileType: number): string => {
   switch (fileType) {
-    case EXIF_FILE:
-    case JPEG_FILE:
+    case exif_file:
+    case jpeg_file:
       return ".jpg";
-    case PNG_FILE:
+    case png_file:
       return ".png";
-    case FTYP_VIDEO_FILE:
+    case ftyp_video_file:
       return ".mp4";
     default:
       return "";
   }
 };
 
-const UNRECOGNIZED_FILE = 0;
-const EXIF_FILE = 1;
-const PNG_FILE = 2;
-const JPEG_FILE = 3;
-const FTYP_VIDEO_FILE = 4;
-
-const EXIF_IMAGE_MAGIC = Buffer.from([0xff, 0xd8, 0xff, 0xe1]);
-const PNG_IMAGE_MAGIC = Buffer.from([
-  0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
-]);
-const JPEG_IMAGE_MAGIC = Buffer.from([0xff, 0xd8, 0xff, 0xe0]);
-const FTYPISOM_VIDEO_MAGIC = Buffer.from([
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x66, 0x74, 0x79, 0x70,
-]);
-const FTYPMP42_VIDEO_MAGIC = Buffer.from([
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x66, 0x74, 0x79, 0x70,
-]);
-
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
