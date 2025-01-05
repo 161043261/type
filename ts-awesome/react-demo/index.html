@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/react.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N0va Desktop Extractor</title>
+    <style>
+      @font-face {
+        font-family: "Fira Neo";
+        src: url("./FiraCode-Regular.woff2") format("woff2");
+      }
+
+      * {
+        font-family: "Fira Neo" !important;
+      }
+
+      .container {
+        width: 600px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px lightblue;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      #extractBtn {
+        padding: 5px 5px;
+        color: white;
+        background-color: slateblue;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #msgBox {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- react -->
+      <div id="header"></div>
+      <form id="extractForm">
+        <label for="sourceDir">Source Dir</label>
+        <input type="text" id="sourceDir" name="sourceDir" />
+        <button type="submit" id="extractBtn">Extract!</button>
+      </form>
+      <div id="msgBox"></div>
+    </div>
+  </body>
+
+  <script crossorigin type="module" src="/src/main.tsx"></script>
+  <script crossorigin>
+    document.querySelector("#sourceDir").addEventListener("change", (ev) => {
+      document.getElementById("msgBox").textContent = "";
+    });
+
+    document
+      .querySelector("#extractForm")
+      .addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const sourceDir = document.getElementById("sourceDir").value;
+        if (sourceDir === "") {
+          document.getElementById("msgBox").textContent =
+            "Please specify the sourceDir!";
+          return;
+        }
+      });
+
+    fetch("/extract", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sourceDir }),
+    })
+      .then((resp) => resp.json())
+      .then((value /* { ok: boolean, msg: string, err: string } */) => {
+        if (!value.ok) {
+          document.getElementById("message").textContent =
+            "Extract fail! <br />" + value.err;
+        } else {
+          document.getElementById("msgBox").textContent =
+            "Extract succeed! <br />" + value.msg;
+        }
+      })
+      .catch((err) => {
+        document.getElementById("msgBox").textContent =
+          "Extract fail! <br />" + err;
+      });
+  </script>
+</html>

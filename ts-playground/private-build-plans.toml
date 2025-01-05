@@ -1,14 +1,14 @@
-[buildPlans.FiraNext]
-family = "Fira Next"
+[buildPlans.FiraCode]
+family = "Fira Code"
 spacing = "fontconfig-mono"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = false
 
-  [buildPlans.FiraNext.variants]
+  [buildPlans.FiraCode.variants]
   inherits = "ss05"
 
-    [buildPlans.FiraNext.variants.design]
+    [buildPlans.FiraCode.variants.design]
     four = "closed-serifless"
     six = "straight-bar"
     nine = "straight-bar"
@@ -28,35 +28,35 @@ exportGlyphNames = false
     brace = "straight"
     ampersand = "closed"
 
-  [buildPlans.FiraNext.ligations]
+  [buildPlans.FiraCode.ligations]
   inherits = "javascript"
 
-[buildPlans.FiraNext.weights.Light]
+[buildPlans.FiraCode.weights.Light]
 shape = 300
 menu = 300
 css = 300
 
-[buildPlans.FiraNext.weights.Regular]
+[buildPlans.FiraCode.weights.Regular]
 shape = 400
 menu = 400
 css = 400
 
-[buildPlans.FiraNext.weights.Medium]
+[buildPlans.FiraCode.weights.Medium]
 shape = 500
 menu = 500
 css = 500
 
-[buildPlans.FiraNext.weights.SemiBold]
+[buildPlans.FiraCode.weights.SemiBold]
 shape = 600
 menu = 600
 css = 600
 
-[buildPlans.FiraNext.weights.Bold]
+[buildPlans.FiraCode.weights.Bold]
 shape = 700
 menu = 700
 css = 700
 
-[buildPlans.FiraNext.widths.Normal]
+[buildPlans.FiraCode.widths.Normal]
 shape = 500
 menu = 5
 css = "normal"
