@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// js 插值 ${}
-// vue 插值 {{}}
-// jsx 插值 {}
+//! js 插值 ${}
+//! vue 插值 {{}}
+//! jsx 插值 {}
+
+import { UseState } from "./hook/UseState";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -16,15 +18,15 @@ export function App() {
   };
   _fn("Hello Seattle, I am a mountaineer");
 
-  // return (
-  //   // 这里，arg 是事件对象
-  //   <button type="button" onClick={counter}>
-  //     {"App"}
-  //   </button>
-  // );
+  //! return (
+  //!   // 这里，arg 是事件对象
+  //!   <button type="button" onClick={counter}>
+  //!     {"App"}
+  //!   </button>
+  //! );
 
   // return (
-  //   // 立即调用
+  //   // 需要传递参数时, 会立即调用
   //   // <button type="button" onClick={counter(1)}>
   //   // 解决：使用高阶函数
   //   <button type="button" onClick={() => counter(1)}>
@@ -45,11 +47,21 @@ export function App() {
     cursor: "pointer",
   };
 
+  const rowStyle = { display: "flex", justifyContent: "space-around" };
+  const itemStyle = {
+    border: "1px solid lightblue",
+    borderRadius: "10px",
+    padding: "10px",
+    width: "30vw",
+  };
+
   // 指定 html 代码片段，等价于 v-html
-  const htmlSnippet = `<p>dangerouslySetInnerHTML</p>`;
+  const htmlSnippet = `<p>v-html</p>`;
 
   // 遍历数组，等价于 v-for
-  const arr = ["item1", "item2", "item3"];
+  const arr = ["Vue", "React", "Angular"];
+
+  const cond = true;
   return (
     <>
       <button
@@ -61,13 +73,27 @@ export function App() {
       >
         {"btn"}
       </button>
-      
+
       <div dangerouslySetInnerHTML={{ __html: htmlSnippet }}></div>
-      
-      <div>
-        {arr.map((item) => {
-          return <div key={item}>{item}</div>;
-        })}
+
+      <div style={rowStyle}>
+        <div style={itemStyle}>
+          <ul>
+            {arr.map((item) => {
+              // key: 数值或字符串
+              return <li key={item}>{item}</li>;
+            })}
+          </ul>
+        </div>
+
+        <div style={itemStyle}>
+          使用与预算符或三目运算符的条件渲染
+          {cond && <p>renderIfTrue</p>}
+          {cond ? <span>spanA</span> : <span>spanB</span>}
+        </div>
+
+        {/************************* Hooks *************************/}
+        <UseState />
       </div>
     </>
   );

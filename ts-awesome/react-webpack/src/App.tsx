@@ -1,6 +1,6 @@
-// js 插值 ${}
-// vue 插值 {{}}
-// jsx 插值 {}
+//! js 插值 ${}
+//! vue 插值 {{}}
+//! jsx 插值 {}
 
 import React from 'react';
 
@@ -17,15 +17,15 @@ export function App() {
   };
   _fn('Hello Seattle, I am a mountaineer');
 
-  // return (
-  //   // 这里，arg 是事件对象
-  //   <button type="button" onClick={counter}>
-  //     {"App"}
-  //   </button>
-  // );
+  //! return (
+  //!   // 这里，arg 是事件对象
+  //!   <button type="button" onClick={counter}>
+  //!     {"App"}
+  //!   </button>
+  //! );
 
   // return (
-  //   // 立即调用
+  //   // 需要传递参数时, 会立即调用
   //   // <button type="button" onClick={counter(1)}>
   //   // 解决：使用高阶函数
   //   <button type="button" onClick={() => counter(1)}>
@@ -50,7 +50,18 @@ export function App() {
   const htmlSnippet = `<p>dangerouslySetInnerHTML</p>`;
 
   // 遍历数组，等价于 v-for
-  const arr = ['item1', 'item2', 'item3'];
+  const arr = ['Vue', 'React', 'Angular'];
+
+  const cond = true;
+  function renderPara(condNum: number) {
+    if (condNum === 1) {
+      return <p>Vue</p>
+    } else if (condNum === 2) {
+      return <p>React</p>
+    } else {
+      return <p>Angular</p>
+    }
+  }
   return (
     <>
       <button
@@ -62,14 +73,19 @@ export function App() {
       >
         {'btn'}
       </button>
-
       <div dangerouslySetInnerHTML={{ __html: htmlSnippet }}></div>
-
-      <div>
+      <ul>
         {arr.map((item) => {
-          return <div key={item}>{item}</div>;
+          // key: 数值或字符串
+          return <li key={item}>{item}</li>;
         })}
-      </div>
+      </ul>
+
+      {/* 条件渲染 */}
+      {cond && <p>render when true</p>}
+      {cond ? <span>planA</span> : <span>planB</span>}
+
+      {renderPara(2/* condNum */)}
     </>
   );
 }

@@ -49,19 +49,19 @@ function transformFunc({ types }) {
           null, // 匿名函数
           node.params,
           types.blockStatement([types.returnStatement(node.body)]),
-          node.async
-        )
+          node.async,
+        );
         path.replaceWith(functionExpression);
-      }
-    }
-  }
+      },
+    },
+  };
 }
 const result3 = babel.transform(es6Code, {
-  plugins: [transformFunc]
-})
+  plugins: [transformFunc],
+});
 //! console.log(result3.code);
 
-import swc from '@swc/core'
+import swc from "@swc/core";
 const result4 = swc.transformFileSync("./es6.raw.js", {
   jsc: {
     parser: {
@@ -72,13 +72,13 @@ const result4 = swc.transformFileSync("./es6.raw.js", {
 });
 //! console.log(result4.code);
 
-const result5 = swc.transformFileSync('./react.raw.jsx', {
+const result5 = swc.transformFileSync("./react.raw.jsx", {
   jsc: {
     parser: {
-      syntax: 'ecmascript',
-      jsx: true
+      syntax: "ecmascript",
+      jsx: true,
     },
-    target: 'es5'
-  }
-})
+    target: "es5",
+  },
+});
 console.log(result5.code);

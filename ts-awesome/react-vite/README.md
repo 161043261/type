@@ -45,7 +45,7 @@ function Component() {
 }
 ```
 
-3. 属性名转换为驼峰命名
+3. 属性名使用驼峰命名
 
 例：stroke-width => strokeWidth, class => className
 
@@ -61,3 +61,10 @@ function Component() {
 1. es6 => es5, ts => js, jsx => js, ...
 2. 打包
 3. 代码压缩，优化
+
+
+### 虚拟 dom
+
+优点: 性能好, 跨平台
+
+**fiber**

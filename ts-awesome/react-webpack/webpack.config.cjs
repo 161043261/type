@@ -43,7 +43,8 @@ const config = {
       {
         // 匹配 .ts .tsx 文件, 先使用 ts-loader 处理, 再使用 babel-loader 处理
         test: /\.(ts|tsx)$/i,
-        use: ['babel-loader', 'ts-loader'],
+        // use: ['babel-loader', 'ts-loader'],
+        loader: 'ts-loader',
         exclude: ['/node_modules/'],
       },
       {

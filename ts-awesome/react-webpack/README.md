@@ -1,9 +1,9 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **create-webpack-app**, you can now run
+**create-webpack-app**
 
 ```bash
-pnpm build
+pnpm build # bundle app
 ```
 
-to bundle your application
+### useState
+
+useState 是一个 React Hook
