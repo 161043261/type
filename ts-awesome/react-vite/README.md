@@ -60,4 +60,4 @@ function Component() {
 
 1. es6 => es5, ts => js, jsx => js, ...
 2. 打包
-3. 代码压缩，代码优化
+3. 代码压缩，优化

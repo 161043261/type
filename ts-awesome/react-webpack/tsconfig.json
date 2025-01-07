@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    // 允许编译 JS 文件
+    "allowJs": true,
+    // 允许默认导入没有默认导出的模块, 用于兼容 commonjs 模块
+    "allowSyntheticDefaultImports": true,
+    // 强制导入文件名和实际文件名的大小写一致
+    "forceConsistentCasingInFileNames": true,
+    // 指定 .jsx 的编译方式
+    "jsx": "react",
+    "module": "es6",
+    "noImplicitAny": true,
+    "strict": true,
+    // 指定编译后的 JS 版本
+    "target": "es5"
+  },
+  // 排除的文件或目录
+  "exclude": [
+    "dist",
+    "webpack.config.cjs"
+  ],
+  // 输出目录
+  "outDir": "./dist"
+  // "files": ["src/index.tsx"]
+}
