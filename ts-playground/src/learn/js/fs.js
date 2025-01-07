@@ -2,11 +2,11 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 // fs: file system
 
-//! fs.writeFile(file, data[, options], callback)   异步写入
-//! fs.writeFileSync(file, data[, options])         同步写入
-//! fs.appendFilee(file, data[, options], callback) 异步追加
-//! fs.appendFileSync(file, data[, options])        同步追加
-//! fs.createWriteStream(path[, options])           (异步) 创建文件写入流
+//! fs.writeFile(file, data[, options], callback)  异步写入
+//! fs.writeFileSync(file, data[, options])        同步写入
+//! fs.appendFile(file, data[, options], callback) 异步追加
+//! fs.appendFileSync(file, data[, options])       同步追加
+//! fs.createWriteStream(path[, options])          (异步) 创建文件写入流
 
 // CommonJS
 const fs = require("fs");

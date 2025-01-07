@@ -1,15 +1,7 @@
 import { createRoot } from "react-dom/client";
 
-// React 组件是函数，函数名首字母大写
-// 不要在组件中定义组件
 function Logo() {
-  return <img src="react.svg" alt="react logo" />;
-  // return (
-  // <img
-  //   src="react.svg"
-  //   alt="react logo"
-  // />
-  // );
+  return <img src="react.svg" alt="react" />;
 }
 
 export default function Header() {
@@ -29,3 +21,7 @@ export default function Header() {
 const header = document.getElementById("header")!;
 const root = createRoot(header);
 root.render(<Header />);
+
+import { App } from "./App";
+const app = document.getElementById("root")!;
+createRoot(app).render(<App />);
