@@ -3,7 +3,11 @@
 //! vue 插值 {{}}
 //! jsx 插值 {}
 
-import { UseState } from "./hook/UseState";
+import { UseStatePrimary } from "./hook/useState_primary";
+import { UseStateArr } from "./hook/useState_arr";
+import { UseStateObj } from "./hook/useState_obj";
+import { UseReducer } from './hook/useReducer'
+import { UseReducerDemo } from "./hook/useReducer_demo";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -38,21 +42,12 @@ export function App() {
   // 绑定 id, className，等价于 v-bind
   const id = "btn1";
   const className = "primary-btn";
-  const style = {
-    padding: "5px 5px",
-    color: "white",
-    backgroundColor: "slateblue",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  };
 
   const rowStyle = { display: "flex", justifyContent: "space-around" };
   const itemStyle = {
     border: "1px solid lightblue",
     borderRadius: "10px",
-    padding: "10px",
-    width: "30vw",
+    padding: "5px",
   };
 
   // 指定 html 代码片段，等价于 v-html
@@ -68,7 +63,6 @@ export function App() {
         id={id} // 等价于 v-bind
         className={`${className} btn1`} // 等价于 v-bind
         type="button"
-        style={style}
         onClick={(ev) => counter(ev)}
       >
         {"btn"}
@@ -87,13 +81,19 @@ export function App() {
         </div>
 
         <div style={itemStyle}>
-          使用与预算符或三目运算符的条件渲染
+          使用与运算符或三目运算符的条件渲染
           {cond && <p>renderIfTrue</p>}
           {cond ? <span>spanA</span> : <span>spanB</span>}
         </div>
 
-        {/************************* Hooks *************************/}
-        <UseState />
+        {/************************* hooks *************************/}
+        <UseStatePrimary />
+        <UseStateArr />
+        <UseStateObj />
+        <UseReducer />
+      </div>
+      <div style={rowStyle}>
+        <UseReducerDemo />
       </div>
     </>
   );

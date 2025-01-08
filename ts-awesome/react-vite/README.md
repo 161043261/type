@@ -62,9 +62,43 @@ function Component() {
 2. 打包
 3. 代码压缩，优化
 
-
 ### 虚拟 dom
 
 优点: 性能好, 跨平台
 
-**fiber**
+react 中应该将数组视为**只读**, 不要修改原数组, 不要使用 push(), pop() 等方法
+
+| 操作 | 不使用                    | 使用                               |
+| ---- | ------------------------- | ---------------------------------- |
+| 插入 | push(), unshift()         | concat, [newHead, ...arr, newTail] |
+| 删除 | pop(), shift(), splice()  | filter(), slice(), toSpliced()     |
+| 替换 | splice(), arr[i] = newVal | map(),toSpliced(), with()          |
+| 排序 | reverse(), sort()         | toReversed(), toSorted()           |
+
+以下 4 个方法不会修改原数组, 返回一个新数组, 参考 [Array](https://tianchenghang.github.io/ch08.html)
+
+- toReversed(): 逆序
+- toSorted(): 升序排序
+- toSpliced(): 指定位置插入删除
+- with(): 指定位置替换
+
+## hook
+
+> react 中, 所有的 hook 都必须在组件的顶层调用
+
+### useState 更新机制
+
+```jsx
+// dispatch 异步更新, 可以提升性能
+const [state, dispatch] = useState(data);
+```
+
+### useReducer
+
+- useReducer 可用于基本类型和引用类型, 集中式状态管理, 适用于复杂类型, 例如数组或对象 (类似于 Vue 的 reactive, 但 reactive 只能用于引用类型)
+- useState 可用于基本类型和引用类型 (类似于 Vue 的 ref, ref 可用于基本类型和引用类型)
+
+```jsx
+const [state, dispatch] = useReducer(reducer/*  */, initializerArg/* 默认值 */, initializer/* 初始化函数 */);
+// dispatch(action) { reducer(state, action) }
+```

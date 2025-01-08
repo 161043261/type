@@ -2,8 +2,6 @@
 //! vue 插值 {{}}
 //! jsx 插值 {}
 
-import React from 'react';
-
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
   // 属性，事件：驼峰命名

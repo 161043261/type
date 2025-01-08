@@ -1,4 +1,4 @@
-**create-webpack-app**
+**Santa**
 
 ```bash
 pnpm build # bundle app

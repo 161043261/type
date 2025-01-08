@@ -3,7 +3,7 @@
 const path = require('path');
 // 生成 HTML 文件，将打包后的资源 (JS, CSS) 注入到 HTML 文件中
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// 从 JS 中提取 CSS
+// 从 JS 中提取 CSS 为单独的文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 // 生产环境使用 MiniCssExtractPlugin.loader, 将 CSS 提取为单独的文件
@@ -19,7 +19,7 @@ const config = {
   },
   devServer: {
     // 开发环境的服务器
-    open: true, // 启动开服务器时, 自动打开浏览器
+    open: true, //           自动打开浏览器
     host: 'localhost', // 服务器的主机 localhost
   },
   plugins: [
@@ -34,7 +34,7 @@ const config = {
     // 模块加载规则
     rules: [
       {
-        // 匹配 .js .jsx 文件, 使用 ts-loader 处理
+        // 匹配 .js .jsx 文件, 使用 babel-loader 处理
         test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
         exclude: /node_modules/,
@@ -43,8 +43,8 @@ const config = {
       {
         // 匹配 .ts .tsx 文件, 先使用 ts-loader 处理, 再使用 babel-loader 处理
         test: /\.(ts|tsx)$/i,
-        // use: ['babel-loader', 'ts-loader'],
-        loader: 'ts-loader',
+        // loader: 'ts-loader',
+        use: ['babel-loader', 'ts-loader'],
         exclude: ['/node_modules/'],
       },
       {
@@ -64,6 +64,7 @@ const config = {
     ],
   },
   resolve: {
+    // 导入模块时, 自动添加文件扩展名
     extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
   },
 };
