@@ -19,9 +19,7 @@ export function UseReducer() {
   //! dispatch(action) { reducer(state, action) }
   const reducer = (state: TState, action: { type: "add" | "sub" }) => {
     // console.log("reducer:", action);
-    //
-    //  useReducer: 集中式状态管理
-    //
+    // useReducer: 集中式状态管理
     switch (action.type) {
       case "add":
         return { cnt: state.cnt + 1 }; // 必须返回新对象, 不能修改原对象

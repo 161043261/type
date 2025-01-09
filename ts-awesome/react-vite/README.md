@@ -102,3 +102,10 @@ const [state, dispatch] = useState(data);
 const [state, dispatch] = useReducer(reducer/*  */, initializerArg/* 默认值 */, initializer/* 初始化函数 */);
 // dispatch(action) { reducer(state, action) }
 ```
+
+### useSyncExternalStore
+
+1. 订阅外部 store, 例如 redux, zustand (类似于 vuex, pinia)
+2. 订阅浏览器 api, 例如 online, storage, location, hash, history 等
+3. 抽离逻辑, 编写自定义 hook
+4. 支持服务器端渲染

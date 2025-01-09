@@ -6,8 +6,9 @@
 import { UseStatePrimary } from "./hook/useState_primary";
 import { UseStateArr } from "./hook/useState_arr";
 import { UseStateObj } from "./hook/useState_obj";
-import { UseReducer } from './hook/useReducer'
+import { UseReducer } from "./hook/useReducer";
 import { UseReducerDemo } from "./hook/useReducer_demo";
+import { UseSyncExternelStoreDemo } from "./hook/useSyncExternalStore_demo";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -94,6 +95,7 @@ export function App() {
       </div>
       <div style={rowStyle}>
         <UseReducerDemo />
+        <UseSyncExternelStoreDemo />
       </div>
     </>
   );
