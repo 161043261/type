@@ -1,16 +1,22 @@
 import { useStorage } from "./useSyncExternalStore_custom_hook";
+
+const itemStyle = {
+  border: "1px solid lightblue",
+  borderRadius: "10px",
+  padding: "5px",
+};
+
 export function UseSyncExternelStoreDemo() {
   const [cnt, setCnt] = useStorage("cnt", 1);
-  setCnt(2);
   return (
-    <>
-      <h1>cnt: {cnt}</h1>
+    <div style={itemStyle}>
+      <p>cnt: {cnt}</p>
       <button type="button" onClick={() => setCnt(cnt + 1)}>
-        cnt++
+        add
       </button>
       <button type="button" onClick={() => setCnt(cnt - 1)}>
-        cnt--
+        sub
       </button>
-    </>
+    </div>
   );
 }

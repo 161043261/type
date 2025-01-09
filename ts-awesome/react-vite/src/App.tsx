@@ -6,9 +6,10 @@
 import { UseStatePrimary } from "./hook/useState_primary";
 import { UseStateArr } from "./hook/useState_arr";
 import { UseStateObj } from "./hook/useState_obj";
-import { UseReducer } from "./hook/useReducer";
 import { UseReducerDemo } from "./hook/useReducer_demo";
+import { UseReducerDemo2 } from "./hook/useReducer_demo2";
 import { UseSyncExternelStoreDemo } from "./hook/useSyncExternalStore_demo";
+import { UseSyncExternelStoreDemo2 } from "./hook/useSyncExternalStore_demo2";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -44,7 +45,11 @@ export function App() {
   const id = "btn1";
   const className = "primary-btn";
 
-  const rowStyle = { display: "flex", justifyContent: "space-around" };
+  const rowStyle = {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "space-between",
+  };
   const itemStyle = {
     border: "1px solid lightblue",
     borderRadius: "10px",
@@ -91,11 +96,12 @@ export function App() {
         <UseStatePrimary />
         <UseStateArr />
         <UseStateObj />
-        <UseReducer />
+        <UseReducerDemo />
       </div>
       <div style={rowStyle}>
-        <UseReducerDemo />
+        <UseReducerDemo2 />
         <UseSyncExternelStoreDemo />
+        <UseSyncExternelStoreDemo2 />
       </div>
     </>
   );
