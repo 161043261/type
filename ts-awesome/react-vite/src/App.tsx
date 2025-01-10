@@ -11,6 +11,8 @@ import { UseReducerDemo2 } from "./hook/useReducer_demo2";
 import { UseSyncExternelStoreDemo } from "./hook/useSyncExternalStore_demo";
 import { UseSyncExternelStoreDemo2 } from "./hook/useSyncExternalStore_demo2";
 import { UseTransitionAntd } from "./hook/useTransition_antd";
+import { UseDefferedValueAntd } from "./hook/useDefferedValue_antd";
+import { UseEffectDemo } from "./hook/useEffect_demo";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -50,6 +52,7 @@ export function App() {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "space-between",
+    height: "200px",
   };
   const itemStyle = {
     border: "1px solid lightblue",
@@ -93,19 +96,60 @@ export function App() {
           {cond ? <span>spanA</span> : <span>spanB</span>}
         </div>
 
-        {/************************* hooks *************************/}
+        {/**
+         * 数据驱动
+         * useState
+         * useReducer
+         * useSyncExternalStore
+         * useTransition
+         * useDeferredValue
+         */}
         <UseStatePrimary />
         <UseStateArr />
         <UseStateObj />
         <UseReducerDemo />
+        <UseReducerDemo2 />
       </div>
 
       <div style={rowStyle}>
-        <UseReducerDemo2 />
         <UseSyncExternelStoreDemo />
         <UseSyncExternelStoreDemo2 />
         <UseTransitionAntd />
+        <UseDefferedValueAntd />
       </div>
+
+      {/**
+       * 副作用
+       * useEffect
+       * useLayoutEffect
+       * useInsertionEffect
+       */}
+      <div style={rowStyle}>
+        <UseEffectDemo />
+      </div>
+
+      {/**
+       * 状态传递
+       * useRef
+       * useImperativeHandle
+       * useContext
+       */}
+
+      {/**
+       * 状态派生
+       * useMemo
+       * useCallback
+       */}
+
+      {/**
+       * 工具 hooks
+       * useDebugValue
+       * useId
+       */}
+
+      {/**
+       * 自定义 hooks
+       */}
     </>
   );
 }

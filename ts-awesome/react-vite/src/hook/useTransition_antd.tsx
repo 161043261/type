@@ -5,6 +5,7 @@ const itemStyle = {
   border: "1px solid lightblue",
   borderRadius: "10px",
   padding: "5px",
+  overflow: "auto",
 };
 
 interface Item {
@@ -27,6 +28,8 @@ export function UseTransitionAntd() {
       .then((res) => {
         // setList(res.list);
         startTransition(() => {
+          // useTransition 类似防抖 (debounce): 连续触发事件, n 秒内函数只执行最后 1 次 (回城)
+          //// setVal(newVal);
           setList(res.list); // 在不阻塞 UI 的情况下更新状态 state, 可以提升性能
         });
       });

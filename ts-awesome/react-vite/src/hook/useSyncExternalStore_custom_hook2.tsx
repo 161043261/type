@@ -24,7 +24,7 @@ export function useHistory(): [
   const url = useSyncExternalStore(subscribe, getSnapshot);
   const push = (url: string) => {
     window.history.pushState({}, "", url);
-    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.dispatchEvent(new PopStateEvent("popstate"));
   };
   const replace = (url: string) => {
     window.history.replaceState({}, "", url);

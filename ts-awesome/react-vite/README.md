@@ -175,9 +175,42 @@ pnpm i @types/mockjs -D
 
 ### useDefferedValue
 
-useDefferedValue 根据设备性能, 延迟某些状态的更新, 直到主渲染任务完成, 特别适用于频繁更新的内容, 例如输入框. 避免频繁更新导致的性能问题
+useDefferedValue 根据设备的情况, 延迟某些状态的更新, 直到主渲染任务完成, 特别适用于频繁更新的内容, 例如输入框. 避免频繁更新导致的性能问题
 
 > useTransition 和 useDefferedValue 的区别
 
 1. 相同点: 都是延迟更新, 用于性能优化
 2. useTransition 关注状态的过渡, 例如渲染列表, useDefferedValue 关注值的延迟更新, 例如输入框
+
+- useTransition, useDefferedValue 类似防抖 (debounce): 连续触发事件, n 秒内函数只执行最后 1 次 (回城)
+- useDefferedValue 不是防抖, 防抖有确定的延迟时间, useDefferedValue 没有确定的延迟时间, 而是根据设备的情况, 延迟某些状态的更新, 如果设备情况好, 那么延迟几乎是无感的
+
+### useEffect
+
+useEffect 是 React 中处理副作用的钩子
+
+**纯函数, 副作用函数**
+
+纯函数
+
+1. 输入决定输出: 相同的输入总是得到相同的输出
+2. 无副作用: 不会改变外部状态, 也不会依赖外部可变状态, 即纯函数不会影响外部的变量, 文件, 数据库...
+
+副作用函数: 会改变外部状态, 或依赖外部可变状态
+
+深拷贝
+
+1. `JSON.parse(JSON.stringfy(obj));` 会丢失属性值为 undefined 的属性
+2. lodash cloneDeep
+3. `window.structuredClone(obj);` 浏览器自带
+
+useEffect
+
+- setup: setup 挂载函数返回一个 desctructor 卸载函数, 组件挂载时调用 setup
+- desctructor: 组件卸载时调用 desctructor
+- 依赖项更新时, 先调用 desctructor, 后调用 setup
+- useEffect 无返回值
+
+```js
+useEffect(setup: () => void | Destructor, dependencies?: Array);
+```
