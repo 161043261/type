@@ -204,13 +204,17 @@ useEffect 是 React 中处理副作用的钩子
 2. lodash cloneDeep
 3. `window.structuredClone(obj);` 浏览器自带
 
-useEffect
+> effect (setup) 函数的执行时机
 
-- setup: setup 挂载函数返回一个 desctructor 卸载函数, 组件挂载时调用 setup
-- desctructor: 组件卸载时调用 desctructor
-- 依赖项更新时, 先调用 desctructor, 后调用 setup
-- useEffect 无返回值
+1. 组件渲染完成 (挂载) 后, 执行 effect (setup), 等价于 DidMount
+2. 组件更新 (依赖项更新) 前, 执行 destructor
+3. 组件更新 (依赖项更新) 后, 执行 effect (setup), 等价于 DidUpdate
+4. 组件卸载后, 执行 destructor
+
+组件更新等价于先卸载, 后挂载 ?
 
 ```js
-useEffect(setup: () => void | Destructor, dependencies?: Array);
+// useEffect 无返回值
+useEffect(effect: () => void | Destructor, // setup
+dependencies?: Array);
 ```
