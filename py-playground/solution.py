@@ -1,2 +1,2 @@
 def fn():
-    print("Hello World")
+    print("leetcode")
