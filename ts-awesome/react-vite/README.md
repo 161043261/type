@@ -1,10 +1,10 @@
-# ch01
+# React
 
 JSX 规则
 
 1. 组件（函数）只能返回一个根元素
 
-```tsx
+```jsx
 function Component() {
   return (
     <div>
@@ -12,7 +12,6 @@ function Component() {
       <ul>
         <li>唱</li>
         <li>跳</li>
-        <li>rap</li>
       </ul>
     </div>
   );
@@ -21,7 +20,7 @@ function Component() {
 
 或使用空标签 Fragment
 
-```js
+```jsx
 function Component() {
   return (
     <>
@@ -29,7 +28,6 @@ function Component() {
       <ul>
         <li>唱</li>
         <li>跳</li>
-        <li>rap</li>
       </ul>
     </>
   );
@@ -38,7 +36,7 @@ function Component() {
 
 2. 标签必须闭合
 
-```tsx
+```jsx
 function Component() {
   // <img> 等自闭合标签必须写为 <img />
   return <img src="vite.svg" alt="vite logo" />;
@@ -88,9 +86,9 @@ react 中应该将数组视为**只读**, 不要修改原数组, 不要使用 pu
 
 ### useState 更新机制
 
-```jsx
-// dispatch 异步更新, 可以提升性能
-const [state, dispatch] = useState(data);
+```js
+// setState (dispatch) 异步更新, 可以提升性能
+const [state, setState] = useState(initialState);
 ```
 
 ### useReducer
@@ -98,8 +96,12 @@ const [state, dispatch] = useState(data);
 - useReducer 可用于基本类型和引用类型, 集中式状态管理, 适用于复杂类型, 例如数组或对象 (类似于 Vue 的 reactive, 但 reactive 只能用于引用类型)
 - useState 可用于基本类型和引用类型 (类似于 Vue 的 ref, ref 可用于基本类型和引用类型)
 
-```jsx
-const [state, dispatch] = useReducer(reducer/*  */, initializerArg/* 默认值 */, initializer/* 初始化函数 */);
+```js
+const [state, dispatch] = useReducer(
+  reducer /*  */,
+  initializerArg /* 默认值 */,
+  initializer /* 初始化函数 */
+);
 // dispatch(action) { reducer(state, action) }
 ```
 
@@ -109,3 +111,73 @@ const [state, dispatch] = useReducer(reducer/*  */, initializerArg/* 默认值 *
 2. 订阅浏览器 api, 例如 online, storage, location, hash, history 等
 3. 抽离逻辑, 编写自定义 hook
 4. 支持服务器端渲染
+
+如果 getSnapshot 返回值与上一次返回值不同, 则 react 会重新渲染组件, 如果**总是**返回一个不同的值, 则会进入无限循环 infinite loops, 报错 Maximum update depth exceeded
+
+### useTransition
+
+- useTransition 用于性能优化, 特别适用于长时间任务, 例如计算/请求/渲染大量数据等
+- useTransition 将某些更新标记为过渡更新, 即降低某些更新的优先级, React 先处理高优先级的更新, 例如用户输入; 延迟处理过渡更新, 例如渲染列表等
+
+```js
+const [isPending, startTransition] = useTransition();
+// isPending = true: 正在过渡
+// isPending = false: 过渡结束
+```
+
+startTransition 必须是**同步**的
+
+```js
+// 错误
+startTransition(() => {
+  setTimeout(() => {
+    window.history.pushState({}, "", "/");
+  }, 1000);
+});
+
+// 正确
+setTimeout(() => {
+  startTransition(() => {
+    window.history.pushState({}, "", "/");
+  });
+}, 1000);
+```
+
+```js
+// 错误
+startTransition(async () => {
+  await fetch("http://localhost:5173");
+  window.history.pushState({}, "", "/");
+});
+
+// 正确
+await fetch("http://localhost:5173");
+startTransition(() => {
+  window.history.pushState({}, "", "/");
+});
+```
+
+原理: useTransition 降低某些更新的优先级为 LowPriority
+
+```js
+// React 的优先级
+const ImmediatePriority = 1; // 立即执行的优先级: 点击, 输入, ...
+const UserBlockingPriority = 2; // 用户阻塞的优先级: 滚动, 拖拽, ...
+const NormalPriority = 3; // 普通优先级: dom 渲染, 网络请求, ...
+const LowPriority = 4; // 低优先级
+const IdlePriority = 5; // 空闲优先级: console.log
+```
+
+```bash
+pnpm i mockjs
+pnpm i @types/mockjs -D
+```
+
+### useDefferedValue
+
+useDefferedValue 根据设备性能, 延迟某些状态的更新, 直到主渲染任务完成, 特别适用于频繁更新的内容, 例如输入框. 避免频繁更新导致的性能问题
+
+> useTransition 和 useDefferedValue 的区别
+
+1. 相同点: 都是延迟更新, 用于性能优化
+2. useTransition 关注状态的过渡, 例如渲染列表, useDefferedValue 关注值的延迟更新, 例如输入框
