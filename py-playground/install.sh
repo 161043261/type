@@ -1,4 +1,4 @@
-# python -m venv ./venv
+python -m venv ./venv
 
 if [ "$OS" = "Windows_NT" ]; then
   vpython=./venv/Scripts/python
