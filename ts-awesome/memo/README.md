@@ -3,14 +3,8 @@
 vitepress 是一个静态站点生成器 (Static Site Generator, SSG), 每个 md 页面都是 Vue 单文件组件
 
 ```shell
-npm add -D vitepress
-npx vitepress init
-
-pnpm add -D vitepress
-pnpm vitepress init
-
-yarn add -D vitepress
-yarn vitepress init
+pnpm add -D vitepress # npm
+pnpm vitepress init # npx
 ```
 
 ### 路由
@@ -55,4 +49,21 @@ export default defineConfig({
 [BiliBili](/https://www.bilibili.com/)
 <!-- 在本标签页中打开 -->
 [BiliBili](/https://www.bilibili.com/){target="_self"}
+```
+
+### vitepress 的 markdown 拓展
+
+第 2 行高亮 `js{2}`
+
+```js{2}
+export default {
+  msg: 'highlighted!'
+}
+```
+
+自定义容器
+
+```md
+::: info | tip  | warning | danger | details
+:::
 ```

@@ -2,6 +2,7 @@
   "author": "",
   "description": "",
   "devDependencies": {
+    "prettier": "^3.4.2",
     "vitepress": "^1.5.0"
   },
   "keywords": [],
@@ -11,7 +12,8 @@
   "scripts": {
     "docs:build": "vitepress build",
     "docs:dev": "vitepress dev",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "format": "prettier --write ./src .vitepress/theme"
   },
   "type": "module",
   "version": "1.0.0"

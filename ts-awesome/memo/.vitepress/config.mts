@@ -2,32 +2,29 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "memo",
-  description: "memo",
+  title: "loverflow.icu",
+  description: "天铖的空间",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
-    ],
+    nav: [{ text: "主页", link: "/" }],
 
     sidebar: [
       {
-        text: "Examples",
+        text: "关于我",
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "me", link: "/me/me" },
+          { text: "我的 2025", link: "/me/2025" },
         ],
       },
     ],
 
-    socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/161043261" }],
   },
   srcDir: "./src",
   async transformHead({ assets }) {
-    const LXGWBright = assets.find((_file) => /LXGWBrightTC-Regular\.\w+\.ttf/)!;
+    const LXGWBright = assets.find(
+      (_file) => /LXGWBright-Regular\.\w+\.woff2/
+    )!;
     const FiraNeo = assets.find((_file) => /FiraNeo-Regular\.\w+\.woff2/)!;
     return [
       [
@@ -37,7 +34,7 @@ export default defineConfig({
           href: LXGWBright,
           as: "font",
           type: "font/ttf",
-          crossorigin: "",
+          crossorigin: "*",
         },
       ],
       [
@@ -47,7 +44,7 @@ export default defineConfig({
           href: FiraNeo,
           as: "font",
           type: "font/woff2",
-          crossorigin: "",
+          crossorigin: "*",
         },
       ],
     ];
