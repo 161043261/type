@@ -22,7 +22,10 @@ export function UseEffectDemo() {
   function Child(props: any) {
     useEffect(() => {
       console.log("Mounted:", props);
-
+      // destructor 总是在 effect (setup) 前执行, 特别适合写防抖
+      const timer = setTimeout(() => {
+        fetch("http://localhost:5173?name" + props.name);
+      }, 1000);
       // 卸载函数
       const destructor = () => {
         console.log("Unmounted");
@@ -31,6 +34,8 @@ export function UseEffectDemo() {
         ) as HTMLDivElement;
         // demoDivChild: null, 组件已卸载
         console.log("demoDivChild:", demoDivChild);
+        // destructor 总是在 effect (setup) 前执行, 特别适合写防抖
+        clearTimeout(timer);
       };
       return destructor;
     }, [props, props.name]);
@@ -72,7 +77,7 @@ export function UseEffectDemo() {
       <button type="button" onClick={() => setShowChild(!showChild)}>
         showChild
       </button>
-      {showChild && <Child name="name"></Child>}
+      {showChild && <Child name={name}></Child>}
     </div>
   );
 }

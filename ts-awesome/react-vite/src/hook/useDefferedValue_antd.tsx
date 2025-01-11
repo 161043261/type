@@ -54,7 +54,7 @@ export function UseDefferedValueAntd() {
           transition: "opacity 1s ease-in-out",
         }}
         dataSource={findItem()}
-        renderItem={(item) => (
+        renderItem={(item: Item) => (
           <List.Item>
             <List.Item.Meta
               title={item.name}
