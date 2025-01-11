@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "LXGWBright";
+  src: url(../../assets/LXGWBrightTC-Regular.ttf) format(truetype);
+}
+
+@font-face {
+  font-family: "FiraNeo";
+  src: url(../../assets/FiraNeo-Regular.woff2) format(woff2);
+}
+
+:root {
+  --vp-font-family-base: "LXGWBright";
+  --vp-font-family-mono: "FiraNeo";
+}

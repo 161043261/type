@@ -1,0 +1,58 @@
+# vitepress
+
+vitepress 是一个静态站点生成器 (Static Site Generator, SSG), 每个 md 页面都是 Vue 单文件组件
+
+```shell
+npm add -D vitepress
+npx vitepress init
+
+pnpm add -D vitepress
+pnpm vitepress init
+
+yarn add -D vitepress
+yarn vitepress init
+```
+
+### 路由
+
+默认, 源目录 src 等于项目根目录
+
+```shell
+.                       # 项目根目录 (源目录)
+├─ .vitepress           # 配置目录
+├─ getting-started.md
+└─ index.md
+```
+
+可以在 .vitepress/config.mts 中配置源目录
+
+```ts
+export default defineConfig({
+  // ...
+  srcDir: "./src",
+});
+```
+
+```shell
+.                          # 项目根目录
+├─ .vitepress              # 配置目录
+└─ src                     # 源目录
+   ├─ getting-started.md   # -->  /getting-started.html
+   └─ index.md             # -->  /index.html (可以通过 / 访问)
+```
+
+链接页面
+
+```html
+<!-- 省略文件扩展名 -->
+[Getting Started](./getting-started)
+```
+
+链接非 VitePress 页面, 需要使用完整 URL
+
+```html
+<!-- 在新标签页中打开 -->
+[BiliBili](/https://www.bilibili.com/)
+<!-- 在本标签页中打开 -->
+[BiliBili](/https://www.bilibili.com/){target="_self"}
+```
