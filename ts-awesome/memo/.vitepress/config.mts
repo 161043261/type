@@ -28,7 +28,9 @@ export default defineConfig({
   // 为了预加载字体文件，需要使用 transformHead 构建钩子
   async transformHead({ assets }) {
     const FiraNeo = assets.find((_file) => /FiraNeo-Regular\.\w+\.woff2/)!;
-    const LXGWBright = assets.find((_file) => /LXGWBright-Regular\.\w+\.woff2/)!;
+    const LXGWBright = assets.find(
+      (_file) => /LXGWBright-Regular\.\w+\.woff2/
+    )!;
     return [
       [
         "link",
