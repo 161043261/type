@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: 关于我
-      link: /me/index
+      link: /me/me
     - theme: alt
       text: CSS
-      link: /css/index
+      link: /css/css
     - theme: alt
       text: JS/TS
       link: /script/ch01

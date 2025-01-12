@@ -54,5 +54,5 @@
 - refactor: Refactor code
 - test: Create/Update testing
 - docs: Create/Update docs
-- perf: Performance Optimization
+- perf: Performance optimization
 - chore: Regular code maintenance

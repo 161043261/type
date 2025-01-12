@@ -3,7 +3,7 @@ export default {
     {
       text: "欢迎",
       items: [
-        { text: "关于我", link: "/me/index" },
+        { text: "关于我", link: "/me/me" },
         { text: "Docker", link: "/me/docker" },
         { text: "Git", link: "/me/git" },
         { text: "Linux", link: "/me/linux" },
@@ -16,7 +16,7 @@ export default {
   "/css/": [
     {
       text: "CSS",
-      items: [{ text: "CSS 基础", link: "/css/index" }],
+      items: [{ text: "基础", link: "/css/css" }],
     },
   ],
   "/script/": [

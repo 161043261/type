@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "LXGWBright";
-  src: url(../../src/assets/LXGWBright-Regular.ttf) format(truetype);
+  src: url(../../src/assets/LXGWBright-Regular.woff2) format(woff2);
 }
 
 :root {
