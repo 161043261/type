@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "tiancheng 的空间"
-  # text: "tiancheng 的空间"
-  tagline: "Love Overflow"
+  name: "你好，这里是"
+  text: "Tiancheng"
+  tagline: "Loverflow: Love Overflow"
   actions:
     - theme: brand
       text: 关于我
@@ -17,17 +17,14 @@ hero:
       text: JS/TS
       link: /script/ch01
     - theme: alt
-      text: Vue
+      text: Vue (TODO)
       link: /vue
     - theme: alt
-      text: React
+      text: React (TODO)
       link: /react
     - theme: alt
-      text: Nest
+      text: Nest (TODO)
       link: /nest
-    - theme: alt
-      text: 基础
-      link: /base
 
 features:
   - title: 前端

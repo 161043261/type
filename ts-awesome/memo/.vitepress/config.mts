@@ -3,9 +3,9 @@ import sidebar from "./sidebar";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "找自己",
+  title: "loverflow",
   titleTemplate: "loverflow", // 页面标题的后缀
-  description: "loverflow, love overflow",
+  description: "loverflow",
   // 默认源目录等于项目根目录，react.svg 放在源目录下的公共目录 public 下
   // 如果指定源目录为 src，则 react.svg 放在源目录下的公共目录 src/public 下
   head: [
@@ -28,7 +28,7 @@ export default defineConfig({
   // 为了预加载字体文件，需要使用 transformHead 构建钩子
   async transformHead({ assets }) {
     const FiraNeo = assets.find((_file) => /FiraNeo-Regular\.\w+\.woff2/)!;
-    const HYWenHei = assets.find((_file) => /HYWenHei-45W\.\w+\.ttf/)!;
+    const LXGWBright = assets.find((_file) => /LXGWBright-Regular\.\w+\.ttf/)!;
     return [
       [
         "link",
@@ -44,7 +44,7 @@ export default defineConfig({
         "link",
         {
           rel: "preload",
-          href: HYWenHei,
+          href: LXGWBright,
           as: "font",
           type: "font/ttf",
           crossorigin: "",

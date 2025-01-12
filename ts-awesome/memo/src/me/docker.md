@@ -82,8 +82,6 @@ curl localhost:8080/hello
 
 默认网络 bridge
 
-![bridge](../assets/bridge.png)
-
 ```sh
 docker inspect nginx | grep -i Gateway   # 172.17.0.1/16
 docker inspect nginx | grep -i IPAddress # 172.17.0.2/16

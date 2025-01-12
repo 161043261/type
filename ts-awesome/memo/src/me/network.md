@@ -276,7 +276,7 @@ sudo vim /etc/nginx/sites-available/default
 
 /etc/nginx/sites-available/default
 
-```conf
+```js
 server {
   location /api {
     proxy_pass http://127.0.0.1:3000;

@@ -4,11 +4,11 @@
 }
 
 @font-face {
-  font-family: "HYWenHei";
-  src: url(../../src/assets/HYWenHei-45W.ttf) format(truetype);
+  font-family: "LXGWBright";
+  src: url(../../src/assets/LXGWBright-Regular.ttf) format(truetype);
 }
 
 :root {
-  --vp-font-family-base: "FiraNeo", "HYWenHei";
-  --vp-font-family-mono: "FiraNeo", "HYWenHei";
+  --vp-font-family-base: "LXGWBright";
+  --vp-font-family-mono: "FiraNeo", "LXGWBright";
 }
