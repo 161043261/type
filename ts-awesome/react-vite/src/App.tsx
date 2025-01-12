@@ -8,11 +8,12 @@ import { UseStateArr } from "./hook/useState_arr";
 import { UseStateObj } from "./hook/useState_obj";
 import { UseReducerDemo } from "./hook/useReducer_demo";
 import { UseReducerDemo2 } from "./hook/useReducer_demo2";
-import { UseSyncExternelStoreDemo } from "./hook/useSyncExternalStore_demo";
-import { UseSyncExternelStoreDemo2 } from "./hook/useSyncExternalStore_demo2";
+import { UseSyncExternalStoreDemo } from "./hook/useSyncExternalStore_demo";
+import { UseSyncExternalStoreDemo2 } from "./hook/useSyncExternalStore_demo2";
 import { UseTransitionAntd } from "./hook/useTransition_antd";
-import { UseDefferedValueAntd } from "./hook/useDefferedValue_antd";
+import { UseDeferredValueAntd } from "./hook/useDefferedValue_antd";
 import { UseEffectDemo } from "./hook/useEffect_demo";
+import { UseEffectDemo2 } from "./hook/useEffect_demo2";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -112,10 +113,10 @@ export function App() {
       </div>
 
       <div style={rowStyle}>
-        <UseSyncExternelStoreDemo />
-        <UseSyncExternelStoreDemo2 />
+        <UseSyncExternalStoreDemo />
+        <UseSyncExternalStoreDemo2 />
         <UseTransitionAntd />
-        <UseDefferedValueAntd />
+        <UseDeferredValueAntd />
       </div>
 
       {/**
@@ -126,6 +127,7 @@ export function App() {
        */}
       <div style={rowStyle}>
         <UseEffectDemo />
+        <UseEffectDemo2 />
       </div>
 
       {/**

@@ -9,7 +9,7 @@ pnpm vitepress init # npx
 
 ### 路由
 
-默认, 源目录 src 等于项目根目录
+默认项目根目录等于源目录
 
 ```shell
 .                       # 项目根目录 (源目录)

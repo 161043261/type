@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "LXGWBright";
-  src: url(../../assets/LXGWBright-Regular.ttf) format(truetype);
+  font-family: "FiraNeo";
+  src: url(../../src/assets/FiraNeo-Regular.woff2) format(woff2);
 }
 
 @font-face {
-  font-family: "FiraNeo";
-  src: url(../../assets/FiraNeo-Regular.woff2) format(woff2);
+  font-family: "HYWenHei";
+  src: url(../../src/assets/HYWenHei-45W.ttf) format(truetype);
 }
 
 :root {
-  --vp-font-family-base: "LXGWBright";
-  --vp-font-family-mono: "FiraNeo";
+  --vp-font-family-base: "FiraNeo", "HYWenHei";
+  --vp-font-family-mono: "FiraNeo", "HYWenHei";
 }

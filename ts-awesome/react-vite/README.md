@@ -173,17 +173,17 @@ pnpm i mockjs
 pnpm i @types/mockjs -D
 ```
 
-### useDefferedValue
+### useDeferredValue
 
-useDefferedValue 根据设备的情况, 延迟某些状态的更新, 直到主渲染任务完成, 特别适用于频繁更新的内容, 例如输入框. 避免频繁更新导致的性能问题
+useDeferredValue 根据设备的情况, 延迟某些状态的更新, 直到主渲染任务完成, 特别适用于频繁更新的内容, 例如输入框. 避免频繁更新导致的性能问题
 
-> useTransition 和 useDefferedValue 的区别
+> useTransition 和 useDeferredValue 的区别
 
 1. 相同点: 都是延迟更新, 用于性能优化
-2. useTransition 关注状态的过渡, 例如渲染列表, useDefferedValue 关注值的延迟更新, 例如输入框
+2. useTransition 关注状态的过渡, 例如渲染列表, useDeferredValue 关注值的延迟更新, 例如输入框
 
-- useTransition, useDefferedValue 类似防抖 (debounce): 连续触发事件, n 秒内函数只执行最后 1 次 (回城)
-- useDefferedValue 不是防抖, 防抖有确定的延迟时间, useDefferedValue 没有确定的延迟时间, 而是根据设备的情况, 延迟某些状态的更新, 如果设备情况好, 那么延迟几乎是无感的
+- useTransition, useDeferredValue 类似防抖 (debounce): 连续触发事件, n 秒内函数只执行最后 1 次 (回城)
+- useDeferredValue 不是防抖, 防抖有确定的延迟时间, useDeferredValue 没有确定的延迟时间, 而是根据设备的情况, 延迟某些状态的更新, 如果设备情况好, 那么延迟几乎是无感的
 
 ### useEffect
 

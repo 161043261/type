@@ -6,7 +6,7 @@ const itemStyle = {
   padding: "5px",
 };
 
-export function UseSyncExternelStoreDemo2() {
+export function UseSyncExternalStoreDemo2() {
   const [url, push, replace] = useHistory();
   return (
     <div style={itemStyle}>

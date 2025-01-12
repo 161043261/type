@@ -6,7 +6,7 @@ const itemStyle = {
   padding: "5px",
 };
 
-export function UseSyncExternelStoreDemo() {
+export function UseSyncExternalStoreDemo() {
   const [cnt, setCnt] = useStorage("cnt", 1);
   return (
     <div style={itemStyle}>
