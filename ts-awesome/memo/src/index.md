@@ -3,28 +3,28 @@
 layout: home
 
 hero:
-  name: "你好，这里是"
-  text: "Tiancheng"
-  tagline: "Loverflow: Love Overflow"
+  name: "你好。"
+  text: "Here's Tiancheng"
+  tagline: ""
+  image:
+    src: /bg.jpg
+    alt: bg
   actions:
     - theme: brand
       text: 关于我
-      link: /me/me
+      link: /about/me
     - theme: alt
-      text: CSS
-      link: /css/css
+      text: HTML/CSS
+      link: /static/css
     - theme: alt
       text: JS/TS
       link: /script/ch01
     - theme: alt
-      text: Vue (TODO)
+      text: Vue
       link: /vue
     - theme: alt
-      text: React (TODO)
+      text: React
       link: /react
-    - theme: alt
-      text: Nest (TODO)
-      link: /nest
 
 features:
   - title: 前端

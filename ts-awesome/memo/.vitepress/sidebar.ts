@@ -1,22 +1,22 @@
 export default {
-  "/me/": [
+  "/about/": [
     {
       text: "欢迎",
       items: [
-        { text: "关于我", link: "/me/me" },
-        { text: "Docker", link: "/me/docker" },
-        { text: "Git", link: "/me/git" },
-        { text: "Linux", link: "/me/linux" },
-        { text: "MySQL", link: "/me/mysql" },
-        { text: "Network", link: "/me/network" },
-        { text: "VScode", link: "/me/vscode" },
+        { text: "关于我", link: "/about/me" },
+        { text: "Docker", link: "/about/docker" },
+        { text: "Git", link: "/about/git" },
+        { text: "Linux", link: "/about/linux" },
+        { text: "MySQL", link: "/about/mysql" },
+        { text: "Network", link: "/about/network" },
+        { text: "VScode", link: "/about/vscode" },
       ],
     },
   ],
-  "/css/": [
+  "/static/": [
     {
-      text: "CSS",
-      items: [{ text: "基础", link: "/css/css" }],
+      text: "HTML/CSS",
+      items: [{ text: "CSS", link: "/static/css" }],
     },
   ],
   "/script/": [

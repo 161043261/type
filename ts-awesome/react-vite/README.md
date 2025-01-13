@@ -218,3 +218,17 @@ useEffect 是 React 中处理副作用的钩子
 useEffect(effect: () => void | Destructor, // setup
 dependencies?: Array);
 ```
+
+### useLayoutEffect
+
+```js
+useLayoutEffect(() => void | Destructor, // setup
+dependencies?: Array);
+```
+
+useEffect 和 useLayoutEffect 的区别
+
+| 区别                | useLayoutEffect        | useEffect              |
+| ------------------- | ---------------------- | ---------------------- |
+| effect 函数执行时机 | 浏览器布局，绘制前执行 | 浏览器布局，绘制后执行 |
+| effect 函数执行方式 | 

@@ -3,12 +3,6 @@
   src: url(../../src/assets/FiraNeo-Regular.woff2) format(woff2);
 }
 
-@font-face {
-  font-family: "LXGWBright";
-  src: url(../../src/assets/LXGWBright-Regular.woff2) format(woff2);
-}
-
 :root {
-  --vp-font-family-base: "LXGWBright";
-  --vp-font-family-mono: "FiraNeo", "LXGWBright";
+  --vp-font-family-mono: "FiraNeo";
 }
