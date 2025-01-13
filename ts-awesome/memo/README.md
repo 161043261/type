@@ -65,5 +65,6 @@ export default {
 
 ```md
 ::: info | tip  | warning | danger | details
+你快乐所以我快乐
 :::
 ```

@@ -14,6 +14,13 @@ import { UseTransitionAntd } from "./hook/useTransition_antd";
 import { UseDeferredValueAntd } from "./hook/useDefferedValue_antd";
 import { UseEffectDemo } from "./hook/useEffect_demo";
 import { UseEffectDemo2 } from "./hook/useEffect_demo2";
+import { UseLayoutEffectDemo } from "./hook/useLayoutEffect_demo";
+import { UseLayoutEffectDemo2 } from "./hook/useLayoutEffect_demo2";
+import { UseLayoutEffectDemo3 } from "./hook/useLayoutEffect_demo3";
+import { UseRefDemo } from "./hook/useRef_demo";
+import { UseRefDemo2 } from "./hook/useRef_demo2";
+import { UseRefDemo3 } from "./hook/useRef_demo3";
+import { UseImperativeHandleDemo } from "./hook/useImperativeHandle_demo";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -55,6 +62,7 @@ export function App() {
     alignItems: "space-between",
     height: "200px",
   };
+
   const itemStyle = {
     border: "1px solid lightblue",
     borderRadius: "10px",
@@ -92,7 +100,7 @@ export function App() {
         </div>
 
         <div style={itemStyle}>
-          使用与运算符或三目运算符的条件渲染
+          条件渲染
           {cond && <p>renderIfTrue</p>}
           {cond ? <span>spanA</span> : <span>spanB</span>}
         </div>
@@ -128,6 +136,9 @@ export function App() {
       <div style={rowStyle}>
         <UseEffectDemo />
         <UseEffectDemo2 />
+        <UseLayoutEffectDemo />
+        <UseLayoutEffectDemo2 />
+        <UseLayoutEffectDemo3 />
       </div>
 
       {/**
@@ -136,17 +147,17 @@ export function App() {
        * useImperativeHandle
        * useContext
        */}
+      <div style={rowStyle}>
+        <UseRefDemo />
+        <UseRefDemo2 />
+        <UseRefDemo3 />
+        <UseImperativeHandleDemo />
+      </div>
 
       {/**
        * 状态派生
        * useMemo
        * useCallback
-       */}
-
-      {/**
-       * 工具 hooks
-       * useDebugValue
-       * useId
        */}
 
       {/**

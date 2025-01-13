@@ -14,7 +14,7 @@ export function UseStatePrimary() {
   const [reactiveCnt /* state */, setReactiveCnt /* dispatch */] = useState(0);
   const clickHandler = () => {
     cnt++;
-    //! dispatch 异步更新, 可以提升性能
+    //! dispatch 是异步更新的, 可以提升性能
     //! 每次 +2
     // setReactiveCnt(reactiveCnt + 1);
     // setReactiveCnt(reactiveCnt + 2); // 异步, 后执行

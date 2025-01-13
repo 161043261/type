@@ -5,7 +5,7 @@ const itemStyle = {
   border: "1px solid lightblue",
   borderRadius: "10px",
   padding: "5px",
-  overflow: "auto"
+  overflow: "auto",
 };
 
 interface UserData {
@@ -27,7 +27,7 @@ export function UseEffectDemo2() {
         setLoading(true);
         try {
           const res = await fetch(
-            `https://jsonplaceholder.typicode.com/users/${userId}`
+            `https://jsonplaceholder.typicode.com/users/${userId}`,
           );
           if (!res.ok) {
             throw new Error("Network error");
@@ -35,14 +35,14 @@ export function UseEffectDemo2() {
           const data = await res.json();
           setUserData(data);
         } catch (err: any) {
-          setError(err.message)
+          setError(err.message);
         } finally {
           setLoading(false);
         }
       };
-      fetchUserData()
+      fetchUserData();
     } /* effect (setup) */,
-    [userId] /* dependencies */
+    [userId] /* dependencies */,
   );
 
   const userIdChangeHandler = (ev: React.ChangeEvent<HTMLInputElement>) => {
