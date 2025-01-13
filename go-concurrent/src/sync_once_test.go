@@ -1,4 +1,4 @@
-package gopher
+package src
 
 import (
 	"encoding/json"
