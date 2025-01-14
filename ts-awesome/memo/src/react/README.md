@@ -220,8 +220,6 @@ useEffect 是 React 中处理副作用的钩子
 3. 组件更新 (依赖项更新) 后, 执行 effect (setup), 等价于 DidUpdate
 4. 组件卸载后, 执行 destructor
 
-组件更新等价于先卸载, 后挂载 ?
-
 ```js
 // useEffect 无返回值
 useEffect(effect: () => void | Destructor, // setup
@@ -294,12 +292,48 @@ const refValue = useRef(initialValue);
 
 ### useImperativeHandle
 
-父组件可以访问子组件的属性，调用子组件的方法，类似 Vue 的 defineExpose
+父组件可以获取子组件的 DOM，访问子组件的属性，方法和状态，类似 Vue 的 defineExpose
 
 ```js
 useImperativeHandle(parentRef, () => {
   return {
-    // 暴露给父组件的属性和方法
+    // 暴露给父组件的属性，方法和状态
   };
 }, dependencies?: Array);
 ```
+
+useImperativeHandle 的执行时机，同 useEffect, useLayoutEffect
+
+```js
+// 不传入第三个参数 dependencies
+// 则组件挂载时执行一次；状态更新导致组件重新渲染时，也会执行
+useImperativeHandle(ref, () => {});
+
+// 传入第三个参数 dependencies 为一个空数组
+// 则只在组件挂载时执行一次
+useImperativeHandle(ref, () => {}, []);
+
+// 传入第三个参数 dependencies 为一个非空数组
+// 则组件挂载时执行一次，依赖项更新导致导致组件重新渲染时，也会执行
+```
+
+### useContext
+
+```bash
+# props 高耦合
+GrandParent
+└── Parent
+    └── Child
+
+# context
+├── GrandParent
+├── Parent
+└── Child
+```
+
+### useContext
+
+useContext: 解决组件树上，组件间传递数据的问题
+无需为每个组件手动添加 props，就可以在组件间传递数据，实现了祖孙间的通信
+
+

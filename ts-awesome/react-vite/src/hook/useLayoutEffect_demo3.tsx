@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 
 // 案例：记录滚动条的位置
 const itemStyle = {

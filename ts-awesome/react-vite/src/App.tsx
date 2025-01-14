@@ -20,7 +20,10 @@ import { UseLayoutEffectDemo3 } from "./hook/useLayoutEffect_demo3";
 import { UseRefDemo } from "./hook/useRef_demo";
 import { UseRefDemo2 } from "./hook/useRef_demo2";
 import { UseRefDemo3 } from "./hook/useRef_demo3";
+import { UseImperativeHandleDemo2 } from "./hook/useImperativeHandle_demo2";
 import { UseImperativeHandleDemo } from "./hook/useImperativeHandle_demo";
+import { UseImperativeHandleDemo3 } from "./hook/useImperativeHandle_demo3";
+import { UseContextDemo } from "./hook/useContext_demo";
 
 export function App() {
   // jsx 插值：支持数字，字符串，基本类型数组，html 元素，表达式；不支持对象
@@ -152,8 +155,13 @@ export function App() {
         <UseRefDemo2 />
         <UseRefDemo3 />
         <UseImperativeHandleDemo />
+        <UseImperativeHandleDemo2 />
+        <UseImperativeHandleDemo3 />
       </div>
 
+      <div style={rowStyle}>
+        <UseContextDemo />
+      </div>
       {/**
        * 状态派生
        * useMemo
