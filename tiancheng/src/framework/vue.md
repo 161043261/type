@@ -1002,3 +1002,27 @@ const { list } = toRefs(defineProps<{ list: { h: number; bg: string }[] }>());
 console.log(list.value);
 </script>
 ```
+
+## 全局组件, 局部组件, 递归组件
+
+- 在 XxxYxx.vue 中 import 导入的组件, 默认是局部组件
+- 在 main.ts 中 import 导入的组件, 注册为是全局组件 (全局导入)
+
+```ts
+// main.ts
+import GlobalComponent from "./components/example/GlobalComponent.vue";
+const app = createApp(App);
+app.component("CardComponent", GlobalComponent); // 注册为 CardComponent 全局组件
+```
+
+批量注册全局组件
+
+```ts
+// main.ts
+import * as GlobalComponents from "./components/global";
+
+const app = createApp(App);
+for (const [key, component] of Object.entries(GlobalComponents)) {
+  app.component(key, component);
+}
+```

@@ -4,7 +4,7 @@ import ws from "ws";
 
 const wss = new ws.Server({ port: 8080 });
 const state = {
-  HEARTBIT: 1, // 心跳包
+  HEARTBEAT: 1, // 心跳包
   DATAGRAM: 2, // 数据包
 };
 
@@ -26,8 +26,8 @@ wss.on("connection", (ws) => {
     if (ws.readyState === ws.OPEN) {
       ws.send(
         JSON.stringify({
-          state: state.HEARTBIT,
-          msg: "heartbit",
+          state: state.HEARTBEAT,
+          msg: "heartbeat",
         }),
       );
     } else {

@@ -44,6 +44,7 @@ import BEMDemo from './components/BEMDemo.vue'
 import LayoutDemo from './components/LayoutDemo/index.vue'
 import ChildDemo from './components/ChildDemo.vue'
 import DefineExposeDemo from './components/DefineExposeDemo.vue'
+import RecursiveParent from './components/example/RecursiveParent.vue'
 
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
@@ -89,6 +90,10 @@ onMounted(() => {
   <ChildDemo @ev-name="(...args) => rxFromChild(args)" @ev-name2="rxFromChild"></ChildDemo>
 
   <DefineExposeDemo ref="refName" />
+
+  <!-- 全局组件 CardComponent -->
+   <CardComponent />
+   <RecursiveParent />
 </template>
 
 <style lang="scss">
