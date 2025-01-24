@@ -6,6 +6,11 @@ const port = 24642;
 const listener = dgram.createSocket("udp4");
 const forwarder = dgram.createSocket("udp4");
 
+listener.on("listening", () => {
+  const addr = listener.address();
+  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
+});
+
 listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
   console.log(`Filtering address ${rinfo.address}`);
   // if (rinfo.address === serverAddr) {
@@ -23,18 +28,13 @@ listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
   // }
 });
 
-listener.on("listening", () => {
-  const addr = listener.address();
-  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
-});
-
-listener.on("error", (err) => {
-  console.error(`Listener error: ${err.stack}`);
-  listener.close();
+forwarder.on("error", (err) => {
+  console.error(`Forwarder error: ${err.stack}`);
+  forwarder.close();
 });
 
 listener.bind(
-  55555, //  Not specified port
+  55555, // Actually not specified port
   () => {
     const addr = listener.address();
     console.log(`Listener binding on ${addr.address}:${addr.port}`);

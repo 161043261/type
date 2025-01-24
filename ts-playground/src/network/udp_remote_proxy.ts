@@ -9,6 +9,11 @@ const rsockets = new Set<string>();
 const listener = dgram.createSocket("udp4");
 const forwarder = dgram.createSocket("udp4");
 
+listener.on("listening", () => {
+  const addr = listener.address();
+  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
+});
+
 listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
   const rsocket = `${rinfo.address}:${rinfo.port}`;
   console.log(`Rx from: ${rsocket}, msg: ${msg}`);
@@ -36,11 +41,6 @@ listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
       }, // callback?: (error: Error | null, bytes: number) => void
     );
   }
-});
-
-listener.on("listening", () => {
-  const addr = listener.address();
-  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
 });
 
 listener.on("error", (err) => {
