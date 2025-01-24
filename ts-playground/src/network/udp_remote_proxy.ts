@@ -21,10 +21,8 @@ listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
       msg, // msg: string | Uint8Array
       0, // offset: number
       msg.length, // length: number
-
       // Number.parseInt(rsocket.split(":")[1]), // port?: number
       55555,
-
       rsocket.split(":")[0], // address?: string
       (err: Error | null, bytes: number) => {
         if (err) {

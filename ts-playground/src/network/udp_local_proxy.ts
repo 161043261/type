@@ -25,7 +25,7 @@ listener.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
 
 listener.on("listening", () => {
   const addr = listener.address();
-  console.log(`Listening for UDP packets from ${addr.address}`);
+  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
 });
 
 listener.on("error", (err) => {

@@ -45,11 +45,19 @@ client.on("error", (err) => {
 
 client.on("listening", () => {
   const addr = client.address();
-  console.log(`Listening for UDP packets from ${addr.address}`);
+  console.log(`Listening for UDP packets from ${addr.address}:${addr.port}`);
 });
 
 client.bind(0, () => {
   const addr = client.address();
   console.log(`Binding on ${addr.address}:${addr.port}`);
-  prompt();
+
+  client.send("ping", port, serverIP, (err, bytes) => {
+    if (err) {
+      console.error(err);
+    }
+    if (bytes === 0) {
+      console.warn("No bytes sent");
+    }
+  });
 });
