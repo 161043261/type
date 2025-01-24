@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "types": [
+      "unplugin-vue-define-options/macros-global"
+    ]
   },
   "files": [],
   "references": [

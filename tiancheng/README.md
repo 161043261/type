@@ -56,7 +56,7 @@ export default defineConfig({
 - 行高亮 `js{2,5-8}`, `// [!code highlight]`
 - 警告和错误 `// [!code warning]`, `// [!code error]`
 - 行聚焦 `// [!code focus]`, `// [!code focus::<lines>]`
-- diff `// [!code --]`, `// [!code --]`
+- diff `// [!code ++]`, `// [!code --]`
 - 代码组
 
 ````md

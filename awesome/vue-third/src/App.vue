@@ -92,8 +92,8 @@ onMounted(() => {
   <DefineExposeDemo ref="refName" />
 
   <!-- 全局组件 CardComponent -->
-   <CardComponent />
-   <RecursiveParent />
+  <CardComponent />
+  <RecursiveParent />
 </template>
 
 <style lang="scss">

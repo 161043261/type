@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="card">
@@ -8,9 +6,7 @@
       <div>Title</div>
       <div>Tagline</div>
     </header>
-    <section>
-      Content
-    </section>
+    <section>Content</section>
   </div>
 </template>
 

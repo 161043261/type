@@ -529,7 +529,7 @@ const fullName = computed<string>({
 });
 
 const readonlyFullName = computed<string>(
-  () => firstName.value + "- " + lastName.value
+  () => firstName.value + "- " + lastName.value,
 );
 ```
 
@@ -1005,6 +1005,8 @@ console.log(list.value);
 
 ## 全局组件, 局部组件, 递归组件
 
+### 局部组件
+
 - 在 XxxYxx.vue 中 import 导入的组件, 默认是局部组件
 - 在 main.ts 中 import 导入的组件, 注册为是全局组件 (全局导入)
 
@@ -1025,4 +1027,137 @@ const app = createApp(App);
 for (const [key, component] of Object.entries(GlobalComponents)) {
   app.component(key, component);
 }
+```
+
+### 递归组件
+
+父组件 RecursiveParent.vue
+
+```vue
+<script lang="ts" setup>
+const data = reactive<TreeNode[]>([
+  { name: "1", checked: false },
+  { name: "2", checked: false, children: [{ name: "2.1", checked: false }] },
+  {
+    name: "3",
+    checked: false,
+    children: [
+      {
+        name: "3.1",
+        checked: false,
+        children: [{ name: "3.1.1", checked: false }],
+      },
+    ],
+  },
+]);
+</script>
+
+<template>
+  <div>
+    <RecursiveChild :data="data"></RecursiveChild>
+  </div>
+</template>
+```
+
+递归子组件 RecursiveChild.vue
+
+```vue
+<script lang="ts">
+export default {
+  name: "RecursiveChild", // 也可以自定义组件名
+};
+</script>
+
+<script lang="ts" setup>
+defineProps<{
+  data?: TreeNode[]; // template 中可以直接使用 data
+}>();
+</script>
+
+<template>
+  <div>
+    <div class="tree" v-for="(item, idx) of data" :key="idx">
+      <div>
+        <input type="checkbox" v-model="item.checked" />
+        <span>{{ item.name }}</span>
+      </div>
+      <!-- 递归组件, 默认组件名等于文件名 -->
+      <RecursiveChild
+        v-if="item.children?.length"
+        :data="item.children"
+      ></RecursiveChild>
+    </div>
+  </div>
+</template>
+```
+
+### defineOptions 宏函数
+
+[Vue Macro](https://vue-macros.dev/zh-CN/)
+
+> [!caution]
+>
+> 1. Vue3.3+ 已内置 defineOptions 宏函数, 可以直接使用
+> 2. 不能同时使用 defineOptions 宏函数和 export default 默认导出
+
+```bash
+pnpm i unplugin-vue-define-options
+```
+
+vite.config.ts 中使用 unplugin-vue-define-options 插件
+
+```ts
+import defineOptions from "unplugin-vue-define-options/vite";
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [vue(), vueJsx(), vueDevTools(), defineOptions()],
+});
+```
+
+tsconfig.json 中, 包括插件的 .d.ts 类型声明文件
+
+```json
+{
+  "compilerOptions": {
+    "types": ["unplugin-vue-define-options/macros-global"]
+  }
+}
+```
+
+现在可以使用 defineOptions 宏函数自定义组件名 (Vue3.3+ 已内置 defineOptions 宏函数, 可以直接使用)
+
+```ts
+// unplugin-vue-define-options
+defineOptions({
+  name: "RecursiveChild",
+});
+```
+
+> [!warning]
+> 使用递归组件时, 需要阻止事件冒泡 (使用 .stop 修饰符)
+
+```vue
+<script lang="ts" setup>
+defineProps<{
+  data?: TreeNode[]; // template 中可以直接使用 data
+}>();
+
+function clickTap(item: TreeNode) {
+  console.log(item);
+}
+</script>
+
+
+<template>
+  <div>
+    <div @click="clickTap(item)" class="tree" v-for="(item, idx) of data" :key="idx"> // [!code --]
+      <!-- .stop 修饰符: 阻止事件冒泡 -->
+    <div @click.stop="clickTap(item)" class="tree" v-for="(item, idx) of data" :key="idx"> // [!code ++]
+      <div>
+        <input type="checkbox" v-model="item.checked" /> <span>{{ item.name }}</span>
+      </div>
+      <RecursiveChild v-if="item.children?.length" :data="item.children"></RecursiveChild>
+    </div>
+  </div>
+</template>
 ```
