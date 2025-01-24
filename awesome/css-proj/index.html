@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 导入 favorite icon 图标 -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- 导入清除样式 -->
+    <link rel="stylesheet" href="./style/reset.css" />
+    <!-- 导入样式 -->
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+
+  <body>
+    <!-- 顶部导航条 -->
+    <div class="topbar">
+      <!-- 版心 -->
+      <div class="container clear-fix">
+        <!-- 左侧欢迎区 -->
+        <div class="welcome left-fix">
+          <!--
+        存在行内/行内块元素间的空白符问题
+        原因: 行内/行内块元素间的换行符, 会被浏览器解析为一个空白符
+        解决: 父元素设置 `font-size: 0` (空白符不再占据空间)
+        -->
+          <span class="hello">miHoYo</span>
+          <a href="#" class="login">CH</a>
+          <a href="#" class="register">EN</a>
+        </div>
+        <!-- 右侧导航区 -->
+        <div class="topbar-nav right-fix">
+          <ul class="list clear-fix">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">产品信息</a></li>
+            <li><a href="#">了解我们</a></li>
+            <li><a href="#">加入我们</a></li>
+            <li><a href="#">新闻动态</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 头部 -->
+    <div class="header">
+      <!-- 版心 -->
+      <div class="container clear-fix">
+        <!-- 左侧 logo 区 -->
+        <div class="logo left-fix">
+          <!-- img 是行内块元素 -->
+          <!-- (120px - 66px) / 2 = 27px -->
+          <img src="./assets/mihoyo_logo.png" alt="拼多多" />
+        </div>
+        <!-- 右侧搜索区 -->
+        <div class="search right-fix">
+          <form action="#">
+            <!--
+          存在行内块上下空白问题
+          原因: 行内块元素被视为文本, 默认与文本的基线 baseline 对齐
+          解决 行内块设置 `vertical: middle | bottom | top`, 属性值 != baseline 即可
+          -->
+
+            <!--
+          存在行内/行内块元素间的空白符问题
+          原因: 行内/行内块元素间的换行符, 会被浏览器解析为一个空白符
+          解决: 父元素设置 `font-size: 0` (空白符不再占据空间)
+          -->
+            <input type="text" placeholder=" tech otakus save the world" />
+            <!-- button 默认 type="submit" -->
+            <button type="submit">提交</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主导航区 -->
+    <div class="main-nav">
+      <div class="container clear-fix">
+        <div class="all-types left-fix">全部产品</div>
+        <ul class="main-nav-list left-fix clear-fix">
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <div class="container clear-fix">
+        <ul class="slide-nav left-fix">
+          <li>
+            <!-- 一级菜单 -->
+            <a href="#">Genshin Impact</a>
+            <!-- 二级菜单 -->
+
+            <!--! 定位: 子绝父相 -->
+            <!--! 定位用于处理元素的覆盖 -->
+            <div class="sub-menu">
+              <ul class="clear-fix">
+                <li><a href="#">原神1</a></li>
+                <li><a href="#">v0.1</a></li>
+                <li><a href="#">v0.1</a></li>
+                <li><a href="#">v0.2</a></li>
+                <li><a href="#">v0.3</a></li>
+                <li><a href="#">v0.4</a></li>
+                <li><a href="#">v0.5</a></li>
+                <li><a href="#">v0.6</a></li>
+                <li><a href="#">v0.7</a></li>
+                <li><a href="#">v0.8</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+          <li><a href="#">原神</a></li>
+        </ul>
+
+        <div class="banner left-fix">
+          <img
+            src="./assets/banner.png"
+            width="690px"
+            height="458px"
+            alt="banner"
+          />
+        </div>
+
+        <div class="slide-other left-fix">
+          <div class="message">
+            <div class="title clear-fix">
+              <span class="left-fix">校招流程</span>
+              <a href="#" class="right-fix">切换到社招&nbsp;&gt;</a>
+            </div>
+            <ul class="msg-list">
+              <li><a href="#">网申/内推</a></li>
+              <li><a href="#">测试</a></li>
+              <li><a href="#">面试</a></li>
+              <li><a href="#">感谢信</a></li>
+            </ul>
+          </div>
+          <div class="nav-other">
+            <!-- margin 塌陷问题
+            第一个子元素的上外边距 margin-top 转移给父元素, 最后一个子元素的下外边距 margin-bottom 转移给父元素
+            解决 margin 塌陷问题
+            1. 父元素设置大于 0 的 padding
+            2. 父元素设置大于 0 的 border
+            3. 父元素设置 `overflow: hidden` -->
+            <ul class="nav-other-list clear-fix">
+              <!-- ploygon 多边形 -->
+              <li>
+                <img src="./assets/ploygon.svg" alt="ploygon" />
+                <span>神之眼</span>
+              </li>
+              <li>
+                <canvas class="canvas-ploygon" width="48" height="48"></canvas>
+                <span>神之眼</span>
+              </li>
+              <!-- circle 圆形 -->
+              <li>
+                <img src="./assets/circle.svg" alt="circle" />
+                <span>神之心</span>
+              </li>
+              <li>
+                <canvas class="canvas-circle" width="48" height="48"></canvas>
+                <span>神之心</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 热点 -->
+    <div class="hotspot">
+      <div class="container clear-fix">
+        <img
+          src="./assets/hotspot1.png"
+          width="190"
+          height="190"
+          alt="hotspot1"
+        />
+        <img
+          src="./assets/hotspot2.png"
+          width="239"
+          height="190"
+          alt="hotspot2"
+        />
+        <img
+          src="./assets/hotspot3.png"
+          width="239"
+          height="190"
+          alt="hotspot3"
+        />
+        <img
+          src="./assets/hotspot4.png"
+          width="239"
+          height="190"
+          alt="hotspot4"
+        />
+        <img
+          src="./assets/hotspot5.png"
+          width="239"
+          height="190"
+          alt="hotspot5"
+        />
+      </div>
+    </div>
+
+    <!-- 楼层 -->
+    <div class="floor">
+      <div class="container">
+        <!-- 上部分 -->
+        <div class="floor-nav clear-fix">
+          <span class="floor-name left-fix">孤独摇滚!</span>
+
+          <!-- TODO 上拉列表不能一直显示 -->
+          <div class="floor-nav-char left-fix">
+            <ul class="char-list clear-fix">
+              <li><a href="#">后藤独</a></li>
+              <li><a href="#">伊地知虹夏</a></li>
+              <li><a href="#">山田凉</a></li>
+              <li><a href="#">喜多郁代</a></li>
+            </ul>
+            <img src="./assets/hotspot6.png" alt="hotspot6" width="100%" />
+          </div>
+
+          <ul class="floor-nav-list right-fix clear-fix">
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+            <li><a href="#">崩坏: 星穹铁道</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <div class="container">
+        <!-- 顶部链接 -->
+        <div class="top-link clear-fix">
+          <ul class="link-list">
+            <li><a href="#">米游社</a></li>
+            <li><a href="#">米游社</a></li>
+            <li><a href="#">米游社</a></li>
+            <li><a href="#">米游社</a></li>
+            <li><a href="#">米游社</a></li>
+            <li><a href="#">米游社</a></li>
+          </ul>
+        </div>
+        <!-- 分割线 -->
+        <div class="line"></div>
+        <!-- 底部链接 -->
+        <div class="bottom-link">
+          <ul class="bottom-link-list clear-fix">
+            <li><a href="#">隐私政策</a></li>
+            <li><a href="#">自律公约</a></li>
+            <li><a href="#">廉政举报</a></li>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#">加入我们</a></li>
+          </ul>
+          <div class="copyright">
+            <a href="https://161043261.github.io">&copy;161043261.github.io</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const subMenuContent = document.querySelector(".sub-menu").innerHTML;
+    let newSubMenuContent = "";
+    for (let i = 1; i <= 12; i++) {
+      newSubMenuContent += subMenuContent.replaceAll("0", i.toString());
+    }
+    document.querySelector(".sub-menu").innerHTML = newSubMenuContent;
+    const lists = document.querySelectorAll(".slide-nav>li");
+    for (let i = 1; i < lists.length; i++) {
+      lists[i].innerHTML += `<div class="sub-menu">
+        ${newSubMenuContent.replaceAll("原神1", `原神${i + 1}`)}
+      </div>`;
+    }
+
+    const navOtherContent =
+      document.getElementsByClassName("nav-other")[0].innerHTML;
+    // console.log(navOtherContent);
+    for (let i = 0; i < 2; i++) {
+      document.getElementsByClassName("nav-other")[0].innerHTML +=
+        navOtherContent;
+    }
+
+    // 使用 canvas 绘制圆形
+    const elems1 = document.querySelectorAll(".canvas-circle");
+    for (const elem of elems1) {
+      const ctx = elem.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(24, 24, 24, 0, 2 * Math.PI);
+      ctx.fillStyle = "lightpink";
+      ctx.fill();
+      // ctx.strokeStyle = 'black';
+      // ctx.stroke();
+    }
+
+    // 使用 canvas 绘制等边三角形
+    const elems2 = document.getElementsByClassName("canvas-ploygon");
+    for (const elem of elems2) {
+      const ctx = elem.getContext("2d");
+      ctx.beginPath();
+      ctx.moveTo(24, 0);
+      ctx.lineTo(0, 48);
+      ctx.lineTo(48, 48);
+      ctx.closePath();
+      ctx.fillStyle = "lightpink";
+      ctx.fill();
+      // ctx.strokeStyle = 'black';
+      // ctx.stroke();
+    }
+
+    const topLinkContent = document.querySelector(".top-link").innerHTML;
+    let newTopLinkContent = "";
+    for (let i = 1; i <= 6; i++) {
+      newTopLinkContent += topLinkContent;
+    }
+    document.querySelector(".top-link").innerHTML = newTopLinkContent;
+  </script>
+</html>

@@ -1,0 +1,16 @@
+<svg
+  version="1.1"
+  baseProfile="file"
+  width="500"
+  height="173"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="100%" height="100%" fill="lightpink" />
+  <circle cx="100%" cy="100%" r="173" fill="lightgreen" stroke="black" />
+  <!-- polygon 多边形 -->
+  <polygon points="100,0 200,173 0,173" fill="lightblue" />
+
+  <text x="100" y="20">a (100, 0)</text>
+  <text x="200" y="170">b (200, 173)</text>
+  <text x="0" y="170">c (0, 173)</text>
+</svg>

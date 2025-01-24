@@ -1,0 +1,6 @@
+.cache/
+build/
+.DS_Store
+.idea/
+*.exe
+README.txt

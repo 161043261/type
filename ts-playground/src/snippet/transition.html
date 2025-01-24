@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css" />
+    <style>
+      .top {
+        width: 100px;
+        height: 100px;
+        background-color: steelblue;
+        opacity: 0.3;
+        /* 指定设置过渡效果的属性 */
+        /* 属性值是数值的属性, 可以设置过渡效果 */
+        /* transition-property: width, height, background-color; */
+        transition-property: all;
+        /* transition-duration: 1s, 2s, 3s; */
+        transition-duration: 2s;
+      }
+
+      .top:hover {
+        /* 属性值是数值的属性, 可以设置过渡效果 */
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        transform: rotate(45deg);
+        box-shadow: 0 0 20px lightpink;
+        opacity: 1;
+        border-radius: 50%;
+      }
+
+      .outer {
+        width: 1300px;
+        height: 450px;
+        border: 1px solid black;
+      }
+
+      .outer:hover .box {
+        width: 1300px;
+      }
+
+      .box {
+        width: 200px;
+        height: 50px;
+        transition-property: all;
+        transition-duration: 5s;
+        /* 过渡延迟 */
+        /* transition-delay: 2s; */
+      }
+
+      .box1 {
+        background-color: lightblue;
+        /* ease: 平滑过渡, 慢 => 快 => 慢 (默认) */
+        transition-timing-function: ease;
+      }
+
+      .box2 {
+        background-color: lightcoral;
+        /* linear: 线性过渡, 匀速 */
+        transition-timing-function: linear;
+      }
+
+      .box3 {
+        background-color: lightcyan;
+        /* ease-in: 先慢后快 */
+        transition-timing-function: ease-in;
+      }
+
+      .box4 {
+        background-color: lightgoldenrodyellow;
+        /* ease-out: 先快后慢 */
+        transition-timing-function: ease-out;
+      }
+
+      .box5 {
+        background-color: lightgreen;
+        /* ease-in-out: 慢 => 快 => 慢 */
+        transition-timing-function: ease-in-out;
+      }
+
+      .box6 {
+        background-color: lightpink;
+        /* step-start: 开始时瞬间过渡 */
+        transition-timing-function: step-start;
+      }
+
+      .box7 {
+        background-color: lightsalmon;
+        /* step-end: 结束时瞬间过渡 */
+        transition-timing-function: step-end;
+      }
+
+      .box8 {
+        background-color: lightseagreen;
+        /* steps(n), step(n, start), step(n, end): 分步过渡 */
+        /* transition-timing-function: steps(5); */
+        /* 等价于 */
+        transition-timing-function: steps(5, end);
+        /* transition-timing-function: steps(5, start); */
+      }
+
+      .box9 {
+        background-color: lightskyblue;
+        /* cubic-bezier(): 贝塞尔曲线 */
+        transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>过渡</h1>
+    <div class="top"></div>
+    <div class="outer">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+      <div class="box box4">4</div>
+      <div class="box box5">5</div>
+      <div class="box box6">6</div>
+      <div class="box box7">7</div>
+      <div class="box box8">8</div>
+      <div class="box box9">9</div>
+    </div>
+
+    <div class="parent">
+      <div class="child"></div>
+    </div>
+  </body>
+</html>

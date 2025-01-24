@@ -1,0 +1,10 @@
+learn/js/**/*.txt
+
+build/
+node_modules/
+dist/
+# **/*.exe
+lib/
+out/
+.idea/
+.cache/

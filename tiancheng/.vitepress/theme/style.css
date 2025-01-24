@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Hack";
+  src:
+    url("../../src/assets/hack-regular.woff2") format("woff2"),
+    url("../../src/assets/hack-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hack";
+  src:
+    url("../../src/assets/hack-bold.woff2") format("woff2"),
+    url("../../src/assets/hack-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hack";
+  src:
+    url("../../src/assets/hack-italic.woff2") format("woff2"),
+    url("../../src/assets/hack-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Hack";
+  src:
+    url("../../src/assets/hack-bolditalic.woff2") format("woff2"),
+    url("../../src/assets/hack-bolditalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+
+:root {
+  --vp-font-family-base: "Hack", "Menlo", "Fira Code", "Iosevka",
+    "Microsoft YaHei", "PingFang SC", monospace;
+  --vp-font-family-mono: "Hack", "Menlo", "Fira Code", "Iosevka",
+    "Microsoft YaHei", "PingFang SC", monospace;
+}

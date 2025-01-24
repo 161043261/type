@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      .box1 {
+        width: 400px;
+        height: 400px;
+        background-color: lightblue;
+        position: relative;
+        /* 顶部, 相对原位置的顶部 0px */
+        top: 0;
+        /* 左侧, 相对原位置的左侧 0px */
+        left: 0;
+        /* 过渡 */
+        /* transition: 0.3s linear all; */
+        transition: 0.3s ease-out all;
+        /* 不透明度 */
+        opacity: 0.5;
+        font-size: 40px;
+      }
+
+      .box1:hover {
+        /* 水平位置 垂直位置 模糊值 阴影的颜色 */
+        box-shadow: 0 0 10px black;
+        top: -1px;
+        left: 0;
+      }
+
+      /* 定位元素的宽高由内容撑开 */
+      .box2 {
+        width: 300px;
+        height: 300px;
+        background-color: lightpink;
+        font-size: 40px;
+        /* 相对定位 */
+        position: relative;
+        /* 文本居中 */
+        text-align: center;
+        line-height: 70px;
+      }
+
+      p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: black;
+        color: white;
+        width: 100%;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box1">opacity: 0 表示完全透明, 1 表示完全不透明</div>
+
+    <div class="box2">
+      <img src="../assets/white.png" alt="white" width="300px" />
+      <p>Kiana</p>
+    </div>
+  </body>
+</html>

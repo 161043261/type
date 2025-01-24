@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/react.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N0va Desktop Extractor</title>
+    <style>
+      * {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      .container {
+        width: 600px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px lightblue;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      #extractBtn {
+        padding: 5px 5px;
+      }
+
+      #msgBox {
+        color: red;
+      }
+
+      button {
+        border: none;
+        border-radius: 10px;
+        background-color: azure;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- react -->
+      <div id="header"></div>
+      <form id="extractForm">
+        <label for="sourceDir">sourceDir</label>
+        <input
+          type="text"
+          id="sourceDir"
+          name="sourceDir"
+          value="C:\Program Files\N0vaDesktop\N0vaDesktopCache\game"
+          size="70%"
+        />
+        <button type="submit" id="extractBtn">Extract!</button>
+      </form>
+      <div id="msgBox"></div>
+    </div>
+    <hr />
+    <!-- 虚拟 dom -->
+    <div id="root"></div>
+  </body>
+
+  <script crossorigin type="module" src="/src/main.tsx"></script>
+  <script crossorigin>
+    document.querySelector("#sourceDir").addEventListener("change", (ev) => {
+      document.getElementById("msgBox").textContent = "";
+    });
+
+    document
+      .querySelector("#extractForm")
+      .addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const sourceDir = document.getElementById("sourceDir").value;
+        if (sourceDir === "") {
+          document.getElementById("msgBox").textContent =
+            "Please specify the sourceDir!";
+        } else {
+          fetch("/api/extract", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ sourceDir }),
+          })
+            .then((resp) => resp.json())
+            .then((value /* { msg: string, err: string } */) => {
+              if (value.err) {
+                document.getElementById("msgBox").textContent =
+                  "Extract fail! " + value.err;
+              } else {
+                document.getElementById("msgBox").textContent =
+                  "Congratulations! Extract succeed!";
+              }
+            })
+            .catch((err) => {
+              document.getElementById("msgBox").textContent =
+                "Extract error! " + err;
+            });
+        }
+      });
+  </script>
+</html>

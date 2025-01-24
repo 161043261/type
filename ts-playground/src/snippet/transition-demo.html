@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css" />
+    <style>
+      .outer {
+        width: 800px;
+        height: 343px;
+        /* 相对定位的参考点: 本元素的原位置, 不脱离文档流 */
+        position: relative;
+        /* 隐藏溢出元素 */
+        overflow: hidden;
+      }
+
+      .mask {
+        width: 800px;
+        height: 343px;
+        background-color: black;
+        color: white;
+        /* 绝对定位的参考点: 本元素的包含块, 脱离文档流 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* 文本水平居中 */
+        text-align: center;
+        /* 文本垂直居中 */
+        line-height: 343px;
+        font-size: 100px;
+        /* 透明 */
+        opacity: 0;
+        transition: 1s linear all;
+        cursor: pointer;
+      }
+
+      .mask:hover {
+        opacity: 0.5;
+      }
+
+      .outer:hover img {
+        transform: scale(1.5) rotate(20deg);
+      }
+
+      .outer img {
+        transition: 1s linear all;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <img
+        src="../assets/image-800w.jpg"
+        alt="ganyu"
+        width="800px"
+        height="343px"
+      />
+      <div class="mask">甘雨</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css" />
+    <style>
+      .row1,
+      .row2 {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      row2 {
+        white-space: pre-line;
+      }
+
+      .box {
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+        white-space: pre-line;
+      }
+    </style>
+
+    <!-- 渐变本质是背景图片 -->
+
+    <!-- 线性渐变 -->
+    <style>
+      .row1 .box1 {
+        background-image: linear-gradient(lightpink, lightyellow, lightblue);
+      }
+
+      .row1 .box2 {
+        background-image: linear-gradient(
+          to right,
+          lightpink,
+          lightyellow,
+          lightblue
+        );
+      }
+
+      .row1 .box3 {
+        background-image: linear-gradient(
+          30deg,
+          lightpink,
+          lightyellow,
+          lightblue
+        );
+      }
+
+      /* 0..50 纯红
+    50..100 红变黄
+    100..150 黄变蓝
+    150...200 纯蓝 */
+      .row1 .box4 {
+        /* background-image: linear-gradient(lightpink 50px, lightyellow 100px, lightblue 150px); */
+        background-image: repeating-linear-gradient(
+          /* lightpink 0, */ lightpink 50px,
+          lightyellow 100px,
+          lightblue 150px
+        );
+      }
+
+      .row1 .box5 {
+        background-image: linear-gradient(
+          180deg,
+          lightpink 50px,
+          lightyellow 100px,
+          lightblue 150px
+        );
+        /* 透明文字 */
+        color: transparent;
+        font-size: 40px;
+        text-align: center;
+        line-height: 200px;
+        font-weight: bold;
+        background-clip: text;
+      }
+    </style>
+
+    <!-- 径向渐变 -->
+    <style>
+      .row2 .box1 {
+        background-image: radial-gradient(lightpink, lightyellow, lightgreen);
+      }
+
+      .row2 .box2 {
+        background-image: radial-gradient(
+          at left top,
+          lightpink,
+          lightyellow,
+          lightgreen
+        );
+      }
+
+      .row2 .box3 {
+        background-image: radial-gradient(
+          at 100px 50px,
+          lightpink,
+          lightyellow,
+          lightgreen
+        );
+      }
+
+      .row2 .box4 {
+        background-image: radial-gradient(
+          circle,
+          lightpink,
+          lightyellow,
+          lightgreen
+        );
+      }
+
+      .row2 .box5 {
+        background-image: radial-gradient(
+          100px 100px,
+          lightpink,
+          lightyellow,
+          lightgreen
+        );
+      }
+
+      .row2 .box6 {
+        /* background-image: radial-gradient(100px 50px at 150px 150px, lightpink 50px, lightyellow 100px, lightgreen 150px); */
+        background-image: repeating-radial-gradient(
+          100px 50px at 150px 150px,
+          lightpink 50px,
+          lightyellow 100px,
+          lightgreen 150px
+        );
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row1">
+        <div class="box box1">默认从上到下</div>
+        <div class="box box2">
+          to right 从左到右 to left 从右到左 to right top 从左下角到右上角
+        </div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="box box5">透明文字</div>
+      </div>
+
+      <div class="row2">
+        <div class="box box1"></div>
+        <div class="box box2">
+          at left top 渐变圆的圆心在左上角 at right top 渐变圆的圆心在右上角
+        </div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="box box5"></div>
+        <div class="box box6"></div>
+      </div>
+    </div>
+  </body>
+</html>

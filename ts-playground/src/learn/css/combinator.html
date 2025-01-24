@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 后代选择器 空格 */
+      .box p {
+        color: red;
+      }
+
+      /* 子代选择器 > */
+      ul > li {
+        border-top: 5px solid red;
+      }
+
+      /* 邻接兄弟选择器 + */
+      h1 + p {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em;
+      }
+
+      /* 通用兄弟选择器 ~ */
+      h1 ~ div {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p>Text in .box</p>
+    </div>
+    <p>Text not in .box</p>
+
+    <ul>
+      <li>Unordered item</li>
+      <li>
+        Unordered item
+        <ol>
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ol>
+      </li>
+    </ul>
+
+    <article>
+      <h1>崩坏·星穹铁道</h1>
+      <p>愿此行 (邻接兄弟选择器)</p>
+      <p>终抵群星</p>
+      <div>MDN Web Docs (通用兄弟选择器)</div>
+    </article>
+  </body>
+</html>

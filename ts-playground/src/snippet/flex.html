@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer {
+        width: 600px;
+        height: 600px;
+        background-color: lightgray;
+        /* 父元素开启 flex 布局, 成为伸缩盒 (弹性盒) 容器 */
+        /* 子元素成为伸缩盒 (弹性盒) 项目, 未脱离文档流, 可以撑开父元素的宽高 */
+        display: flex;
+        /* display: flex; 块级的缩盒容器, 独占一行 */
+        /* display: inline-flex; 行内块的伸缩盒容器, 不常用 */
+        flex-wrap: wrap;
+      }
+
+      .inner {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        border: 1px solid lightpink;
+        box-sizing: border-box;
+        /* @deprecated 左浮动 */
+        /* float: left; */
+      }
+
+      /* order 属性: 指定伸缩项目在主轴上的排列顺序, 值越小, 排序越靠前, 默认 0 */
+      .inner2 {
+        order: -1;
+      }
+
+      /* align-self 属性: 单独指定某个伸缩项目的侧轴对齐方式, 默认 auto */
+      .inner3 {
+        align-self: flex-end;
+      }
+
+      /* @deprecated 清除浮动 */
+      /* .outer::after {
+      content: "";
+      display: block;
+      clear: both;
+    } */
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="inner">1</div>
+      <div class="inner inner2">2</div>
+      <div class="inner inner3">3</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul>
+      <li>tr: table row 表格行</li>
+      <li>td: table data 单元格</li>
+      <li>
+        th: table header 行/列的表头单元格 <br />
+        th 的 scope 属性: 表头单元格的类型, 包括 row, col, rowgroup, colgroup
+      </li>
+      <li>thead: table head 表头</li>
+      <li>tbody: table body 表体</li>
+      <li>tfoot: table foot 表尾</li>
+    </ul>
+
+    <table>
+      <caption>
+        表格标题
+      </caption>
+      <colgroup>
+        <!-- 第 1 列 -->
+        <col style="background-color: lightgreen" />
+        <!-- 第 2, 3 列 -->
+        <col span="2" />
+        <!-- 第 4 列 -->
+        <col style="background-color: lightblue" />
+      </colgroup>
+
+      <thead>
+        <tr>
+          <td>表头</td>
+          <!-- th 的 scope 属性: 表头单元格的类型,
+           包括 row, col, rowgroup, colgroup -->
+          <th scope="col">第 1 列的表头单元格</th>
+          <th scope="col">第 2 列的表头单元格</th>
+          <th scope="col">第 3 列的表头单元格</th>
+        </tr>
+      </thead>
+
+      <tfoot>
+        <tr>
+          <td>表尾</td>
+          <!-- &nbsp; non-breaking space 不换行空格 -->
+          <td colspan="3">&nbsp;</td>
+        </tr>
+      </tfoot>
+
+      <tbody>
+        <tr>
+          <th scope="row">第 1 行的表头单元格</th>
+          <td colspan="2">colspan="2" 单元格横跨 2 列</td>
+          <td rowspan="2">rowspan="2" 单元格竖跨 2 行</td>
+        </tr>
+        <tr>
+          <th scope="row">第 2 行的表头单元格</th>
+          <td>2 行 1 列的单元格</td>
+          <td>2 行 2 列的单元格</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>
+        嵌套表格: 父表
+      </caption>
+      <tr>
+        <th>列 1</th>
+        <th>列 2</th>
+      </tr>
+      <tr>
+        <td>
+          <table>
+            <caption>
+              嵌套表格: 子表
+            </caption>
+            <tr>
+              <td>单元格 (1, 1)</td>
+              <td>单元格 (1, 2)</td>
+            </tr>
+          </table>
+        </td>
+        <td>单元格 (1, 2)</td>
+      </tr>
+      <tr>
+        <td>单元格 (2, 1)</td>
+        <td>单元格 (2, 2)</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th rowspan="2" scope="rowgroup">中国</th>
+        <th scope="row">上海</th>
+        <td>黄浦区</td>
+        <td>静安区</td>
+        <td>浦东新区</td>
+      </tr>
+      <tr>
+        <th scope="row">南京</th>
+        <td>鼓楼区</td>
+        <td>玄武区</td>
+        <td>秦淮区</td>
+      </tr>
+    </table>
+  </body>
+</html>

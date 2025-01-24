@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 400px;
+        height: 400px;
+        font-size: 28px;
+        font-weight: bold;
+        color: transparent;
+        background-image: url("../assets/image-800w.jpg");
+        /* background-size: contain; */
+        background-size: cover;
+        background-clip: text;
+        white-space: pre-line;
+      }
+      * {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      1. border-box: 从 border 区域裁剪背景图像, border 以外没有背景图像 2.
+      padding-box: 从 padding 区域裁剪背景图像, padding, 以外没有背景图像 3.
+      content-box: 从 content 区域裁剪背景图像, 只有 content 有背景图像 4. text:
+      只有文本有背景图像
+    </div>
+  </body>
+</html>

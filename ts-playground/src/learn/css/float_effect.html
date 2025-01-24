@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      .outer {
+        width: 250px;
+        background-color: lightpink;
+        /* 注释下一行, 以测试 margin 塌陷问题 */
+        /* 第一个子元素的上外边距 margin-top 转移给父元素
+         最后一个子元素的下外边距 margin-bottom 转移给父元素 */
+        border: 1px solid black;
+      }
+
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: lightgreen;
+        border: 1px solid black;
+        margin: 10px;
+      }
+
+      .box1 {
+        background-color: lightblue;
+      }
+
+      .box2,
+      .box3,
+      .box4 {
+        float: left;
+      }
+
+      .box5 {
+        background-color: lemonchiffon;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="box box1">独占一行</div>
+      <div class="box box2">box1</div>
+      <div class="box box3">box2</div>
+      <div class="box box4">box3</div>
+      <div class="box box5">未浮动</div>
+    </div>
+    <div id="bro"></div>
+  </body>
+
+  <script>
+    let content = "";
+    for (let i = 0; i < 50; i++) {
+      content += "repeat ";
+    }
+    document.querySelector("#bro").innerHTML = content;
+    document
+      .getElementById("bro")
+      .setAttribute(
+        "style",
+        "background-color: lightblue; border: 1px solid red;",
+      );
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Fira Code", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+    srcset 定义了可选的图片集合和每个图片的尺寸
+    格式: 文件名 图片的固有宽度, ...
+
+    sizes: 定义了一组媒体条件, 例如屏幕的宽度
+    指定了当媒体条件为真时, 图片插槽的宽度
+    (max-width: 600px) 480px 表示
+    屏幕的宽度小于等于 600px 时, 图片插槽的宽度为 480px
+    浏览器加载 srcset 图片集合中, 与插槽尺寸相等的图片
+    如果没有, 则加载第一个尺寸大于该插槽的图片
+    -->
+    <img
+      src="../../assets/image-800w.jpg"
+      srcset="
+        ../../assets/image-480w.jpg 480w,
+        ../../assets/image-800w.jpg 800w
+      "
+      sizes="(max-width: 600px) 480px, 800px"
+      alt="响应式图片"
+    />
+  </body>
+
+  <script>
+    window.addEventListener("resize", function () {
+      location.reload(); // 自动刷新
+    });
+  </script>
+</html>
