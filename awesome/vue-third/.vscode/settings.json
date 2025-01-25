@@ -21,4 +21,5 @@
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*"
   },
   "editor.fontFamily": "Iosevka, Microsoft YaHei",
+  "prettier.endOfLine": "lf",
 }

@@ -529,7 +529,7 @@ const fullName = computed<string>({
 });
 
 const readonlyFullName = computed<string>(
-  () => firstName.value + "- " + lastName.value,
+  () => firstName.value + "- " + lastName.value
 );
 ```
 
@@ -1076,7 +1076,7 @@ defineProps<{
 
 <template>
   <div>
-    <div class="tree" v-for="(item, idx) of data" :key="idx">
+    <div v-for="(item, idx) of data" :key="idx">
       <div>
         <input type="checkbox" v-model="item.checked" />
         <span>{{ item.name }}</span>
@@ -1150,14 +1150,19 @@ function clickTap(item: TreeNode) {
 
 <template>
   <div>
-    <div @click="clickTap(item)" class="tree" v-for="(item, idx) of data" :key="idx"> // [!code --]
+    <div @click="clickTap(item)" v-for="(item, idx) of data" :key="idx"> // [!code --]
       <!-- .stop 修饰符: 阻止事件冒泡 -->
-    <div @click.stop="clickTap(item)" class="tree" v-for="(item, idx) of data" :key="idx"> // [!code ++]
+    <div @click.stop="clickTap(item)" v-for="(item, idx) of data" :key="idx"> // [!code ++]
       <div>
-        <input type="checkbox" v-model="item.checked" /> <span>{{ item.name }}</span>
+        <input type="checkbox" v-model="item.checked" /> 
+        <span>{{ item.name }}</span>
       </div>
       <RecursiveChild v-if="item.children?.length" :data="item.children"></RecursiveChild>
     </div>
   </div>
 </template>
 ```
+
+## 动态组件
+
+多个组件使用同一个挂载点, 并可以动态切换
