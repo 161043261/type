@@ -46,9 +46,9 @@ export default defineConfig({
 
 ```html
 <!-- 在新标签页中打开 -->
-[BiliBili](/https://www.bilibili.com/)
+[bilibili](/https://www.bilibili.com/)
 <!-- 在本标签页中打开 -->
-[BiliBili](/https://www.bilibili.com/){target="_self"}
+[bilibili](/https://www.bilibili.com/){target="_self"}
 ```
 
 ### vitepress 的 markdown 拓展

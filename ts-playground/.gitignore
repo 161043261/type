@@ -1,4 +1,4 @@
-learn/js/**/*.txt
+*.txt
 
 build/
 node_modules/

@@ -1147,7 +1147,6 @@ function clickTap(item: TreeNode) {
 }
 </script>
 
-
 <template>
   <div>
     <div @click="clickTap(item)" v-for="(item, idx) of data" :key="idx"> // [!code --]
@@ -1168,3 +1167,120 @@ function clickTap(item: TreeNode) {
 多个组件使用同一个挂载点, 并可以动态切换
 
 动态组件的应用场景: tab 页切换
+
+### `<component :is="shallowRefComponent"></component>`
+
+不要创建组件的 ref 对象, 使用 markRaw 标记组件, 或使用 shallowRef 代替 ref 避免不必要的性能开销
+
+::: code-group
+
+```vue [写法 1]
+<script lang="ts" setup>
+import DynamicA from "./DynamicA.vue";
+import DynamicB from "./DynamicB.vue";
+import DynamicC from "./DynamicC.vue";
+const active = ref(0);
+// 不要创建组件的 ref 对象, 使用 markRaw 标记组件, 或使用 shallowRef 代替 ref 避免不必要的性能开销
+// const dynamicItem = ref(DynamicA) [!code --]
+const dynamicItem = shallowRef<typeof DynamicA>(DynamicA);
+
+function onClick(com: typeof DynamicA, idx: number) {
+  active.value = idx;
+  dynamicItem.value = com;
+}
+const items = reactive([
+  { name: "TabA", onClick: (idx: number) => onClick(DynamicA, idx) },
+  { name: "TabB", onClick: (idx: number) => onClick(DynamicB, idx) },
+  // markRaw 设置 __skip__ = true, 跳过 proxy 代理, 这里是可选的
+  { name: "TabC", onClick: (idx: number) => onClick(markRaw(DynamicC), idx) },
+]);
+</script>
+
+<template>
+  <div style="display: flex">
+    <!-- 同时有静态 class 和 动态 :class 时, 动态 :class 必须是一个类名数组 -->
+    <div
+      class="tab"
+      :class="[active === idx ? 'active' : '']"
+      v-for="(item, idx) of items"
+      :key="idx"
+    >
+      <div @click="((active = idx), item.onClick())">{{ item.name }}</div>
+    </div>
+  </div>
+  <component :is="dynamicItem"></component>
+</template>
+```
+
+```vue [写法 2]
+<script lang="ts" setup>
+const active = ref(0);
+
+function onClick(com: string, idx: number) {
+  active.value = idx;
+  dynamicItem.value = com;
+}
+
+const items = reactive([
+  { name: "TabA", onClick: (idx: number) => onClick("DynamicA", idx) }, // 使用组件名
+  { name: "TabB", onClick: (idx: number) => onClick("DynamicB", idx) },
+  { name: "TabC", onClick: (idx: number) => onClick("DynamicC", idx) },
+]);
+</script>
+
+<script lang="ts">
+import DynamicA from "./DynamicA.vue";
+import DynamicB from "./DynamicB.vue";
+import DynamicC from "./DynamicC.vue";
+
+export default {
+  // 注册子组件
+  components: {
+    DynamicA: DynamicA,
+    DynamicB /** DynamicB: DynamicB */,
+    DynamicC,
+  },
+};
+</script>
+```
+
+```vue [写法 3]
+<script lang='ts' setup>
+import DynamicA from './DynamicA.vue'
+import DynamicB from './DynamicB.vue'
+import DynamicC from './DynamicC.vue'
+
+defineOptions({
+  // 注册子组件
+  components: {
+    DynamicA: DynamicA,
+    DynamicB,
+    DynamicC
+  }
+})
+
+const dynamicItem = shallowRef<string>("DynamicA")
+
+function onClick(com: string, idx: number) {
+  active.value = idx;
+  dynamicItem.value = com;
+}
+
+const items = reactive([
+  { name: 'TabA', onClick: (idx: number) => onClick("DynamicA", idx) }, // 使用组件名
+  { name: 'TabB', onClick: (idx: number) => onClick("DynamicB", idx) },
+  { name: 'TabC', onClick: (idx: number) => onClick("DynamicC", idx) },
+])
+</script>
+```
+
+:::
+
+## 插槽 slot
+
+插槽: **子组件**提供给**父组件**的一个占位符
+
+1. 匿名插槽
+2. 具名插槽
+3. 
+

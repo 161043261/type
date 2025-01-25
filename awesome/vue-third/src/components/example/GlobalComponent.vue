@@ -26,7 +26,7 @@ $border-color: #ccc;
 
   section {
     padding: 5px;
-    min-height: 200px;
+    min-height: 100px;
   }
 }
 </style>
