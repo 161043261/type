@@ -81,7 +81,7 @@ let display = ref(true)
 
 <style>
 * {
-  font-family: 'Hack', 'Fira Code', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
+  font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
 }
 
 button {
@@ -131,7 +131,7 @@ button {
   background-color: lightblue;
   font-weight: 800;
   text-shadow: 0 0 1px;
-  font-family: 'Hack', 'Fira Code', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
+  font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
 }
 
 .main-content {

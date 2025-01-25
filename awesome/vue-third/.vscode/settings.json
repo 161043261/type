@@ -12,7 +12,7 @@
     "source.fixAll": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "editor.fontFamily": "Fira Code, Microsoft YaHei",
+  // "editor.fontFamily": "Iosevka, Microsoft YaHei",
   "editor.formatOnSave": true,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {

@@ -1024,7 +1024,7 @@ repeating-radial-gradient 重复径向渐变, 相关参数同 radial-gradient
 
 ```css
 @font-face {
-  font-family: "Fira Code";
+  font-family: "Iosevka";
   src: url("./src/assets/FiraCode-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;

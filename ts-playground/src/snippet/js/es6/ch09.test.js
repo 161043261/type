@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { test } from "vitest";
 
 test("Test_Symbol.isConcatSpreadable", () => {
@@ -60,9 +61,9 @@ test("Test_Symbol.species", () => {
   const b = new ArrExt2(1, 2, 3);
   console.log(b instanceof ArrExt2); // true
   console.log(b.map((x) => x) instanceof ArrExt2); // false
-  console.log(b.filter((x) => true) instanceof ArrExt2); // false
+  console.log(b.filter((_x) => true) instanceof ArrExt2); // false
   console.log(b.map((x) => x) instanceof Array); // true
-  console.log(b.filter((x) => true) instanceof Array); // true
+  console.log(b.filter((_x) => true) instanceof Array); // true
 
   // Test3
   class P1 extends Promise {}
@@ -74,10 +75,10 @@ test("Test_Symbol.species", () => {
   }
 
   console.log(
-    new P1((resolve, reject) => resolve).then((value) => value) instanceof P1,
+    new P1((resolve, _reject) => resolve).then((value) => value) instanceof P1,
   ); // true
   console.log(
-    new P2((resolve, reject) => resolve).then((value) => value) instanceof P2,
+    new P2((resolve, _reject) => resolve).then((value) => value) instanceof P2,
   ); // false
 });
 
