@@ -23,9 +23,9 @@ const cache: () => MethodDecorator = () => {
 };
 
 class Solution {
-
   @cache()
-  minimumCoins(prices: number[]): number { // 未使用记忆化搜索
+  minimumCoins(prices: number[]): number {
+    // 未使用记忆化搜索
     const n = prices.length;
     const dfs = (i: number): number => {
       if (2 * i >= n) {
@@ -43,7 +43,7 @@ class Solution {
 
 const solution = new Solution();
 for (let i = 0; i < 3; i++) {
-  solution.minimumCoins([3, 1, 2])
-  solution.minimumCoins([1, 10, 1, 1])
-  solution.minimumCoins([26, 18, 6, 12, 49, 7, 45, 45])
+  solution.minimumCoins([3, 1, 2]);
+  solution.minimumCoins([1, 10, 1, 1]);
+  solution.minimumCoins([26, 18, 6, 12, 49, 7, 45, 45]);
 }
