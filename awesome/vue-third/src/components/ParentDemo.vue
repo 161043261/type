@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import ChildDemo from './ChildDemo.vue';
+import { reactive, ref } from 'vue'
+import ChildDemo from './ChildDemo.vue'
 
 // 父传子
 const refStr_ = ref('Reactive Str From Parent')
@@ -26,6 +26,4 @@ function rxFromChild(...args: any[]) {
   </div>
 </template>
 
-<style lang="css" scoped>
-
-</style>
+<style lang="css" scoped></style>

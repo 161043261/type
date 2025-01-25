@@ -45,6 +45,7 @@ import LayoutDemo from './components/LayoutDemo/index.vue'
 import ParentDemo from './components/ParentDemo.vue'
 import DefineExposeDemo from './components/DefineExposeDemo.vue'
 import RecursiveParent from './components/example/RecursiveParent.vue'
+import DynamicParent from './components/example/DynamicParent.vue'
 
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
@@ -77,6 +78,7 @@ onMounted(() => {
   <!-- 全局组件 CardComponent -->
   <CardComponent />
   <RecursiveParent />
+  <DynamicParent />
 </template>
 
 <style lang="scss">

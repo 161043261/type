@@ -1,24 +1,41 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import DynamicA from './DynamicA.vue';
-import DynamicB from './DynamicB.vue';
-import DynamicC from './DynamicC.vue';
+import { reactive, ref } from 'vue'
+import DynamicA from './DynamicA.vue'
+import DynamicB from './DynamicB.vue'
+import DynamicC from './DynamicC.vue'
 
-const coms = reactive([{
-  name: 'DynamicA',
- com: DynamicA
-}, {
-  name: 'DynamicB',
-  com: DynamicB
-}])
+const items = reactive([
+  {
+    name: 'TabA',
+    onClick: () => (dynamicItem.value = DynamicA),
+  },
+  {
+    name: 'TabB',
+    onClick: () => (dynamicItem.value = DynamicB),
+  },
+  {
+    name: 'TabC',
+    onClick: () => (dynamicItem.value = DynamicC),
+  },
+])
+
+const dynamicItem = ref(DynamicA)
 </script>
 
 <template>
-  <div>
-
+  <div style="display: flex">
+    <div class="tab" v-for="(item, idx) of items" :key="idx">
+      <div @click="item.onClick">{{ item.name }}</div>
+    </div>
   </div>
+  <component :is="dynamicItem"></component>
 </template>
 
 <style lang="css" scoped>
-
+.tab {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
 </style>

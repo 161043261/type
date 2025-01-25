@@ -1,13 +1,7 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <div>
-DynamicA
-  </div>
+  <div style="color: lightblue">Dynamic ComponentA</div>
 </template>
 
-<style lang="css" scoped>
-
-</style>
+<style lang="css" scoped></style>

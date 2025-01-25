@@ -489,12 +489,12 @@ console.log(obj3, toRaw(obj3));
 </script>
 
 <template>
-  <!-- 错误实践: toRef, toRefs 一个普通对象, 
+  <!-- 错误实践: toRef, toRefs 一个普通对象,
    响应式对象 age 值更新, 视图不会更新 (没有 track, trigger)  -->
   <p>{{ obj }}</p>
   <p>{{ age }}</p>
 
-  <!-- toRef, toRefs 一个 ref/reactive 对象, 
+  <!-- toRef, toRefs 一个 ref/reactive 对象,
    响应式对象 name2, _age2, age 值更新, 视图也会更新 (有 track, trigger)   -->
   <p>{{ obj2 }}</p>
   <p>{{ `${name2} ${_age2} ${age2}` }}</p>
@@ -529,7 +529,7 @@ const fullName = computed<string>({
 });
 
 const readonlyFullName = computed<string>(
-  () => firstName.value + "- " + lastName.value
+  () => firstName.value + "- " + lastName.value,
 );
 ```
 
@@ -1154,7 +1154,7 @@ function clickTap(item: TreeNode) {
       <!-- .stop 修饰符: 阻止事件冒泡 -->
     <div @click.stop="clickTap(item)" v-for="(item, idx) of data" :key="idx"> // [!code ++]
       <div>
-        <input type="checkbox" v-model="item.checked" /> 
+        <input type="checkbox" v-model="item.checked" />
         <span>{{ item.name }}</span>
       </div>
       <RecursiveChild v-if="item.children?.length" :data="item.children"></RecursiveChild>
@@ -1166,3 +1166,5 @@ function clickTap(item: TreeNode) {
 ## 动态组件
 
 多个组件使用同一个挂载点, 并可以动态切换
+
+动态组件的应用场景: tab 页切换

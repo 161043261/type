@@ -20,6 +20,6 @@
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*"
   },
-  "editor.fontFamily": "Iosevka, Microsoft YaHei",
+  "editor.fontFamily": "Hack, Iosevka, Microsoft YaHei",
   "prettier.endOfLine": "lf",
 }
