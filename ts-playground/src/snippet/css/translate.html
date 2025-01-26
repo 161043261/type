@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        margin: 0 auto;
+        margin-top: 100px;
+        /* 相对定位的参考点: 本元素的原位置 */
+        position: relative;
+      }
+
+      .inner {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        transform: translateX(50px);
+      }
+
+      .center {
+        width: 60px;
+        height: 60px;
+        background-color: lightpink;
+        /* 绝对定位的参考点: 本元素的包含块 containing block */
+        position: absolute;
+
+        /* 相对定位的百分比值, 参考父元素 */
+        top: 50%;
+        left: 50%;
+        /* margin-left: -30px;
+      margin-top: -30px; */
+
+        /* 平移的百分比值, 参考本元素 */
+        transform: translate(-50%, -50%);
+      }
+    </style>
+
+    <style>
+      span {
+        /* 行内元素不能位移 */
+        display: inline-block;
+        font-size: 20px;
+        transform: scale(0.5);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+
+    <div class="outer">
+      <div class="center"></div>
+    </div>
+
+    <span>安装 rust</span>
+  </body>
+</html>

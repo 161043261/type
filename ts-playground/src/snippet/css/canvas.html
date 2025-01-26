@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="canvas"></canvas>
+  </body>
+
+  <script>
+    // 获取 HTML <canvas> 元素的引用
+    const canvas = document.getElementById("canvas");
+    // 获取该元素的上下文
+    const ctx = canvas.getContext("2d");
+    // 填充绿色
+    ctx.fillStyle = "green";
+    // 左上角位于 (10px, 10px)
+    // 宽 150px, 高 100px
+    ctx.fillRect(10, 10, 150, 100);
+  </script>
+</html>

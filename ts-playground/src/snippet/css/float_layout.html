@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind</title>
+    <style>
+      /* 清除默认样式 */
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      /* 左浮动 */
+      .left-fix {
+        float: left;
+      }
+
+      /* 清除浮动 */
+      .clear-fix::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      .container {
+        width: 960px;
+        /* 水平居中 */
+        margin: 0 auto;
+        /* 文本水平局中 */
+        text-align: center;
+      }
+
+      .logo {
+        width: 200px;
+      }
+
+      .banner1 {
+        /* 左右外边距 10px */
+        margin: 0 10px;
+        width: 540px;
+      }
+
+      .banner2 {
+        width: 200px;
+      }
+
+      /* 并集选择器 */
+      .logo,
+      .banner1,
+      .banner2 {
+        height: 80px;
+        /* 设置 line-height == height, 文本垂直居中 */
+        line-height: 80px;
+        background-color: #ccc;
+      }
+
+      .menu {
+        height: 30px;
+        /* 设置 line-height == height, 文本垂直居中 */
+        line-height: 30px;
+        background-color: #ccc;
+        margin-top: 10px;
+      }
+
+      .item1,
+      .item2 {
+        width: calc(370px - 1px * 2);
+        height: calc(200px - 1px * 2);
+        line-height: calc(200px - 1px * 2);
+        border: 1px solid #000;
+        margin-right: 10px;
+      }
+
+      .content {
+        margin-top: 10px;
+      }
+
+      .item3,
+      .item4,
+      .item5,
+      .item6 {
+        width: calc(180px - 1px * 2);
+        height: calc(200px - 1px * 2);
+        line-height: calc(200px - 1px * 2);
+        border: 1px solid #000;
+        margin-right: 10px;
+      }
+
+      .bottom {
+        margin-top: 10px;
+      }
+
+      .item7,
+      .item8,
+      .item9 {
+        width: calc(200px - 1px * 2);
+        height: calc(130px - 1px * 2);
+        line-height: calc(130px - 1px * 2);
+        border: 1px solid #000;
+      }
+
+      .item8 {
+        /* 避免 margin 合并问题 */
+        margin: 10px 0;
+      }
+
+      .footer {
+        height: 60px;
+        line-height: 60px;
+        background-color: #ccc;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="page-header clear-fix">
+        <div class="logo left-fix">logo</div>
+        <div class="banner1 left-fix">banner1</div>
+        <div class="banner2 left-fix">banner2</div>
+      </div>
+
+      <!-- 菜单 -->
+      <div class="menu">menu</div>
+      <!-- 内容 -->
+      <div class="content clear-fix">
+        <!-- 左侧 -->
+        <div class="left left-fix">
+          <!-- 左上 -->
+          <div class="top clear-fix">
+            <div class="item1 left-fix">left top item1</div>
+            <div class="item2 left-fix">left top item2</div>
+          </div>
+          <!-- 左下 -->
+          <div class="bottom clear-fix">
+            <div class="item3 left-fix">left bottom item3</div>
+            <div class="item4 left-fix">left bottom item4</div>
+            <div class="item5 left-fix">left bottom item5</div>
+            <div class="item6 left-fix">left bottom item6</div>
+          </div>
+        </div>
+        <!-- 右侧 -->
+        <div class="right left-fix">
+          <div class="item7">right item7</div>
+          <div class="item8">right item8</div>
+          <div class="item9">right item9</div>
+        </div>
+      </div>
+      <!-- 页脚 -->
+      <div class="footer">footer</div>
+    </div>
+  </body>
+</html>

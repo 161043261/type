@@ -1,0 +1,166 @@
+<!doctype html>
+<!-- html 根元素 -->
+<html lang="en">
+  <!-- <html lang="zh-CN"> -->
+
+  <!-- head 头部 -->
+
+  <head>
+    <!-- meta 元数据 -->
+    <!-- charset 字符编码 -->
+    <meta charset="UTF-8" />
+    <meta name="author" content="bronya" />
+    <!-- 参考 https://developer.mozilla.org/zh-CN/docs/Glossary/SEO -->
+    <meta name="description" content="mdn web docs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title 标题 -->
+    <title>Document</title>
+    <!-- favorite icon 书签/收藏夹中的图标 -->
+    <!-- rel: relationship
+  href: hypertext reference -->
+    <link rel="icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- defer 懒加载, 先解析 HTML, 再加载 JavaScript -->
+    <script src="#" defer></script>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- grumpy 脾气暴躁 -->
+    <p>My cat is <strong>very</strong> grumpy.</p>
+    <!-- 行内元素 -->
+    <em>第一</em><em>第二</em><em>第三</em>
+    <!-- 块级元素 -->
+    <p>第四</p>
+    <p>第五</p>
+    <p>第六</p>
+
+    <!-- href: hypertext reference -->
+    <!-- 默认在当前标签页中打开链接 -->
+    <!--! target="_blank" 在新标签页中打开链接 -->
+    <p>
+      访问
+      <!-- obj1: anchor 超链接 -->
+      <a href="https://www.mozilla.org/zh-CN/">MDN Web Docs </a>
+    </p>
+
+    <!-- 块级链接 -->
+    <a href="https://developer.mozilla.org/zh-CN/">
+      <h5>MDN Web Docs</h5>
+    </a>
+
+    <!-- 图片链接 -->
+    <a href="https://developer.mozilla.org/zh-CN/" title="了解 Mozilla">
+      <img
+        src="../../assets/logo.svg"
+        style="width: 100px"
+        alt="MDN Web 文档"
+      />
+    </a>
+
+    <hr />
+    <!-- horizontal row -->
+
+    <!-- 布尔属性 -->
+    <!-- disabled 禁止表单输入 -->
+    <input type="text" disabled="disabled" /><br />
+    <!-- 等价于 -->
+    <input type="text" disabled />
+    <input type="text" /><br />
+
+    <p>HTML 中用 &lt;p&gt; 定义段落元素</p>
+
+    <a href="../../assets/logo.svg"> 在当前标签页中打开 svg 的链接 </a><br />
+
+    <a href="../../assets/logo.svg" download="download.svg"> 下载 svg </a><br />
+
+    <a href="mailto:161043261@qq.com">
+      使用 &lt;obj1&gt; 和 mailto: 前缀, 发送邮件 </a
+    ><br />
+
+    <a
+      href="mailto:161043261@qq.com?
+  &subject=示例主题&body=示例内容
+  "
+    >
+      包括示例主题和示例内容 </a
+    ><br />
+
+    描述列表 description list
+    <dl>
+      描述列表 description list
+      <dt>术语 description term</dt>
+      <dd>定义 description definition</dd>
+    </dl>
+
+    名词解释
+    <dl>
+      <dt>希穆兰卡</dt>
+      <dd>很久很久以前, 三位女神创造了名为「希穆兰卡」的世界</dd>
+    </dl>
+
+    <p>Here is obj1 blockquote:</p>
+    <!-- blockquote 块引用, 缩进 -->
+    <blockquote
+      cite="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/blockquote"
+    >
+      <p>
+        <!-- code: 代码片段, 使用等宽字体 -->
+        The <strong>HTML <code>&lt;blockquote&gt;</code> Element</strong> (or
+        <em>HTML Block Quotation Element</em>) indicates that the enclosed text
+        is an extended quotation.
+      </p>
+
+      <code>console.log("Genshin Impact")</code>
+    </blockquote>
+
+    <!-- q 行内引用, 使用双引号 inline quote -->
+    <p>
+      The quote element <code>&lt;q&gt;</code> is
+      <q cite="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/q">
+        intended for short quotations that don't require paragraph breaks.
+      </q>
+    </p>
+
+    <!-- cite 引文, 默认斜体 -->
+    <p>
+      According to the
+      <a href="/zh-CN/docs/Web/HTML/Element/blockquote">
+        <cite>MDN blockquote page</cite></a
+      >:
+    </p>
+
+    <!-- abbr 缩写 -->
+    <!-- 缩写为 "学习 HTML" -->
+    <p>
+      学习
+      <abbr title="超文本标记语言 (Hyper text Markup Language)">HTML</abbr>
+    </p>
+
+    <!-- address 默认斜体 -->
+    <address>
+      <p>
+        bronya<br />
+        Shanghai<br />
+        &copy; bronya.com
+      </p>
+    </address>
+
+    <p>
+      <!-- sub 下标 -->
+      下标: H<sub>2</sub>O
+    </p>
+    <p>
+      <!-- sup 上标 -->
+      上标: 2<sup>2</sup> = 4
+    </p>
+
+    <!-- time 日期 -->
+    <time datetime="2006-01-02T15:04:05">2006 年 1 月 2 日</time>
+  </body>
+</html>

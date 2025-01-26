@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- figure 图像容器 -->
+    <figure>
+      <img
+        src="../../assets/image-800w.jpg"
+        alt="备选文本"
+        title="图像标题, 鼠标悬浮时选择该 img 标签"
+        width="80%"
+      />
+    </figure>
+    <!-- figcaption 图像标题 -->
+    <figcaption>figcaption 图像标题: 甘雨</figcaption>
+
+    <hr />
+    CDN (内容分发网络) 是一组分布在各地的服务器, 这些服务器存储数据的副本<br />
+    根据哪些服务器与用户距离最近, 提供快速服务<br />
+    CDN 被用于传输样式表 和 JavaScript 脚本等静态资源
+    <ol>
+      <li>使用 CDN 向用户分发静态资源, 降低服务器的请求压力</li>
+      <li>缩短传输距离, 减小传输延迟</li>
+    </ol>
+    其他
+    <ul>
+      <li>Canvas: 2D 图形 JavaScript API</li>
+      <li>可缩放矢量图形 SVG</li>
+      <li>WebGL: 3D 图形 JavaScript API</li>
+      <li>&lt;audio&lt; 和 &lt;video&lt; 音频和视频</li>
+      <li>WebRTC, Web Real-Time Communications 服务器/客户端实时通信</li>
+    </ul>
+    <hr />
+    <!-- controls 媒体控件 -->
+    <!-- width, height 宽高 -->
+    <!-- autoplay 自动播放 -->
+    <!-- loop 循环播放 -->
+    <!-- muted 默认关闭声音 -->
+    <!-- poster="../../assets/image-800w.jpg" 预览图像 -->
+    <!-- preload 缓冲媒体文件
+  preload="none" 不缓冲媒体文件
+  preload="auto" 页面加载后, 缓冲媒体文件
+  preload="metadata" 仅缓冲媒体文件的元数据 (Movie title, duration, track types, and so forth)
+  -->
+    <video
+      src="../../assets/video.mp4"
+      controls
+      width="80%"
+      loop
+      muted
+      preload="auto"
+      poster="../../assets/image-800w.jpg"
+    ></video>
+    <br />
+
+    <p style="color: red">
+      mp3, mp4, webm 等格式称为容器格式<br />
+      定义了媒体文件的元数据, 音频轨道 Audio Tracks 和视频轨道 Video Tracks
+      的存储结构, 编解码格式等<br />
+      Metadata (title, duration, track types...)
+    </p>
+    <ul>
+      <li>Audio Tracks</li>
+      <li>Video Tracks</li>
+      <li>Text Tracks</li>
+    </ul>
+
+    <hr />
+    <audio controls autoplay>
+      <source src="../../assets/audio.mp3" type="audio/mp3" />
+    </audio>
+    <p><a href="../../assets/audio.mp3" download="audio.mp3">点击下载</a></p>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- 内部样式表 -->
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      img {
+        width: calc(50% - 100px);
+      }
+
+      .box {
+        width: calc(50% - 100px);
+        background-color: lightpink;
+        transform: rotate(0.95turn);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 内联样式表 -->
+    <h1 style="color: lightgreen">CSS 是如何工作的</h1>
+    <ol>
+      <li>浏览器请求 HTML 文件</li>
+      <li>
+        浏览器加载, 解析 HTML 文件, 将 HTML 文件转换为 DOM 树<br />
+        DOM 树是 HTML 文件在内存中的表现形式<br />
+        DOM 树: &lt;html&gt; 根节点, &lt;body&gt; 子节点...
+      </li>
+      <li>浏览器请求图片, 视频, CSS 样式表, JavaScript 脚本等资源</li>
+      <li>
+        浏览器加载, 解析 CSS 文件, 根据选择器的类型 (例如标签, 类, ID 选择器)
+        将选择器 (哈希) 映射到不同的桶中
+      </li>
+      <li>渲染: 浏览器将 CSS 规则应用到 DOM 节点, 布局, 着色<br /></li>
+    </ol>
+    <img src="../../assets/rendering.svg" alt="rendering" />
+    <div class="box">
+      <ul>
+        <li>
+          px: pixel 像素, 绝对长度单位<br />
+          无继承性
+        </li>
+        <li>
+          em: element 元素, 相对长度单位<br />
+          相对当前元素的字体大小<br />
+          如果当前元素的字体大小为 16px, 则 1em 等于 16px<br />
+          有继承性: 子元素的宽度为 2em (16px)
+        </li>
+      </ul>
+      浏览器遇到无法解析的 CSS 时: 直接忽略
+    </div>
+
+    <hr />
+    <h3>DOM 案例</h3>
+    <code>
+      &lt;p&gt;<br />
+      &nbsp;&nbsp;Let's use:<br />
+      &nbsp;&nbsp;&lt;span&gt;Cascading&lt;/span&gt;<br />
+      &nbsp;&nbsp;&lt;span&gt;Style&lt;/span&gt;<br />
+      &nbsp;&nbsp;&lt;span&gt;Sheets&lt;/span&gt;<br />
+      &lt;/p&gt;
+    </code>
+
+    <p>转换为 DOM 树</p>
+    <code>
+      P<br />
+      ├─ "Let's use:"<br />
+      ├─ SPAN<br />
+      |&nbsp;&nbsp;└─ "Cascading"<br />
+      ├─ SPAN<br />
+      |&nbsp;&nbsp;└─ "Style"<br />
+      └─ SPAN<br />
+      &nbsp;&nbsp;&nbsp;└─ "Sheets"
+    </code>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer {
+        height: 200px;
+        width: 200px;
+        border: 1px solid black;
+        margin: 0 auto;
+        margin-top: 100px;
+      }
+
+      .inner {
+        width: 200px;
+        height: 200px;
+        background-color: lightpink;
+        /* transform: skewX(30deg); */
+        /* transform: skewY(30deg); */
+        /* transform: skewX(30deg) skewY(30deg); */
+        transform: skew(30deg, 30deg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+  </body>
+</html>

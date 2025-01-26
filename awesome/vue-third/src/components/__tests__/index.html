@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toy vue</title>
+  </head>
+
+  <script type="module">
+    import { reactive } from './dist/reactive.js'
+    import { effect } from './dist/effect.js'
+    import { computed } from './dist/computed.js'
+
+    const user = reactive({
+      name: 'whoami',
+      info: {
+        age: 1,
+      },
+    })
+
+    window.user = user
+    window.bro = computed(() => {
+      console.log('[bro] Computing...')
+      return {
+        name: '^' + user.name + '$',
+        age: user.info.age + 3,
+      }
+    })
+
+    effect(() => {
+      document.querySelector('#user').innerText = `name: ${user.name}; ageValue: ${user.info.age}`
+    })
+
+    document.querySelector('#addName-btn').addEventListener('click', () => {
+      user.name += '!'
+    })
+
+    document.querySelector('#addAge-btn').addEventListener('click', () => {
+      user.info.age++
+    })
+  </script>
+
+  <body>
+    <div id="user"></div>
+    <button type="button" id="addName-btn">addName</button>
+    <button type="button" id="addAge-btn">addAge</button>
+  </body>
+
+  <style></style>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .p1,
+      .p2 {
+        width: 600px;
+        height: 400px;
+        background-color: lightgrey;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 400px;
+        font-size: 80px;
+        text-shadow: 0 0 10px lightgrey;
+      }
+
+      /* 检测到打印机/打印预览时, 应用以下样式 */
+      /* 先写正常样式, 再写打印预览的样式 */
+      @media print {
+        .p1 {
+          background: transparent;
+        }
+      }
+
+      /* 检测到屏幕时, 应用以下样式 */
+      @media screen {
+        .p1,
+        .p2 {
+          font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+            "Microsoft YaHei", monospace;
+        }
+      }
+
+      /* 所有 */
+      @media all {
+        .p1,
+        .p2 {
+          color: white;
+        }
+      }
+
+      /* 视口宽度 =800px 时, 应用以下样式 */
+      @media (width: 800px) {
+        .p1 {
+          background-color: lightblue;
+        }
+      }
+
+      /* 视口宽度 <=700px 时, 应用以下样式 */
+      @media (max-width: 700px) {
+        .p1 {
+          background-color: lightcoral;
+        }
+      }
+
+      /* 视口宽度 >=900px 时, 应用以下样式 */
+      @media (min-width: 900px) {
+        .p1 {
+          background-color: lightgreen;
+        }
+      }
+
+      @media (height: 800px) {
+        .p1 {
+          background-color: lightpink;
+        }
+      }
+
+      /* 2560px / 1.5 = 1707px */
+      /* 设备宽度 =1707px 时, 应用以下样式 */
+      /* 设备宽度 = 显示器分辨率宽度 / 缩放 */
+      /* @media (device-width: 1707px) {
+      .p1 {
+        background-image: linear-gradient(lightpink, lightblue);
+      }
+    } */
+
+      /* 与运算符 and */
+      /* 检测到屏幕, 且视口宽度 [700px, 800px] 时, 应用以下样式 */
+      @media screen and (min-width: 700px) and (max-width: 800px) {
+        .p2 {
+          background-color: lightsalmon;
+        }
+      }
+
+      /* 或运算符 or */
+      /* 检测到屏幕, 且视口宽度 <=700px 或 >=800px 时, 应用以下样式 */
+      /* 等价于
+    @media screen and (max-width: 700px), (min-width: 800px) { */
+      @media screen and (max-width: 700px) or (min-width: 800px) {
+        .p2 {
+          background-color: lightseagreen;
+        }
+      }
+
+      /* 否定运算符 not */
+      /* 肯定运算符 only */
+      @media not screen {
+        .p2 {
+          background-color: lightskyblue;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="p1">媒体查询</p>
+    <p class="p2">媒体查询运算符</p>
+  </body>
+</html>

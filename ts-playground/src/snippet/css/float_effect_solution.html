@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <!-- You can write style anywhere -->
+  <style>
+    * {
+      font-family: "Hack", "Iosevka", "Menlo", "PingFang SC", "Microsoft YaHei",
+        monospace;
+    }
+
+    .outer {
+      width: 300px;
+      background-color: lightpink;
+      border: 1px solid black;
+      /* > 清除浮动 1: 父元素指定 (内容的) 高度 */
+      /* height: calc(50px + 1px * 2 + 10px * 2); */
+
+      /* > 清除浮动 2: 父元素也设置浮动, 会产生其他影响 */
+      /* float: left; */
+
+      /* > 清除浮动 3: 父元素设置 overflow: hidden */
+      /* overflow: hidden */
+      /* overflow: scroll; */
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      background-color: lightgreen;
+      border: 1px solid black;
+      margin: 10px;
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+      float: left;
+    }
+
+    .clear {
+      /* > 清除浮动 4: 所有浮动元素后面, 添加一个没有宽高, 没有内容的块级元素, 该元素设置 clear: both
+      > clear: left 清除前面所有左浮动兄弟元素产生的影响
+      > clear: right 清除前面所有右浮动兄弟元素产生的影响
+      > clear: both 清除前面所有浮动兄弟元素产生的影响 */
+      clear: both;
+    }
+
+    /* > 清除浮动 5: 父元素使用 ::after 创建伪元素, 等价于清除浮动 4 */
+    .outer::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  </style>
+
+  <body>
+    <div class="outer">
+      <div class="box box1">box1</div>
+      <div class="box box2">box2</div>
+      <div class="box box3">box3</div>
+      <!-- box4 行内块, 无影响 -->
+      <!-- <div class="box box4">box4</div> -->
+      <!-- <div class="box box5">box5</div> -->
+      <!-- <div class="clear"></div> -->
+
+      <!-- 父元素创建的伪元素 -->
+    </div>
+    <div id="bro"></div>
+  </body>
+
+  <script>
+    const box4 = document.querySelector(".box4");
+    if (box4 != null) {
+      box4.setAttribute(
+        "style",
+        `height: 70px;
+       display: inline-block;
+       background-color: lightblue;`,
+      );
+    }
+
+    const box5 = document.getElementsByClassName("box5")[0];
+    if (box5 != null) {
+      box5.setAttribute(
+        "style",
+        `width: 60px;
+       background-color: lightblue;`,
+      );
+    }
+
+    const bro = document.querySelector("#bro");
+    if (bro != null) {
+      let content = "";
+      for (let i = 0; i < 50; i++) {
+        content += "repeat ";
+      }
+      bro.innerHTML = content;
+      bro.setAttribute(
+        "style",
+        "background-color: orange; border: 1px solid red;",
+      );
+    }
+  </script>
+</html>

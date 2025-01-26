@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h3>Get raw HTML</h3>
+    <label for="rawHTML"></label>
+    <label for="rawHTML">raw HTML</label>
+    <textarea name="rawHTML" id="rawHTML"> </textarea>
+    <br />
+    <button type="button" id="xhr-btn">Get raw HTML by xhr</button>
+    <br />
+    <button type="button" id="ajax-btn">Get raw HTML by AJAX</button>
+  </body>
+
+  <script>
+    let btn1 = document.querySelector("#xhr-btn");
+    btn1.onclick = () => {
+      const xhr = new XMLHttpRequest();
+      // xhr.setRequestHeader('Access-Control-Allow-Origin', 'true')
+      xhr.open("get", "http://localhost:9000/register");
+      xhr.send();
+      xhr.onreadystatechange = () => {
+        // console.log(this) // this === Window
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            document.querySelector("#rawHTML").value = xhr.responseText;
+          } else {
+            document.querySelector("#rawHTML").value = xhr.response;
+          }
+        }
+      };
+    };
+
+    let btn2 = document.querySelector("#ajax-btn");
+    btn2.onclick = () => {
+      const p = new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("get", "http://localhost:9000/login");
+        xhr.send();
+        xhr.onreadystatechange = () => {
+          console.log(this); // I think this === Window
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              resolve(xhr.responseText);
+            } else {
+              reject(xhr.response);
+            }
+          }
+        };
+      });
+
+      p.then(
+        (value_) => {
+          document.querySelector("#rawHTML").value = value_;
+        } /* onfulfilled */,
+        (reason) => {
+          document.querySelector("#rawHTML").value = reason;
+        },
+      );
+    };
+  </script>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      .outer {
+        width: 250px;
+        background-color: lightpink;
+        /* 注释下一行, 以测试 margin 塌陷问题 */
+        /* 第一个子元素的上外边距 margin-top 转移给父元素
+         最后一个子元素的下外边距 margin-bottom 转移给父元素 */
+        border: 1px solid black;
+        margin: 10px;
+      }
+
+      /* 存在 margin 合并问题 */
+      /* 上方兄弟元素的下外边距 margin-bottom 和下方兄弟元素的上外边距 margin-top
+       合并为 Math.max(margin-bottom, margin-top), 而不是 margin-bottom + margin-top */
+      .box1 {
+        width: 50px;
+        height: 50px;
+        background-color: lightgreen;
+        border: 1px solid black;
+        margin: 10px;
+      }
+
+      .box1-1 {
+        /* 右浮动 */
+        float: right;
+      }
+
+      .box2 {
+        width: 50px;
+        height: 50px;
+        background-color: lightblue;
+        border: 1px solid black;
+        margin: 10px;
+      }
+
+      .box2-1 {
+        /* 左浮动 */
+        float: left;
+      }
+
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: lightgreen;
+        border: 1px solid black;
+        margin: 10px;
+        float: left;
+      }
+
+      .box3-1 {
+        height: 150px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="box1 box1-1">box1-1</div>
+      <div class="box1 box1-2">box1-2</div>
+      <div class="box1 box1-3">box1-3</div>
+    </div>
+
+    <div class="outer">
+      <div class="box2 box2-1">box2-1</div>
+      <div class="box2 box2-2">文字环绕</div>
+      <div class="box2 box2-3">box2-3</div>
+    </div>
+
+    <div class="outer">
+      <div class="box3 box3-1">box3-1</div>
+      <div class="box3 box3-2">box3-2</div>
+      <div class="box3 box3-3">box3-3</div>
+    </div>
+  </body>
+</html>

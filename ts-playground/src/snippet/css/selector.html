@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      a[title] {
+        background-color: lightpink;
+      }
+
+      a[href='https://example.com']
+      {
+        background-color: lightgreen;
+      }
+
+      p[class~="special"] {
+        color: lightblue;
+      }
+
+      div[lang|="zh"] {
+        color: lightpink;
+      }
+
+      article p:first-child {
+        background-color: lightgreen;
+      }
+
+      article p:last-child {
+        background-color: lightblue;
+      }
+
+      label {
+        display: block;
+        margin-top: 1em;
+      }
+
+      input:invalid {
+        border: none;
+        outline: 2px solid lightpink;
+        border-radius: 5px;
+      }
+
+      input:focus {
+        background-color: lightgreen;
+      }
+
+      select:focus {
+        background-color: lightblue;
+      }
+
+      .box::before {
+        content: "Hello ";
+      }
+
+      .box::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-color: lightpink;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a title="example.com">example.com</a>
+    <a href="https://example.com">example.com</a>
+    <p class="special love you">Special love for special you</p>
+    <div lang="zh-CN">特别的爱给特别的你</div>
+    <hr />
+    <article>
+      <div>
+        <p>第一个子元素</p>
+        <p>第二个子元素</p>
+        <p>最后一个子元素</p>
+      </div>
+    </article>
+
+    <form>
+      <label for="emailId">邮箱</label>
+      <input id="emailId" name="email" type="email" value="name@example.com" />
+
+      <label for="codeId">验证码</label>
+      <!-- :invalid 选择未通过校验的 form, fieldset, input 等表单元素-->
+      <!-- pattern 表单校验 -->
+      <input
+        id="codeId"
+        name="text"
+        type="text"
+        value="请输入密码"
+        pattern="[obj1-z]+"
+      />
+
+      <label for="ageId">年龄: (18+)</label>
+      <input id="ageId" name="age" type="number" value="20" min="18" />
+
+      <label
+        ><input name="agree" type="checkbox" required checked />同意协议?</label
+      >
+    </form>
+
+    <form>
+      <p>DIY 网名</p>
+      <label>姓: <input name="firstName" type="text" /></label>
+      <label
+        >名:
+        <select name="flavor">
+          <option>小红</option>
+          <option>小绿</option>
+          <option>小蓝</option>
+        </select>
+      </label>
+    </form>
+
+    <div class="box">World</div>
+  </body>
+</html>

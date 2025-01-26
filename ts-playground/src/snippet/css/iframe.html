@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Hack", "Iosevka", "Menlo", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- iframe 嵌入其他网页 -->
+    <!-- embed object 嵌入外部资源, 例如 pdf 文件, 已废弃 -->
+    <!-- border: none 不显示边框 -->
+    <!-- allowfullscreen 全屏 -->
+    <!-- sandbox 提高安全性 -->
+    <iframe
+      src="//player.bilibili.com/player.html?isOutside=true&aid=536890529&bvid=BV1Ci4y1e7ZC&cid=1358737521&p=1"
+      scrolling="no"
+      border="0"
+      frameborder="no"
+      framespacing="0"
+      allowfullscreen="true"
+    >
+    </iframe>
+    <hr />
+    iframe 是常见的网络攻击目标 (攻击向量)<br />
+    点击劫持: 将一个不可见的 iframe 嵌入到被攻击文档<br />
+    或将被攻击文档嵌入到恶意网站<br />
+  </body>
+</html>

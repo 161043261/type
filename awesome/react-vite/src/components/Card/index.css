@@ -1,0 +1,39 @@
+.card {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid gray;
+  max-width: 300px;
+  /* 水平偏移, 垂直偏移, 模糊值, 阴影颜色 */
+  box-shadow: 3px 3px 3px gray;
+
+  header {
+    display: flex;
+    /* 主轴均匀分布: 两端距离等于 0 */
+    justify-content: space-between;
+    /* 侧轴中点对齐: 垂直居中 */
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    div:last-child {
+      color: lightblue;
+    }
+  }
+
+  main {
+    min-height: 100px;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+  }
+
+  footer {
+    display: flex;
+    /* 主轴终点对齐: 整体右对齐 */
+    justify-content: flex-end;
+    /* 侧轴中点对齐: 垂直居中 */
+    align-items: center;
+    padding: 10px;
+    button {
+      margin-left: 10px;
+    }
+  }
+}

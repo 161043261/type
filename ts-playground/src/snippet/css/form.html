@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- form 表单 -->
+
+    <!-- action 表单的提交地址
+    method 表单的提交方法: get? post?
+    target 表单提交后, 打开页面的方式
+    [*] target="_self" 在本标签页打开
+    [*] target="_blank" 在新标签页打开
+    -->
+
+    <hr />
+
+    <!-- input 输入框-->
+
+    <!-- type 输入框的类型, 例:
+    type="text" 文本输入框
+    type="password" 密码输入框
+    type="hidden" 隐藏输入框
+    [*] name 请求参数的 key
+    [*] value 请求参数的 value 的默认值
+    [*] maxlength 请求参数的 value 的最大长度
+
+    type="radio" 单选框
+    type="checkbox" 复选框
+    [*] checked 默认选中
+
+    type="submit" 提交按钮
+    type="reset" 重置按钮
+    type="button" 普通按钮
+    [*] 没有 name 属性
+    [*] value 按钮文字
+    -->
+
+    <!-- 例 https://localhost:5173?key=value -->
+    <form action="https://www.baidu.com/s" method="get" target="_blank">
+      <!-- https://www.baidu.com/s?wd=vue -->
+      <input type="text" name="wd" placeholder="今日天气" />
+
+      <!-- button 按钮
+      type="submit" 提交按钮
+      [*] <input type="submit" value="提交按钮">
+      [*] 等价于 (默认 type="submit")
+      [*] <button>提交按钮</button>
+
+      type="reset" 重置按钮
+      [*] <input type="reset" value="重置按钮">
+      [*] 等价于
+      [*] <button type="reset">重置按钮</button>
+
+      type="button" 普通按钮
+      [*] <input type="button" value="普通按钮">
+      [*] 等价于
+      [*] <button type="button">普通按钮</button>
+      -->
+      <button type="submit">搜索</button>
+
+      <!-- textarea 文本域
+           [*] rows 默认行数
+           [*] cols 默认列数
+      -->
+      <textarea name="msg" rows="5" cols="3"></textarea>
+
+      <!-- select 下拉选择框
+      option 可选的 value 值, selected 表示默认选中
+      -->
+      <select name="flavor">
+        <option>小红</option>
+        <option selected>小绿</option>
+        <option>小蓝</option>
+      </select>
+
+      <!-- label label 标签可以与表单控件关联 -->
+      <!-- 关联: label.for == input.id -->
+
+      <!-- disabled 禁用表单控件 -->
+      <!-- fieldset 表单控件分组 -->
+      <!-- legend 表单控件分组的标题 -->
+    </form>
+  </body>
+</html>

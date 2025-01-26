@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* BFC, Block Formatting Context */
+
+      /* 伸缩项目 (.outer) 开启了 BFC */
+      /* body {
+        display: flex;
+      } */
+
+      .outer {
+        width: 400px;
+        background-color: grey;
+
+        /* 父元素设置大于 0 的 padding 可以解决 margin 塌陷问题, 但没有开启 BFC */
+        /* padding: 1px; */
+        /* 父元素设置大于 0 的 border 可以解决 margin 塌陷问题, 但没有开启 BFC */
+        /* border: 1px solid black; */
+
+        /* 浮动元素开启了 BFC */
+        /* float: left; */
+
+        /* 绝对定位, 固定定位的元素开启了 BFC */
+        /* position: absolute; */
+        /* position: fixed; */
+
+        /* 行内块元素开启了 BFC */
+        /* display: inline-block; */
+
+        /* 表格单元格开启了 BFC */
+        /* display: table; */
+
+        /* overflow 属性值不等于 visible 的元素开启了 BFC */
+        /* 解决 margin 塌陷问题的最佳实践 */
+        overflow: hidden;
+        /* overflow: scroll; */
+        /* overflow: auto; */
+
+        /* 多列容器开启了 BFC */
+        /* column-count: 1; */
+
+        /* 设置 `column-span: all` 的元素 */
+        /* column-span: all; */
+
+        /* 设置 `display: flow-root` 的元素 */
+        /* display: flow-root; */
+      }
+
+      .inner {
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+      }
+
+      .inner1 {
+        background-color: lightpink;
+      }
+
+      .inner2 {
+        background-color: lightgreen;
+      }
+
+      .inner3 {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner inner1"></div>
+      <div class="inner inner2"></div>
+      <div class="inner inner3"></div>
+    </div>
+    <!-- <hr style="height: 10px; background-color: lightpink"> -->
+  </body>
+</html>

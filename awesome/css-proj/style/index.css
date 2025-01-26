@@ -1,0 +1,529 @@
+:root {
+  --ts-blue: #3178c6;
+}
+
+/* #region 基础设置 */
+
+* {
+  font-size: 12px;
+  font-family: "Hack", "Iosevka", "Menlo", "PingFang SC", "Microsoft YaHei",
+    monospace;
+}
+
+/* img 默认是行内块元素
+  行内/行内块元素间的换行符, 会被浏览器解析为一个空白符
+  display: block; 底部不留白 */
+
+/* img {
+  display: block;
+} */
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: lightpink;
+}
+
+/* 左浮动 */
+.left-fix {
+  float: left;
+}
+
+/* 右浮动 */
+.right-fix {
+  float: right;
+}
+
+/* 清除浮动 */
+.clear-fix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+/* #endregion 基础设置 */
+
+/* #region 顶部导航条 */
+.topbar {
+  /* 默认 width: 100%; */
+  height: 30px;
+  background-color: azure;
+}
+
+.welcome {
+  height: 30px;
+  /* 文本 (行内元素) 水平居中 */
+  line-height: 30px;
+  font-size: 0;
+  /* 等价于 color: #666666; */
+  color: lightgray;
+}
+
+.welcome span,
+.welcome a {
+  font-size: 12px;
+}
+
+.welcome .hello {
+  margin-right: 28px;
+}
+
+.welcome .login {
+  padding-right: 10px;
+  border-right: 1px solid lightgray;
+}
+
+.welcome .register {
+  padding-left: 10px;
+}
+
+.topbar-nav .list {
+  height: 30px;
+  line-height: 30px;
+}
+
+.topbar-nav .list li {
+  float: left;
+}
+
+.topbar-nav .list li a {
+  padding: 0 15px;
+  border-right: 1px solid lightgray;
+}
+
+.topbar-nav .list li:first-child a {
+  padding-left: 0;
+}
+
+.topbar-nav .list li:last-child a {
+  padding-right: 0;
+  border: 0;
+}
+
+/* #endregion 顶部导航条 */
+
+/* #region 头部  */
+.header {
+  height: 120px;
+  background-color: lightblue;
+}
+
+.header .logo {
+  width: 190px;
+  height: 120px;
+  /* padding: calc((120px - 66px) / 2) 0; */
+}
+
+.header .logo > img {
+  width: 190px;
+  margin: calc((120px - 66px) / 2) 0;
+}
+
+.header .search form {
+  margin-top: 42px;
+  font-size: 0;
+}
+
+.header .search input {
+  width: 508px;
+  height: 34px;
+  border: 1px solid var(--ts-blue);
+}
+
+.header .search button {
+  width: 80px;
+  height: 36px;
+  background-color: var(--ts-blue);
+  vertical-align: top;
+  background-image: url("../assets/search.svg");
+  background-repeat: no-repeat;
+  background-position: 28px 6px;
+  /* background-position: center; */
+}
+
+/* #endregion 头部 */
+
+/* #region 主导航区 */
+.main-nav {
+  height: 48px;
+  border-bottom: 1px solid var(--ts-blue);
+}
+
+.main-nav .all-types {
+  width: 190px;
+  height: 48px;
+  /* 文字垂直居中 */
+  line-height: 48px;
+  background-color: var(--ts-blue);
+  color: white;
+  /* 文字水平居中 */
+  text-align: center;
+  font-size: 16px;
+}
+
+.main-nav-list {
+  height: 48px;
+  line-height: 48px;
+}
+
+.main-nav-list li {
+  float: left;
+  margin: 0 10px;
+}
+
+.main-nav-list li a {
+  font-size: 16px;
+}
+
+/* #endregion 主导航区 */
+
+/* #region 主内容区 */
+.main-content {
+  margin-top: 10px;
+}
+
+.main-content .slide-nav {
+  width: 190px;
+  height: 458px;
+  background-color: lightblue;
+  /* 子绝父相: 父元素相对定位 */
+  position: relative;
+}
+
+.main-content .slide-nav > li {
+  height: 28px;
+  line-height: 28px;
+  /* 背景色填充 padding; 不填充 margin */
+  padding-left: 16px;
+}
+
+.main-content .slide-nav > li:hover {
+  background-color: var(--ts-blue);
+}
+
+.main-content .slide-nav > li:hover .sub-menu {
+  display: block;
+}
+
+.main-content .slide-nav li a {
+  font-size: 14px;
+}
+
+/* .main-content .slide-nav > li > a:hover {
+  color: lightpink;
+} */
+
+.main-content .slide-nav .sub-menu {
+  width: 680px;
+  height: 458px;
+  background-color: azure;
+  /* 子绝父相: 子元素绝对定位 */
+  position: absolute;
+  /* 子元素的上 margin 距离包含块 (父元素)的上边沿 0px */
+  /* Specifies how far an absolutely positioned box's top margin edge is offset below
+   the top edge of the box' s 'containing block'. */
+  top: 0;
+  /* 子元素左 margin 距离包含块 (父元素)左边沿 190px */
+  /* Specifies how far an absolutely positioned box's left margin edge is offset to
+  the right of the left edge of the box' s 'containing block'. */
+  left: 190px;
+  padding-left: 20px;
+  display: none;
+}
+
+.sub-menu li {
+  height: 36px;
+  line-height: 36px;
+  float: left;
+}
+
+.sub-menu li:first-child {
+  width: 70px;
+  font-weight: bold;
+}
+
+.sub-menu li a {
+  /* color: gray; */
+  padding: 0 10px;
+  border-left: 1px solid lightgray;
+}
+
+.sub-menu li:first-child a {
+  padding: 0;
+  border: 0;
+}
+
+.main-content .banner {
+  width: 690px;
+  height: 458px;
+  background-color: lightpink;
+  margin: 0 10px;
+}
+
+.main-content .slide-other {
+  width: 290px;
+  height: 458px;
+  /* background-color: lightblue; */
+}
+
+.slide-other .message {
+  width: 260px;
+  height: 156px;
+  border: 1px solid lightgray;
+  padding: 0 14px;
+}
+
+.slide-other .message .title {
+  height: 38px;
+  line-height: 38px;
+  border-bottom: 1px solid lightgray;
+}
+
+.slide-other .message .title span {
+  font-size: 14px;
+}
+
+.slide-other .message .title a {
+  font-size: 12px;
+  color: lightgray;
+  /* ∵ */
+}
+
+.slide-other .message .title a:hover {
+  color: lightpink;
+  /* ∴ */
+}
+
+.slide-other .msg-list li {
+  height: 26px;
+  line-height: 26px;
+}
+
+.slide-other .nav-other {
+  margin-top: 10px;
+  width: 290px;
+  height: 290px;
+  /* background-color: lightgray; */
+  overflow: hidden;
+}
+
+.nav-other-list:first-child {
+  margin-top: 16px;
+}
+
+.nav-other-list:nth-child(2) {
+  margin: 17px 0;
+}
+
+.nav-other-list li {
+  width: 48px;
+  height: 70px;
+  /* background-color: lightblue; */
+  float: left;
+  margin: 0 11px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav-other-list li:first-child {
+  margin-left: 16px;
+}
+
+/* #endregion 主内容区 */
+
+/* #region 热点 */
+.hotspot img {
+  display: block;
+  float: left;
+  margin-right: 11px;
+  cursor: pointer;
+}
+
+.hotspot img:last-child {
+  margin-right: 0;
+}
+
+/* #endregion 热点 */
+
+/* #region 楼层 */
+.floor {
+  margin-top: 48px;
+}
+
+.floor-nav {
+  height: 30px;
+  line-height: 30px;
+  padding-bottom: 4px;
+  /* border-bottom: 2px solid lightcyan; */
+  /* 子绝父相: 父元素相对定位 */
+  position: relative;
+}
+
+.floor-name {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.floor-name:hover + .floor-nav-char {
+  display: block;
+}
+
+.floor-nav .floor-nav-char {
+  width: 190px;
+  background-color: azure;
+  padding: 20px;
+  /* 子绝父相: 子元素绝对定位 */
+  position: absolute;
+  display: none;
+  /* 子元素的左 margin 距离父元素的左边沿 0px */
+  /* Specifies how far an absolutely positioned box's left margin edge is offset to
+   the right of the left edge of the box' s 'containing block'. */
+  left: 0;
+  /* 子元素的下 margin 距离父元素的下边沿 34px */
+  /* Specifies how far an absolutely positioned box's bottom margin edge is offset above
+  the bottom edge of the box' s 'containing block'. */
+  bottom: 34px;
+}
+
+.floor-nav-char .char-list {
+  margin-bottom: 29px;
+}
+
+.floor-nav .char-list li {
+  width: 90px;
+  height: 22px;
+  padding-bottom: 3.5px;
+  border-bottom: 1px solid lightgray;
+  font-size: 16px;
+  text-align: center;
+  float: left;
+}
+
+/* 奇数 li 左浮动, odd 等价于 2n-1 */
+.floor-nav .char-list li:nth-child(odd) {
+  float: left;
+}
+
+/* 偶数 li 右浮动, even 等价于 2n */
+.floor-nav .char-list li:nth-child(even) {
+  float: right;
+}
+
+/***********************************************/
+
+.floor-nav-list li {
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.floor-nav-list li a {
+  padding: 0 10px;
+  border-right: 1px solid lightgray;
+}
+
+.floor-nav-list li:first-child a {
+  padding-left: 0;
+}
+
+.floor-nav-list li:last-child a {
+  padding-right: 0;
+  border-right: 0;
+}
+
+/* #endregion 楼层 */
+
+/* #region 页脚 */
+.footer {
+  height: 440px;
+  margin-top: 48px;
+  background-color: darkgray;
+}
+
+.link-list {
+  float: left;
+  width: 190px;
+  height: 176px;
+  margin-top: 48px;
+  margin-right: 10px;
+}
+
+.link-list:last-child {
+  margin-right: 0;
+}
+
+.link-list a {
+  color: white;
+  font-size: 14px;
+}
+
+.link-list a:hover {
+  color: lightpink;
+}
+
+/* FIXME */
+.link-list li {
+  height: 28px;
+  line-height: 28px;
+}
+
+.line {
+  margin-top: 22px;
+  height: 1px;
+  background-color: lightcyan;
+}
+
+.bottom-link {
+  margin-top: 47px;
+  text-align: center;
+}
+
+.bottom-link-list {
+  /*! 使用 `margin: 0 auto;` 实现居中需要指定宽度 */
+  /* margin: 0 auto; */
+  display: inline-block;
+}
+
+.bottom-link-list li {
+  float: left;
+}
+
+.bottom-link-list li a {
+  padding: 0 26px;
+  color: white;
+  border-right: 1px solid white;
+}
+
+.bottom-link-list li a:hover {
+  color: lightpink;
+}
+
+.bottom-link-list li:first-child a {
+  padding-left: 0;
+}
+
+.bottom-link-list li:last-child a {
+  padding-right: 0;
+  border: 0;
+}
+
+.copyright {
+  margin-top: 10px;
+}
+
+.copyright a {
+  color: white;
+}
+
+.copyright a:hover {
+  color: lightpink;
+}
+
+/* #endregion 页脚 */

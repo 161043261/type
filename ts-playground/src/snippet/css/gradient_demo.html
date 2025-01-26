@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css" />
+
+    <style>
+      /* 稿纸 */
+      .box1 {
+        width: 600px;
+        height: 800px;
+        padding: 20px;
+        border: 1px solid black;
+        margin: 0 auto;
+        /* 0..29 透明变透明
+        29..30 透明变灰 */
+        background-image: repeating-linear-gradient(
+          transparent 0,
+          transparent 29px,
+          grey 30px
+        );
+        background-clip: content-box;
+      }
+
+      /* 立体球 */
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: gray;
+        border-radius: 50%;
+        background-image: radial-gradient(at 80px 80px, white, #333);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+  </body>
+</html>
