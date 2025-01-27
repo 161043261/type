@@ -1593,9 +1593,9 @@ const injectedColor = inject<Ref<string>>(
 
 ## 兄弟组件通信
 
-### 方式 1: 使用父组件桥接
+### 方式 1: 通过父组件桥接
 
-使用父组件桥接, 实现兄弟组件通信
+通过父组件桥接, 实现兄弟组件通信 (BoyDemo -> ParentBridge -> GirlDemo)
 
 ::: code-group
 
@@ -1604,44 +1604,44 @@ const injectedColor = inject<Ref<string>>(
 <script lang="ts" setup>
 // const emit = defineEmits(['customEvent'])
 const emit = defineEmits<{
-  customEvent: [flag: boolean, timestamp: number]; // 具名元组
+  customEvent: [flag: boolean, timeStr: string]; // 具名元组
 }>();
+
 let flag = false;
 function emitArgs() {
   flag = !flag;
-  emit("customEvent", flag, Date.now());
+  emit("customEvent", flag, new Date().toLocaleTimeString());
 }
 </script>
 
 <template>
   <div>
-    <!-- 点击按钮以触发自定义事件, 并向父组件发射参数 -->
+    <!-- 点击按钮以触发自定义事件, 向父组件发射参数 -->
     <button @click="emitArgs">emitArgs</button>
   </div>
 </template>
-
-<style lang="css" scoped></style>
 ```
 
 ```vue [ParentBridge]
 <!-- 父组件中, 为 Boy 组件的自定义事件绑定回调函数,
-接收自定义事件发生时, Boy 组件发射的参数 -->
+自定义事件发生时, 接收 Boy 组件发射的参数 -->
 <script lang="ts" setup>
-function eventRx(flag_: boolean, timestamp_: number) {
+const flag = ref<boolean>(false);
+const timeStr = ref<string>("方式 1: 通过父组件桥接, 实现兄弟组件通信");
+
+function rxArgs(flag_: boolean, timeStr_: string) {
   flag.value = flag_;
-  timestamp.value = timestamp_;
+  timeStr.value = timeStr_;
 }
 </script>
 
 <template>
   <div>
     <BoyDemo
-      @custom-event="
-        (flag: boolean, timestamp: number) => eventRx(flag, timestamp, $attrs)
-      "
+      @custom-event="(flag: boolean, timeStr: string) => rxArgs(flag, timeStr)"
     />
     <!-- 将 Boy 组件发射的参数, 绑定到 Girl 组件的自定义属性 -->
-    <GirlDemo :flag="flag" :timestamp="timestamp" />
+    <GirlDemo :flag="flag" :timeStr="timeStr" />
   </div>
 </template>
 ```
@@ -1651,16 +1651,107 @@ function eventRx(flag_: boolean, timestamp_: number) {
 <script lang="ts" setup>
 defineProps<{
   flag: boolean;
-  timestamp: number;
+  timeStr: string;
 }>();
 </script>
 
 <template>
   <div>
     <div>flag: {{ flag }}</div>
-    <div>timestamp: {{ timestamp }}</div>
+    <div>timeStr: {{ timeStr }}</div>
   </div>
 </template>
 ```
 
-### 方式 2: 事件总线 Event Bus
+:::
+
+### 方式 2: 事件总线 (手写发布/订阅 pub/sub)
+
+BusBoy 发布, BusGirl 订阅, 不需要父组件参与
+
+::: code-group
+
+```vue [BusBoy]
+<script lang="ts" setup>
+import bus from "./bus";
+
+let flag = false;
+function emitArgs() {
+  flag = !flag;
+  bus.publish("customEvent", flag, new Date().toLocaleTimeString()); // 发布
+}
+</script>
+
+<template>
+  <div>
+    <button @click="emitArgs">emitArgs</button>
+  </div>
+</template>
+```
+
+```vue [BusGirl]
+<script lang="ts" setup>
+import bus from "./bus";
+
+const flag = ref(false);
+const timeStr = ref("方式 2: 事件总线 (手写发布/订阅 pub/sub)");
+
+bus.subscribe("customEvent", (flag_: boolean, timeStr_: string) => {
+  flag.value = flag_;
+  timeStr.value = timeStr_;
+});
+</script>
+
+<template>
+  <div>
+    <div>flag: {{ flag }}</div>
+    <div>timeStr: {{ timeStr }}</div>
+  </div>
+</template>
+```
+
+```ts [事件总线]
+type IBus = {
+  publish: (eventName: string) => void;
+  subscribe: (eventName: string, callback: Function) => void;
+};
+
+type TEvName2cbs = {
+  [key: string | number | symbol]: Array<Function>;
+};
+
+class Bus implements IBus {
+  evName2cbs: TEvName2cbs;
+  constructor() {
+    this.evName2cbs = {};
+  }
+  // 发布 publish
+  publish(eventName: string, ...args: any[]): void {
+    const callbacks = this.evName2cbs[eventName];
+    callbacks.forEach((cb) => cb.apply(this, args));
+  }
+  // 订阅 subscribe
+  subscribe(eventName: string, fn: Function): void {
+    const callbacks = this.evName2cbs[eventName] || [];
+    callbacks.push(fn);
+    this.evName2cbs[eventName] = callbacks;
+  }
+}
+export default new Bus();
+```
+
+:::
+
+## Mitt 发布/订阅库
+
+全局使用 mitt
+
+```ts
+// main.ts
+declare module "vue" {
+  export interface ComponentCustomProperties {
+    $bus: ReturnType<typeof mitt>;
+  }
+}
+app.config.globalProperties.$bus = mitt();
+```

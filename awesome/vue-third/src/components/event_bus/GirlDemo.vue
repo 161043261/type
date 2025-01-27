@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 defineProps<{
   flag: boolean
-  timestamp: number
+  timeStr: string
 }>()
 </script>
 
 <template>
   <div>
     <div>flag: {{ flag }}</div>
-    <div>timestamp: {{ timestamp }}</div>
+    <div>timeStr: {{ timeStr }}</div>
   </div>
 </template>
 

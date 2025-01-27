@@ -1,4 +1,33 @@
-type TBus = {
-  emit: (eventName: string) => void
-  on: (eventName: string) => void
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+type IBus = {
+  publish: (eventName: string) => void
+  subscribe: (eventName: string, callback: Function) => void
 }
+
+type TEvName2cbs = {
+  [key: string | number | symbol]: Array<Function>
+}
+
+class Bus implements IBus {
+  evName2cbs: TEvName2cbs
+
+  constructor() {
+    this.evName2cbs = {}
+  }
+
+  // 发布 publish
+  publish(eventName: string, ...args: any[]): void {
+    const callbacks = this.evName2cbs[eventName]
+    callbacks.forEach((cb) => cb.apply(this, args))
+  }
+
+  // 订阅 subscribe
+  subscribe(eventName: string, fn: Function): void {
+    const callbacks = this.evName2cbs[eventName] || []
+    callbacks.push(fn)
+    this.evName2cbs[eventName] = callbacks
+  }
+}
+
+export default new Bus()

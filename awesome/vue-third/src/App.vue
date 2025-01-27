@@ -53,6 +53,9 @@ import TeleportDemo from './components/TeleportDemo.vue'
 import GrandparentProvide from './components/provide_inject/GrandparentProvide.vue'
 import GrandparentDemo from './components/attrs/GrandparentDemo.vue'
 import ParentBridge from './components/event_bus/ParentBridge.vue'
+import BusBoy from './components/event_bus/BusBoy.vue'
+import BusGirl from './components/event_bus/BusGirl.vue'
+
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
 
@@ -106,7 +109,11 @@ const SuspenseAsync = defineAsyncComponent(() => import('./components/SuspenseAs
   <GrandparentProvide />
   <GrandparentDemo />
   <h1>兄弟组件传参</h1>
+  <p>方式 1: 通过父组件桥接, 实现兄弟组件通信</p>
   <ParentBridge />
+  <p>方式 2: 事件总线 (手写发布/订阅 pub/sub)</p>
+  <BusBoy />
+  <BusGirl />
 </template>
 
 <style lang="scss">
