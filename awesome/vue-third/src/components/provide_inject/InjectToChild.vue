@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import { inject, ref, type Ref } from 'vue';
+import { inject, ref, type Ref } from 'vue'
 const injectedColor = inject<Ref<string>>('colorKey', ref('lightyellow') /** defaultVal */)
 </script>
 
 <template>
   <div>
     <em>InjectToChild</em>
-    <div class="box">
-    </div>
-    <button @click="injectedColor = 'lightyellow'">Child 修改 GrandParent 注入的颜色</button>
+    <div class="box"></div>
+    <button @click="injectedColor = 'lightyellow'">Child 修改 Grandparent 注入的颜色</button>
   </div>
 </template>
 

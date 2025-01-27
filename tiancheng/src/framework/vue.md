@@ -635,7 +635,7 @@ setup 语法糖中, 将 beforeCreate, created 合并为 setup `onXxx(() => { /**
 ### 父传子
 
 > [!tip]
-> 子组件中使用宏函数 defineProps 接收父组件传递的 prop 参数
+> 子组件中使用宏函数 defineProps 定义自定义属性
 
 父组件
 
@@ -698,15 +698,6 @@ const props = defineProps({
 });
 console.log(props.str, props.refStr, props.reactiveArr);
 </script>
-
-<template>
-  <ul>
-    <!-- template 中, 使用 props.propName 或直接使用 propName 都可以 -->
-    <li>str: {{ props.str }}</li>
-    <li>refStr: {{ refStr }}</li>
-    <li>reactiveArr: {{ reactiveArr }}</li>
-  </ul>
-</template>
 ```
 
 ```vue{2-6} [写法 3]
@@ -718,15 +709,6 @@ const props = defineProps<{
 }>();
 console.log(props.str, props.refStr, props.reactiveArr);
 </script>
-
-<template>
-  <ul>
-    <!-- template 中, 使用 props.propName 或直接使用 propName 都可以 -->
-    <li>str: {{ props.str }}</li>
-    <li>refStr: {{ refStr }}</li>
-    <li>reactiveArr: {{ reactiveArr }}</li>
-  </ul>
-</template>
 ```
 
 ```vue{2-13} [写法 4]
@@ -745,15 +727,6 @@ const props = withDefaults(
 );
 console.log(props.str, props.refStr, props.reactiveArr);
 </script>
-
-<template>
-  <ul>
-    <!-- template 中, 使用 props.propName 或直接使用 propName 都可以 -->
-    <li>str: {{ props.str }}</li>
-    <li>refStr: {{ refStr }}</li>
-    <li>reactiveArr: {{ reactiveArr }}</li>
-  </ul>
-</template>
 ```
 
 :::
@@ -764,54 +737,54 @@ console.log(props.str, props.refStr, props.reactiveArr);
 
 ::: code-group
 
-```vue [Grandparent]
+```vue [GrandparentDemo]
 <script lang="ts" setup>
-let av = ref(1);
-let bv = ref(2);
-let cv = ref(3);
-let dv = ref(4);
-
+const a = ref(1);
+const b = reactive({ v: 2 });
 function addA(da: number) {
-  av.value += da;
+  a.value += da;
 }
 </script>
 
 <template>
-  <div class="grandparent">
-    <!-- v-bind="{ x: 5, y: 6 }" 等价于 :x=5 :y=6 -->
-    <Parent :a="av" :addA="addA" :b="bv" :c="cv" :d="dv" :="{ x: 5, y: 6 }" />
+  <div>
+    <h1>$attrs, useAttrs</h1>
+    <!-- v-bind="{ p1: "v1", p2: "v2" }" 等价于 :p1="v1" :p2="v2" -->
+    <ParentDemo
+      :a="a"
+      :b="b"
+      :addA="addA"
+      :="{ p1: 'v1', p2: 'v2' }"
+    ></ParentDemo>
   </div>
 </template>
 ```
 
-```vue [Parent]
+```vue [ParentDemo]
 <script lang="ts" setup>
-import { useAttrs } from "vue";
-
 const attrs = useAttrs();
 </script>
 
 <template>
-  <div class="parent">
-    <p>$attrs: {{ $attrs }}</p>
-    <!-- { "a": 1, "b": 2, "c": 3, "d": 4, "x": 5, "y": 6 } -->
-    <p>attrs: {{ attrs }}</p>
-    <!-- { "a": 1, "b": 2, "c": 3, "d": 4, "x": 5, "y": 6 } -->
-    <Child v-bind="$attrs" />
-    <Child v-bind="attrs" />
+  <div>
+    <div>$attrs: {{ $attrs }}</div>
+    <!-- $attrs === attrs: false -->
+    <div>attrs: {{ attrs }}, $attrs === attrs: {{ $attrs === attrs }}</div>
+    <ChildDemo :="$attrs"></ChildDemo>
+    <ChildDemo :="attrs"></ChildDemo>
   </div>
 </template>
 ```
 
-```vue [Child]
+```vue [ChildDemo]
 <script lang="ts" setup>
-defineProps(["a", "b", "c", "d", "x", "y", "addA"]);
+defineProps(["a", "b", "addA", "p1", "p2"]);
 </script>
 
 <template>
-  <div class="child">
-    <p>a={{ a }} b={{ b }} c={{ c }} d={{ d }} x={{ x }} y={{ y }}</p>
-    <button v-on:click="addA(1)">add grandparent's a</button>
+  <div>
+    <p>a={{ a }} b={{ b }} p1={{ p1 }} p2={{ p2 }}</p>
+    <button @click="addA(1)">Add grandparent's a</button>
   </div>
 </template>
 ```
@@ -823,7 +796,8 @@ defineProps(["a", "b", "c", "d", "x", "y", "addA"]);
 > [!tip]
 >
 > 1. 子组件中使用 defineEmits 定义自定义事件
-> 2. 子组件触发自定义事件, 向父组件发射参数; 父组件监听自定义事件
+> 2. 子组件触发自定义事件, 向父组件发射参数
+> 3. 父组件中, 为子组件的自定义事件绑定回调函数, 接收自定义事件发生时, 子组件发射的参数
 
 子组件
 
@@ -1571,4 +1545,122 @@ const showPopup2 = ref(false);
 
 provide/inject: 祖先 provide 给后代, 后代 inject 到祖先, 实现祖孙传参
 
+::: code-group
 
+```vue [GrandparentProvide]
+<script lang="ts" setup>
+const colorVal = ref("lightpink");
+provide("colorKey" /** key */, colorVal /** value */);
+// 也可以提供一个 readonly 的 colorVal, 防止子组件修改
+// provide('colorKey', readonly(colorVal))
+</script>
+
+<template>
+  <div>
+    <InjectToParent></InjectToParent>
+  </div>
+</template>
+```
+
+```vue [InjectToParent]
+<script lang="ts" setup>
+const injectedColor = inject<Ref<string>>("colorKey");
+</script>
+
+<template>
+  <div>
+    <InjectToChild></InjectToChild>
+  </div>
+</template>
+```
+
+```vue [InjectToChild]
+<script lang="ts" setup>
+const injectedColor = inject<Ref<string>>(
+  "colorKey",
+  ref("lightyellow") /** defaultVal */,
+);
+</script>
+
+<template>
+  <div>
+    <button @click="injectedColor = 'lightyellow'">
+      Child 修改 Grandparent 注入的颜色
+    </button>
+  </div>
+</template>
+```
+
+## 兄弟组件通信
+
+### 方式 1: 使用父组件桥接
+
+使用父组件桥接, 实现兄弟组件通信
+
+::: code-group
+
+```vue [BoyDemo]
+<!-- Boy 组件使用 defineEmits 定义自定义事件 -->
+<script lang="ts" setup>
+// const emit = defineEmits(['customEvent'])
+const emit = defineEmits<{
+  customEvent: [flag: boolean, timestamp: number]; // 具名元组
+}>();
+let flag = false;
+function emitArgs() {
+  flag = !flag;
+  emit("customEvent", flag, Date.now());
+}
+</script>
+
+<template>
+  <div>
+    <!-- 点击按钮以触发自定义事件, 并向父组件发射参数 -->
+    <button @click="emitArgs">emitArgs</button>
+  </div>
+</template>
+
+<style lang="css" scoped></style>
+```
+
+```vue [ParentBridge]
+<!-- 父组件中, 为 Boy 组件的自定义事件绑定回调函数,
+接收自定义事件发生时, Boy 组件发射的参数 -->
+<script lang="ts" setup>
+function eventRx(flag_: boolean, timestamp_: number) {
+  flag.value = flag_;
+  timestamp.value = timestamp_;
+}
+</script>
+
+<template>
+  <div>
+    <BoyDemo
+      @custom-event="
+        (flag: boolean, timestamp: number) => eventRx(flag, timestamp, $attrs)
+      "
+    />
+    <!-- 将 Boy 组件发射的参数, 绑定到 Girl 组件的自定义属性 -->
+    <GirlDemo :flag="flag" :timestamp="timestamp" />
+  </div>
+</template>
+```
+
+```vue [GirlDemo]
+<!-- Girl 组件使用 defineProps 定义自定义属性 -->
+<script lang="ts" setup>
+defineProps<{
+  flag: boolean;
+  timestamp: number;
+}>();
+</script>
+
+<template>
+  <div>
+    <div>flag: {{ flag }}</div>
+    <div>timestamp: {{ timestamp }}</div>
+  </div>
+</template>
+```
+
+### 方式 2: 事件总线 Event Bus

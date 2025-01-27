@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { provide, ref } from 'vue';
-import InjectToParent from './InjectToParent.vue';
+import { provide, ref } from 'vue'
+import InjectToParent from './InjectToParent.vue'
 
-const colorVal = ref("lightpink");
+const colorVal = ref('lightpink')
 provide('colorKey' /** key */, colorVal /** value */)
 // 也可以提供一个 readonly 的 colorVal, 防止子组件修改
 // provide('colorKey', readonly(colorVal))
@@ -13,16 +13,15 @@ provide('colorKey' /** key */, colorVal /** value */)
     <h1>provide/inject</h1>
     <em>GrandParent provides `ref(color)`</em>
     <label>
-      <input type="radio" value="lightpink" name="color" v-model="colorVal"> lightpink
+      <input type="radio" value="lightpink" name="color" v-model="colorVal" /> lightpink
     </label>
     <label>
-      <input type="radio" value="lightgreen" name="color" v-model="colorVal"> lightgreen
+      <input type="radio" value="lightgreen" name="color" v-model="colorVal" /> lightgreen
     </label>
     <label>
-      <input type="radio" value="lightblue" name="color" v-model="colorVal"> lightblue
+      <input type="radio" value="lightblue" name="color" v-model="colorVal" /> lightblue
     </label>
-    <div class="box">
-    </div>
+    <div class="box"></div>
     <InjectToParent></InjectToParent>
   </div>
 </template>

@@ -50,7 +50,9 @@ import SlotParent from './components/slot/SlotParent.vue'
 import DynamicSlotParent from './components/slot/DynamicSlotParent.vue'
 import SuspenseSkeleton from './components/SuspenseSkeleton.vue'
 import TeleportDemo from './components/TeleportDemo.vue'
-import GrandParentProvide from './components/provide_inject/GrandParentProvide.vue'
+import GrandparentProvide from './components/provide_inject/GrandparentProvide.vue'
+import GrandparentDemo from './components/attrs/GrandparentDemo.vue'
+import ParentBridge from './components/event_bus/ParentBridge.vue'
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
 
@@ -101,7 +103,10 @@ const SuspenseAsync = defineAsyncComponent(() => import('./components/SuspenseAs
     </template>
   </Suspense>
   <TeleportDemo />
-  <GrandParentProvide />
+  <GrandparentProvide />
+  <GrandparentDemo />
+  <h1>兄弟组件传参</h1>
+  <ParentBridge />
 </template>
 
 <style lang="scss">

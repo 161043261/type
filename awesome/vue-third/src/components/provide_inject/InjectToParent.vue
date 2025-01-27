@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { inject, type Ref } from 'vue';
-import InjectToChild from './InjectToChild.vue';
+import { inject, type Ref } from 'vue'
+import InjectToChild from './InjectToChild.vue'
 
 const injectedColor = inject<Ref<string>>('colorKey')
 </script>
@@ -8,8 +8,7 @@ const injectedColor = inject<Ref<string>>('colorKey')
 <template>
   <div>
     <em>InjectToParent</em>
-    <div class="box">
-    </div>
+    <div class="box"></div>
     <InjectToChild></InjectToChild>
   </div>
 </template>
