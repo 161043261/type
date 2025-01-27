@@ -55,6 +55,8 @@ import GrandparentDemo from './components/attrs/GrandparentDemo.vue'
 import ParentBridge from './components/event_bus/ParentBridge.vue'
 import BusBoy from './components/event_bus/BusBoy.vue'
 import BusGirl from './components/event_bus/BusGirl.vue'
+import MittPublish from './components/mitt/MittPublish.vue'
+import MittSubscribe from './components/mitt/MittSubscribe.vue'
 
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
@@ -114,6 +116,9 @@ const SuspenseAsync = defineAsyncComponent(() => import('./components/SuspenseAs
   <p>方式 2: 事件总线 (手写发布/订阅 pub/sub)</p>
   <BusBoy />
   <BusGirl />
+  <h1>mitt</h1>
+  <MittPublish />
+  <MittSubscribe />
 </template>
 
 <style lang="scss">

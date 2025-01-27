@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 type IBus = {
-  publish: (eventName: string) => void
-  subscribe: (eventName: string, callback: Function) => void
+  publish: (eventType: string) => void
+  subscribe: (eventType: string, callback: Function) => void
 }
 
 type TEvName2cbs = {
@@ -17,16 +17,16 @@ class Bus implements IBus {
   }
 
   // 发布 publish
-  publish(eventName: string, ...args: any[]): void {
-    const callbacks = this.evName2cbs[eventName]
+  publish(eventType: string, ...args: any[]): void {
+    const callbacks = this.evName2cbs[eventType]
     callbacks.forEach((cb) => cb.apply(this, args))
   }
 
   // 订阅 subscribe
-  subscribe(eventName: string, fn: Function): void {
-    const callbacks = this.evName2cbs[eventName] || []
+  subscribe(eventType: string, fn: Function): void {
+    const callbacks = this.evName2cbs[eventType] || []
     callbacks.push(fn)
-    this.evName2cbs[eventName] = callbacks
+    this.evName2cbs[eventType] = callbacks
   }
 }
 

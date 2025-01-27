@@ -18,7 +18,8 @@ declare module 'vue' {
     $bus: ReturnType<typeof mitt>
   }
 }
-app.config.globalProperties.$bus = mitt()
+const emitter = mitt()
+app.config.globalProperties.$bus = emitter
 /////////////////////////////////////////////////
 
 app.component('CardComponent', GlobalComponent)

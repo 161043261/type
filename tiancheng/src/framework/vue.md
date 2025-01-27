@@ -1712,8 +1712,8 @@ bus.subscribe("customEvent", (flag_: boolean, timeStr_: string) => {
 
 ```ts [事件总线]
 type IBus = {
-  publish: (eventName: string) => void;
-  subscribe: (eventName: string, callback: Function) => void;
+  publish: (eventType: string) => void;
+  subscribe: (eventType: string, callback: Function) => void;
 };
 
 type TEvName2cbs = {
@@ -1726,15 +1726,15 @@ class Bus implements IBus {
     this.evName2cbs = {};
   }
   // 发布 publish
-  publish(eventName: string, ...args: any[]): void {
-    const callbacks = this.evName2cbs[eventName];
+  publish(eventType: string, ...args: any[]): void {
+    const callbacks = this.evName2cbs[eventType];
     callbacks.forEach((cb) => cb.apply(this, args));
   }
   // 订阅 subscribe
-  subscribe(eventName: string, fn: Function): void {
-    const callbacks = this.evName2cbs[eventName] || [];
+  subscribe(eventType: string, fn: Function): void {
+    const callbacks = this.evName2cbs[eventType] || [];
     callbacks.push(fn);
-    this.evName2cbs[eventName] = callbacks;
+    this.evName2cbs[eventType] = callbacks;
   }
 }
 export default new Bus();
@@ -1742,16 +1742,100 @@ export default new Bus();
 
 :::
 
-## Mitt 发布/订阅库
+## mitt 发布/订阅第三方库
 
-全局使用 mitt
+### 全局使用 mitt
 
-```ts
-// main.ts
+::: code-group
+
+```ts [main.ts]
 declare module "vue" {
   export interface ComponentCustomProperties {
     $bus: ReturnType<typeof mitt>;
   }
 }
-app.config.globalProperties.$bus = mitt();
+const emitter = mitt();
+app.config.globalProperties.$bus = emitter;
 ```
+
+```vue [MittPublish]
+<script lang="ts" setup>
+import { getCurrentInstance } from "vue";
+// getCurrentInstance 获取当前组件实例
+const publisher = getCurrentInstance();
+let flag = false;
+function pub() {
+  flag = !flag;
+  publisher?.proxy?.$bus.emit("eventType", [
+    flag,
+    new Date().toLocaleTimeString(),
+  ]);
+}
+</script>
+
+<template>
+  <div>
+    <button @click="pub">发布</button>
+  </div>
+</template>
+```
+
+```vue [MittSubscribe]
+<script lang="ts" setup>
+import { getCurrentInstance, ref } from "vue";
+const flag = ref(false);
+const timeStr = ref("mitt");
+const curInstance = getCurrentInstance();
+function sub() {
+  // eventType === "eventType", 订阅指定类型的事件
+  // 回调函数的第一个参数是发布的参数数组
+  curInstance?.proxy?.$bus.on("eventType", (args: any) => {
+    console.log("args:", args);
+    [flag.value, timeStr.value] = args;
+  });
+  // eventType === '*', 订阅所有类型的事件
+  // 回调函数的第一个参数是事件类型, 第二个参数是发布的参数数组
+  // curInstance?.proxy?.$bus.on('*', (eventType, args) => {
+  //   console.log("eventType:", eventType);
+  //   console.log("args:", args)
+  // })
+}
+function unsub() {
+  curInstance?.proxy?.$bus.off("eventType");
+}
+function unsubAll() {
+  curInstance?.proxy?.$bus.all.clear();
+}
+</script>
+
+<template>
+  <div>flag: {{ flag }}, timeStr: {{ timeStr }}</div>
+  <button @click="sub">订阅</button>
+  <button @click="unsub">取消订阅</button>
+  <button @click="unsubAll">取消所有订阅</button>
+</template>
+```
+
+:::
+
+### 按需引入 mitt
+
+::: code-group
+
+```ts [@/utils/mitt.ts]
+import mitt from "mitt";
+const emitter = mitt();
+export default emitter;
+```
+
+```ts [按需引入 mitt]
+import emitter from "@/utils/emitter";
+// 发布
+emitter.emit("event-type", ["arg1", "arg2"]);
+// 订阅
+emitter.on("event-type", (args: any) => console.log(args));
+// 取消订阅
+emitter.off("event-type");
+```
+
+:::
