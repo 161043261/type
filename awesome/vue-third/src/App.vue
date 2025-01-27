@@ -50,7 +50,7 @@ import SlotParent from './components/slot/SlotParent.vue'
 import DynamicSlotParent from './components/slot/DynamicSlotParent.vue'
 import SuspenseSkeleton from './components/SuspenseSkeleton.vue'
 import TeleportDemo from './components/TeleportDemo.vue'
-
+import GrandParentProvide from './components/provide_inject/GrandParentProvide.vue'
 // 生命周期钩子
 const mountLifeCycleDemo = ref(true)
 
@@ -101,6 +101,7 @@ const SuspenseAsync = defineAsyncComponent(() => import('./components/SuspenseAs
     </template>
   </Suspense>
   <TeleportDemo />
+  <GrandParentProvide />
 </template>
 
 <style lang="scss">
