@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-
+import KeepAliveParent from './components/KeepAliveParent.vue'
+import TransitionDemo from './components/TransitionDemo.vue'
 </script>
 
 <template>
   <div>
-    你好
+    <h1>KeepAlive</h1>
+    <KeepAliveParent />
+    <h1>Transition</h1>
+    <TransitionDemo />
   </div>
 </template>
 

@@ -592,7 +592,7 @@ const readonlyFullName = computed<string>(
    - 调试选项 onTrigger, onTrack 例 `onTrigger(ev) { debugger }`
 8. watch 可以返回停止侦听的函数 unwatch
 
-[WatchDemo](https://github.com/161043261/type/blob/main/awesome/vue3-proj/src/components/WatchDemo.vue)
+[WatchDemo](https://github.com/161043261/type/blob/main/awesome/vue-third/src/components/WatchDemo.vue)
 
 ### watchEffect
 
@@ -606,7 +606,7 @@ const readonlyFullName = computed<string>(
    - 调试选项 onTrigger, onTrack: 同 watch
 7. watchEffect 可以返回停止侦听的函数 unwatch
 
-[WatchEffectDemo](https://github.com/161043261/type/blob/main/awesome/vue3-proj/src/components/WatchEffectDemo.vue)
+[WatchEffectDemo](https://github.com/161043261/type/blob/main/awesome/vue-third/src/components/WatchEffectDemo.vue)
 
 总结: 未指定 deep 时, 地址改变则可以侦听到, 地址未改变则侦听不到
 

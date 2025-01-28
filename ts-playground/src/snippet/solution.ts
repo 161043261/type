@@ -1,13 +1,12 @@
-function getRow(rowIndex: number): number[] {
-  let ans = [1];
-  for (let i = 0; i <= rowIndex; i++) {
-    ans = ans.map((val, idx) => {
-      if (idx === 0) {
-        return 0;
-      }
-      return val + ans[idx - 1];
-    });
-    ans.push(1);
+function containsNearbyDuplicate(nums: number[], k: number): boolean {
+  for (let i = 0; i < nums.length; i++) {
+    for (
+      let j = i + 1;
+      j <= Math.min(i + k, nums.length - 1);
+      j++
+    ) {
+      if (nums[i] === nums[j]) return true;
+    }
   }
-  return ans;
+  return false;
 }

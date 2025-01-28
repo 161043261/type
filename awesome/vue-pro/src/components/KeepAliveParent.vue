@@ -8,8 +8,11 @@ const flag = ref(true)
 
 <template>
   <div>
-    <KeepAliveBoy v-if="flag"></KeepAliveBoy>
-    <KeepAliveGirl v-else></KeepAliveGirl>
+    <el-button type="primary" @click="flag = !flag">切换组件</el-button>
+    <KeepAlive :include="'KeepAliveBoy'" :exclude="[/'girl'/i]" :max="1">
+      <KeepAliveBoy v-if="flag"></KeepAliveBoy>
+      <KeepAliveGirl v-else></KeepAliveGirl>
+    </KeepAlive>
   </div>
 </template>
 

@@ -25,15 +25,3 @@ body {
 * {
   font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
 }
-
-button {
-  border-radius: 10px;
-  border: 1px solid lightpink;
-  background-color: white;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.5s all;
-  &:hover {
-    box-shadow: 0 0 5px lightpink;
-  }
-}

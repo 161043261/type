@@ -7,13 +7,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Keep_alive_boy: typeof import('./src/components/keep_alive_boy.vue')['default']
-    Keep_alive_girl: typeof import('./src/components/keep_alive_girl.vue')['default']
-    Keep_alive_parent: typeof import('./src/components/keep_alive_parent.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElTransfer: typeof import('element-plus/es')['ElTransfer']
     KeepAliveBoy: typeof import('./src/components/KeepAliveBoy.vue')['default']
     KeepAliveGirl: typeof import('./src/components/KeepAliveGirl.vue')['default']
     KeepAliveParent: typeof import('./src/components/KeepAliveParent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TransitionDemo: typeof import('./src/components/TransitionDemo.vue')['default']
   }
 }
