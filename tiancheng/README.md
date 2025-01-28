@@ -83,3 +83,13 @@ export default {
 > [!important] | [!tip] | [!note] | [!warning] | [!caution]
 > 自定义容器
 ```
+
+build.sh
+
+```bash
+sudo rm -rf /var/www/dist
+sudo mv ./dist /var/www/
+sudo systemctl restart nginx
+sudo chmod -R 755 /var/www/dist
+echo "IPv4: http://121.41.121.204"
+```

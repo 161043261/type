@@ -1,0 +1,39 @@
+@use './base.scss' as *;
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  /*
+  h, hue 色相
+  s, saturation 饱和度
+  l, lightness 亮度
+  a, alpha 透明度
+  */
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+  @media (hover: hover) {
+    &:hover {
+      background-color: hsla(160, 100%, 37%, 0.2);
+    }
+  }
+}
+
+input {
+  /* display: block; */
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  &focus {
+    box-shadow: 0 0 5px lightblue;
+  }
+}

@@ -72,7 +72,6 @@ const SuspenseAsync = defineAsyncComponent(() => import('./components/SuspenseAs
 
 <template>
   <RouterView></RouterView>
-
   <hr />
   <DirectiveDemo />
   <RefDemo />

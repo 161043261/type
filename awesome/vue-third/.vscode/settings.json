@@ -20,7 +20,6 @@
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*"
   },
-  "editor.fontFamily": "Hack, Iosevka, Menlo, PingFang SC, Microsoft YaHei",
   "prettier.endOfLine": "lf",
   "cSpell.words": [
     "unsub",

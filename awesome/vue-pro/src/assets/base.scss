@@ -1,0 +1,39 @@
+*,
+*::before,
+*::after {
+  /* 怪异盒模型 */
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-size: 15px;
+  /* 文本渲染: 优化可读性 */
+  text-rendering: optimizeLegibility;
+  /* 字体平滑: 抗锯齿 */
+  -webkit-font-smoothing: antialiased;
+  /* 字体平滑: 灰度 */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
+}
+
+button {
+  border-radius: 10px;
+  border: 1px solid lightpink;
+  background-color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.5s all;
+  &:hover {
+    box-shadow: 0 0 5px lightpink;
+  }
+}

@@ -10,7 +10,7 @@
 a,
 .green {
   text-decoration: none;
-  /* 
+  /*
   h, hue 色相
   s, saturation 饱和度
   l, lightness 亮度
@@ -52,9 +52,8 @@ input {
   border: none;
   border-radius: 10px;
   outline: none;
-  box-shadow: 0 0 5px lightblue;
 }
 
 input:focus {
-  border: 2px solid lightblue;
+  box-shadow: 0 0 5px lightblue;
 }
