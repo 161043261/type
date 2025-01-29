@@ -13,8 +13,8 @@
 }
 
 :root {
-  --vp-font-family-base: "Hack", "Menlo", "Iosevka", "Iosevka",
-    "Microsoft YaHei", "PingFang SC", monospace;
-  --vp-font-family-mono: "Hack", "Menlo", "Iosevka", "Iosevka",
-    "Microsoft YaHei", "PingFang SC", monospace;
+  --vp-font-family-base: "Iosevka", "Menlo", "Hack", "PingFang SC",
+    "Microsoft YaHei", monospace;
+  --vp-font-family-mono: "Iosevka", "Menlo", "Hack", "PingFang SC",
+    "Microsoft YaHei", monospace;
 }

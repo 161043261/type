@@ -22,7 +22,7 @@ function leaveActive(el: Element, done: () => void) {
       enter-active-class="animate__animated animate__fadeIn"
       leave-active-class="animate__animated animate__fadeOut"
     > -->
-    <!-- duration: 过渡效果持续 1s -->
+    <!-- duration: 过渡动画持续 1s -->
     <Transition
       class="animate__animated"
       enter-active-class="animate__fadeIn"
@@ -37,7 +37,7 @@ function leaveActive(el: Element, done: () => void) {
       @after-leave="(el: Element) => console.log('after-leave')"
       @leave-cancelled="(el: Element) => console.log('leave-cancelled')"
     >
-      <div class="box" v-show="displayOrNot">Transition</div>
+      <div class="box" v-show="displayOrNot">Transition With Animate.css</div>
     </Transition>
 
     <Transition name="fade">

@@ -16,6 +16,10 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TransitionDemo: typeof import('./src/components/TransitionDemo.vue')['default']
+    TransitionGroup: typeof import('./src/components/TransitionGroup.vue')['default']
+    TransitionGroupDemo: typeof import('./src/components/TransitionGroupDemo.vue')['default']
+    TransitionGroupDemo2: typeof import('./src/components/TransitionGroupDemo2.vue')['default']
+    TransitionGroupDemo3: typeof import('./src/components/TransitionGroupDemo3.vue')['default']
     TransitionWithGSAP: typeof import('./src/components/TransitionWithGSAP.vue')['default']
   }
 }
