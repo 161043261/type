@@ -23,9 +23,9 @@ code --list-extensions | xargs -n 1 echo code --install-extension
 
 - **feat**: 引入新功能
 - **fix**: 错误修正
-- **style**: 更新样式, 例如 clang-format 或 prettier
+- **style**: 更新样式, 例如 clang-format, prettier
 - **refactor**: 重构代码
-- **test**: 创建/更新测试, 例如 jtest
+- **test**: 创建/更新测试, 例如 jtest, vitest
 - **docs**: 创建/更新文档, 例如 README.md
 - **perf**: 性能优化
 - **chore**: 定期代码维护
@@ -64,7 +64,7 @@ code --list-extensions | xargs -n 1 echo code --install-extension
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.defaultColorDecorators": "auto",
     "editor.formatOnType": true,
-    "editor.wordBasedSuggestions": "off"
+    "editor.wordBasedSuggestions": "currentDocument"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -111,6 +111,7 @@ code --list-extensions | xargs -n 1 echo code --install-extension
   "files.insertFinalNewline": true,
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
   "makefile.configureOnOpen": true,
   "markdown.preview.fontFamily": "Iosevka, Menlo, DejaVu Sans Mono, Cascadia Code, PingFang SC, Microsoft YaHei",
   "markdown.preview.fontSize": 16,
@@ -123,7 +124,8 @@ code --list-extensions | xargs -n 1 echo code --install-extension
   "prettier.endOfLine": "lf",
   "prettier.tabWidth": 2,
   "python.analysis.autoIndent": true,
-  "python.defaultInterpreterPath": "C:/Users/usr16/AppData/Local/Programs/Python/Python313/python",
+  // "python.defaultInterpreterPath": "/home/user/venv/bin/python"
+  "python.defaultInterpreterPath": "C:/Users/admin/venv/Scripts/python",
   "redhat.telemetry.enabled": true,
   "remote.SSH.remotePlatform": {
     "admins": "linux",
@@ -133,6 +135,8 @@ code --list-extensions | xargs -n 1 echo code --install-extension
   "scm.inputFontSize": 16,
   "screencastMode.fontSize": 24,
   "security.workspace.trust.untrustedFiles": "open",
+  "terminal.external.linuxExec": "zsh",
+  "terminal.external.osxExec": "zsh",
   "terminal.external.windowsExec": "C:/Program Files/Git/bin/bash.exe",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.windows": "Git Bash",
@@ -141,7 +145,7 @@ code --list-extensions | xargs -n 1 echo code --install-extension
   "terminal.integrated.fontSize": 16,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vite.autoStart": false,
-  "workbench.colorTheme": "Night Owl Light (No Italics)",
+  "workbench.colorTheme": "Default Light Modern",
   "workbench.editor.wrapTabs": true,
   "workbench.iconTheme": "catppuccin-latte"
 }
@@ -149,65 +153,6 @@ code --list-extensions | xargs -n 1 echo code --install-extension
 
 ## .vscode/extensions.json
 
-```json
-{
-  "recommendations": [
-    "aaron-bond.better-comments",
-    "ahmadalli.vscode-nginx-conf",
-    "antfu.vite",
-    "be5invis.toml",
-    "catppuccin.catppuccin-vsc",
-    "catppuccin.catppuccin-vsc-icons",
-    "christian-kohler.npm-intellisense",
-    "codezombiech.gitignore",
-    "dbaeumer.vscode-eslint",
-    "editorconfig.editorconfig",
-    "esbenp.prettier-vscode",
-    "formulahendry.code-runner",
-    "foxundermoon.shell-format",
-    "github.codespaces",
-    "github.copilot",
-    "github.copilot-chat",
-    "github.remotehub",
-    "github.vscode-github-actions",
-    "github.vscode-pull-request-github",
-    "jasonnutter.search-node-modules",
-    "llvm-vs-code-extensions.vscode-clangd",
-    "mikestead.dotenv",
-    "ms-azuretools.vscode-docker",
-    "ms-ceintl.vscode-language-pack-zh-hans",
-    "ms-edgedevtools.vscode-edge-devtools",
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
-    "ms-python.black-formatter",
-    "ms-python.debugpy",
-    "ms-python.isort",
-    "ms-python.python",
-    "ms-python.vscode-pylance",
-    "ms-vscode-remote.remote-containers",
-    "ms-vscode-remote.remote-ssh",
-    "ms-vscode-remote.remote-ssh-edit",
-    "ms-vscode-remote.remote-wsl",
-    "ms-vscode-remote.vscode-remote-extensionpack",
-    "ms-vscode.azure-repos",
-    "ms-vscode.cmake-tools",
-    "ms-vscode.hexeditor",
-    "ms-vscode.live-server",
-    "ms-vscode.makefile-tools",
-    "ms-vscode.remote-explorer",
-    "ms-vscode.remote-repositories",
-    "ms-vscode.remote-server",
-    "ms-vscode.vscode-typescript-next",
-    "msjsdiag.vscode-react-native",
-    "redhat.vscode-yaml",
-    "ritwickdey.liveserver",
-    "sdras.night-owl",
-    "streetsidesoftware.code-spell-checker",
-    "stylelint.vscode-stylelint",
-    "tboox.xmake-vscode",
-    "twxs.cmake",
-    "vitest.explorer",
-    "vue.volar",
-    "yoavbls.pretty-ts-errors"
-  ]
-}
+```bash
+code --list-extensions > ./.vscode/extensions.json
 ```
