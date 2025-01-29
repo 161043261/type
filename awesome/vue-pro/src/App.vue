@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import KeepAliveParent from './components/KeepAliveParent.vue'
 import TransitionDemo from './components/TransitionDemo.vue'
+import TransitionWithGSAP from './components/TransitionWithGSAP.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import TransitionDemo from './components/TransitionDemo.vue'
     <KeepAliveParent />
     <h1>Transition</h1>
     <TransitionDemo />
+    <TransitionWithGSAP />
   </div>
 </template>
 

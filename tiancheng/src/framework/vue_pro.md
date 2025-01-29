@@ -51,12 +51,12 @@ import "animate.css";
 const display = ref(true);
 
 function enterActive(el: Element, done: () => void) {
-  console.log("enter active");
+  console.log("enterActive");
   setTimeout(() => done(), 3000);
 }
 
 function leaveActive(el: Element, done: () => void) {
-  console.log("leave active");
+  console.log("leave-active");
   setTimeout(() => done(), 3000);
 }
 </script>
@@ -141,8 +141,11 @@ function leaveActive(el: Element, done: () => void) {
 
 :::
 
-### Transition 例子
+### Transition 结合 GASP
+
+[GASP](https://gsap.com/)
 
 ```bash
 pnpm add gsap
 ```
+Transition 只能有一个直接子元素

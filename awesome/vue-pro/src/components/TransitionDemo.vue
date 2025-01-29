@@ -2,22 +2,22 @@
 import { ref } from 'vue'
 import 'animate.css'
 
-const display = ref(true)
+const displayOrNot = ref(true)
 
 function enterActive(el: Element, done: () => void) {
-  console.log('enter active')
+  console.log('enterActive')
   setTimeout(() => done(), 3000)
 }
 
 function leaveActive(el: Element, done: () => void) {
-  console.log('leave active')
+  console.log('leave-active')
   setTimeout(() => done(), 3000)
 }
 </script>
 
 <template>
   <div>
-    <el-button type="primary" @click="display = !display">switch</el-button>
+    <el-button type="primary" @click="displayOrNot = !displayOrNot">switch</el-button>
     <!-- 等价于 <Transition
       enter-active-class="animate__animated animate__fadeIn"
       leave-active-class="animate__animated animate__fadeOut"
@@ -37,12 +37,12 @@ function leaveActive(el: Element, done: () => void) {
       @after-leave="(el: Element) => console.log('after-leave')"
       @leave-cancelled="(el: Element) => console.log('leave-cancelled')"
     >
-      <div class="box" v-if="display">Transition</div>
+      <div class="box" v-show="displayOrNot">Transition</div>
     </Transition>
 
     <Transition name="fade">
       <!-- className prefix -->
-      <div class="box" v-if="display" style="background: lightpink">Transition</div>
+      <div class="box" v-if="displayOrNot" style="background: lightpink">Transition</div>
     </Transition>
   </div>
 </template>
