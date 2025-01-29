@@ -1,4 +1,4 @@
-# vue-pro
+# vue-pinia
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -42,12 +42,4 @@ pnpm test:unit
 
 ```sh
 pnpm lint
-```
-
-> [!tip]
-> How I created this project
-
-```bash
-pnpm create vue@latest
-pnpm install sass
 ```

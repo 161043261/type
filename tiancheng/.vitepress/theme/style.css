@@ -1,20 +1,20 @@
 @font-face {
-  font-family: "Hack";
+  font-family: "DejaVu Sans Mono";
   src: url("../../src/assets/hack-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Hack";
+  font-family: "DejaVu Sans Mono";
   src: url("../../src/assets/hack-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 :root {
-  --vp-font-family-base: "Iosevka", "Menlo", "Hack", "PingFang SC",
-    "Microsoft YaHei", monospace;
-  --vp-font-family-mono: "Iosevka", "Menlo", "Hack", "PingFang SC",
-    "Microsoft YaHei", monospace;
+  --vp-font-family-base: "Iosevka", "Menlo", "DejaVu Sans Mono",
+    "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace;
+  --vp-font-family-mono: "Iosevka", "Menlo", "DejaVu Sans Mono",
+    "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace;
 }

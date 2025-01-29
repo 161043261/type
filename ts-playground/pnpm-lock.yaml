@@ -17,9 +17,6 @@ importers:
       express:
         specifier: ^4.21.2
         version: 4.21.2
-      genshin-data:
-        specifier: ^0.47.0
-        version: 0.47.0
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -1587,10 +1584,6 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
-
-  genshin-data@0.47.0:
-    resolution: {integrity: sha512-nUgUU10nwkGIRlYZZwNjAGv1v88xs2QXUWZNmZMtOKzGJkweFLjluKzViRA0Ji1e3bj1P3k81gASsV4U41UMTQ==}
-    engines: {node: '>=13'}
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -4027,8 +4020,6 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  genshin-data@0.47.0: {}
-
   gensync@1.0.0-beta.2: {}
 
   get-intrinsic@1.2.6:
@@ -4592,7 +4583,6 @@ snapshots:
       body-parser: 1.20.3
       cors: 2.8.5
       express: 4.21.2
-      genshin-data: 0.47.0
       jsonwebtoken: 9.0.2
       lodash: 4.17.21
       mongoose: 8.8.2

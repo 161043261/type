@@ -12,7 +12,7 @@
     "source.fixAll": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "editor.fontFamily": "Iosevka, Microsoft YaHei",
+  // "editor.fontFamily": "Iosevka, Menlo, DejaVu Sans Mono, Cascadia Code, PingFang SC, Microsoft YaHei",
   "editor.formatOnSave": true,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {

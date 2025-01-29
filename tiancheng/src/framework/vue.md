@@ -17,7 +17,7 @@ MVVM, Model-View-ViewModel 架构
 
 优势
 
-1. . 省略 for..in 遍历
+1. 省略 for..in 遍历
 2. 可以监听数组的 length 属性, 数组的索引
 3. 可以监听新增属性操作, 删除属性操作
 
@@ -108,7 +108,7 @@ SFC, Single File Component 单文件组件
       "",
       "</style>"
     ],
-    "description": "Single file component"
+    "description": "Composition API"
   }
 }
 ```

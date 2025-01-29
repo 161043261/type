@@ -10,7 +10,8 @@
 
 <style>
 * {
-  font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
+  font-family: 'Iosevka', 'Menlo', 'DejaVu Sans Mono', 'Cascadia Code', 'PingFang SC',
+    'Microsoft YaHei', monospace;
 }
 
 body {

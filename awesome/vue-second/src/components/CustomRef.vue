@@ -19,7 +19,8 @@ let { customRefMsg } = useCustomRefMsg('Hello World', 3000)
 
 <style>
 * {
-  font-family: 'Hack', 'Iosevka', 'Menlo', 'PingFang SC', 'Microsoft YaHei', monospace;
+  font-family: 'Iosevka', 'Menlo', 'DejaVu Sans Mono', 'Cascadia Code', 'PingFang SC',
+    'Microsoft YaHei', monospace;
 }
 
 .customRef {
