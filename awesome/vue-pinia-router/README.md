@@ -5,3 +5,7 @@
 给我一辈子, 送你离开
 等不到天亮, 美梦就醒来
 我们都自由自在
+
+```bash
+pnpm create vue@latest
+```

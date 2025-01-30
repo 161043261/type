@@ -3,6 +3,11 @@ import PiniaDemo from './components/PiniaDemo.vue'
 import PiniaDemo2 from './components/PiniaDemo2.vue'
 import PiniaFoo from './components/PiniaFoo.vue'
 import PiniaBar from './components/PiniaBar.vue'
+
+function clearLocalStorage() {
+  localStorage.clear()
+  location.reload(); // 
+}
 </script>
 
 <template>
@@ -12,6 +17,7 @@ import PiniaBar from './components/PiniaBar.vue'
     <h1>Pinia 持久化插件</h1>
     <PiniaFoo />
     <PiniaBar />
+    <button @click="clearLocalStorage">clearLocalStorage</button>
   </div>
 </template>
 

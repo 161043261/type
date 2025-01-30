@@ -61,6 +61,7 @@ export const useUserStore2 = defineStore('user2', () => {
     age.value += delta
   }
 
+  // 使用 setup 语法创建的 store 仓库实例没有 $reset 方法, 需要手动实现
   const $reset: () => void = () => {
     ;[name.value, age.value, foobar.foo] = ['$reset', 1, 'bar']
   }
