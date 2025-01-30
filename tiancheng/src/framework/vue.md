@@ -86,7 +86,9 @@ SFC, Single File Component 单文件组件
       "</script>",
       "",
       "<template>",
+      "  <div class=\"\">",
       "",
+      "  </div>",
       "</template>",
       "",
       "<style scoped lang=\"css\">",
@@ -367,7 +369,7 @@ const arr = ref<string[]>(["a", "b", "c", "d"]);
 export default {
   data() {
     return {
-      // 响应式变量
+      // 响应式对象
       age: 22,
     };
   },
@@ -376,7 +378,7 @@ export default {
 
 - ref 深层响应式
 - shallowRef 浅层响应式
-- isRef 判断是否为使用 ref, shallowRef 创建的响应式变量
+- isRef 判断是否为使用 ref, shallowRef 创建的响应式对象
   - `isRef(refObj), isRef(shallowRefObj)` 返回 true
   - `isRef(reactiveObj), isRef(shallowReactiveObj)` 返回 false
 - triggerRef 调用 triggerRef 强制触发深度响应式, `shallowRef + triggerRef` 等价于 `ref`
@@ -553,14 +555,14 @@ const readonlyFullName = computed<string>(
 
 ### watch
 
-1. 侦听 ref 创建的响应式变量, 默认浅层侦听 (侦听原始值的地址, deep: false 或 deep: 0)
+1. 侦听 ref 创建的响应式对象, 默认浅层侦听 (侦听原始值的地址, deep: false 或 deep: 0)
    - `deep: true` 开启深层侦听, 性能很差
    - deep 也可以是一个数字, 表示最大侦听深度
    - 默认 `deep: 0`, 表示侦听原始值的地址 (即 .value 这一层)
    - `deep: 1`, 表示最大侦听深度为 1 (即 .value.propName 这一层)
-2. 侦听 reactive 创建的响应式变量, 默认开启深度侦听 (deep: true), 性能很差
-3. 当原始值的地址没有改变时, 回调函数中 newVal === oldVal === 当前响应式变量的值 (ref.value, reactive)
-4. 可以通过传递一个 getter, 侦听 reactive 创建的响应式变量中指定的属性
+2. 侦听 reactive 创建的响应式对象, 默认开启深度侦听 (deep: true), 性能很差
+3. 当原始值的地址没有改变时, 回调函数中 newVal === oldVal === 当前响应式对象的值 (ref.value, reactive)
+4. 可以通过传递一个 getter, 侦听 reactive 创建的响应式对象中指定的属性
 5. 回调函数的参数 newVal, oldVal; 可选参数 onCleanup, 先执行, 等价于 `onWatcherCleanup`
 6. 回调函数默认懒执行
    - 默认 `immediate: false`, 即懒执行 callback

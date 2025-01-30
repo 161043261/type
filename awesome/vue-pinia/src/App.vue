@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import PiniaDemo from './components/PiniaDemo.vue'
 import PiniaDemo2 from './components/PiniaDemo2.vue'
+import PiniaFoo from './components/PiniaFoo.vue';
+import PiniaBar from './components/PiniaBar.vue';
 </script>
 
 <template>
   <div>
     <PiniaDemo />
     <PiniaDemo2 />
+    <h1>Pinia 持久化插件</h1>
+    <PiniaFoo />
+    <PiniaBar />
   </div>
 </template>
 

@@ -2,27 +2,27 @@
 import { reactive, ref, watch } from 'vue'
 
 const primaryType = ref('foobar') // 原始值为基本类型
-// ref 创建的响应式变量, 原始值为引用类型
+// ref 创建的响应式对象, 原始值为引用类型
 const refType = ref({ foo: { bar: 'foobar' } })
-// reactive 创建的响应式变量, 原始值为引用类型
+// reactive 创建的响应式对象, 原始值为引用类型
 const refType2 = reactive({ foo: { bar: 'foobar' } })
 
-// 侦听一个响应式变量, 默认浅层侦听 (侦听原始值的地址)
+// 侦听一个响应式对象, 默认浅层侦听 (侦听原始值的地址)
 watch(primaryType, (newVal: string, oldVal: string) => {
   console.log('[primaryType] shallow:', newVal, oldVal) // callback
 })
 
-// 侦听 ref 创建的响应式变量, 默认浅层侦听 (侦听原始值的地址)
+// 侦听 ref 创建的响应式对象, 默认浅层侦听 (侦听原始值的地址)
 watch(refType, (newVal, oldVal) => {
   console.log('[refType] shallow:', newVal, oldVal) // callback
 })
 
-// 侦听多个响应式变量
+// 侦听多个响应式对象
 watch([primaryType, refType], (newVal, oldVal) => {
   console.log('[primaryType, refType] shallow:', newVal, oldVal) // callback
 })
 
-// 侦听 ref 创建的响应式变量, 默认浅层监听 (deep: false 或 deep: 0)
+// 侦听 ref 创建的响应式对象, 默认浅层监听 (deep: false 或 deep: 0)
 watch(
   refType,
   (newVal, oldVal) => {
@@ -40,13 +40,13 @@ watch(
   },
 )
 
-// 侦听 reactive 创建的响应式变量, 默认开启深度监听 (deep: true), 性能很差
+// 侦听 reactive 创建的响应式对象, 默认开启深度监听 (deep: true), 性能很差
 watch(refType2, (newVal, oldVal) => {
   console.log('[refType2] reactive:', newVal, oldVal) // callback
   console.log(newVal === oldVal, newVal === refType2)
 })
 
-// 可以通过传递一个 getter, 侦听 reactive 创建的响应式变量中指定的属性
+// 可以通过传递一个 getter, 侦听 reactive 创建的响应式对象中指定的属性
 // 不会侦听到 refType2.foo.bar (changeRefType3) 的改变
 watch(
   () => refType2.foo,
