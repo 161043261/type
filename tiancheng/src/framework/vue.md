@@ -1459,8 +1459,8 @@ const SuspenseAsync = defineAsyncComponent(
 
 ![defineAsyncComponent](../assets/defineAsyncComponent.png)
 
-- 红色: public 目录下, 未打包
-- 蓝色: 路由组件, 分开打包
+- 红色: public 目录下, 合并打包
+- 蓝色: 异步导入的路由组件, 分开打包
 - 绿色: 异步组件, 分开打包, 懒加载
 
 ## Teleport 传送模板

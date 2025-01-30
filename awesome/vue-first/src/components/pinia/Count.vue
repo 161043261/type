@@ -21,10 +21,10 @@ function sub() {
 }
 
 // destruct assignment
-// const {sum, n} = countStore; // sum and n are NO LONGER reactive!!!
+// const { sum, n } = countStore; // sum and n are NO LONGER reactive!!!
 
 // 1. use vue.toRefs
-// const {sum, n} = toRefs(countStore)
+// const { sum, n } = toRefs(countStore)
 
 // 2. use pinia.storeToRefs (recommend)
 const { sum, n, big, bigger, biggest } = storeToRefs(countStore)

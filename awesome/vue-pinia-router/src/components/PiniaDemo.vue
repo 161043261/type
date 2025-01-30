@@ -30,7 +30,7 @@ function totalChange() {
 
 // 直接解构会失去响应式
 // const { age, name } = userStore;
-// 使用 storeToRefs 解构可以保留响应式
+// 使用 pinia 的 storeToRefs 解构可以保留响应式 (也可以使用 vue 的 toRef, toRefs)
 // const { age, name } = storeToRefs(userStore);
 
 /**

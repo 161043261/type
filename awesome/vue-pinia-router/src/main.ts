@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia, type PiniaPlugin, type PiniaPluginContext } from 'pinia'
 import App from './App.vue'
 import { deepToRaw } from './utils'
+import router from './router'
 
 function setLocalStorage(key: string, value: unknown) {
   const rawValue = deepToRaw(value)
@@ -36,4 +37,5 @@ const pinia = createPinia()
 pinia.use(makePiniaPersistencePlugin())
 
 app.use(pinia)
+app.use(router)
 app.mount('#app')
