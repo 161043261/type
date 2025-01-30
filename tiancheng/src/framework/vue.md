@@ -78,37 +78,22 @@ SFC, Single File Component 单文件组件
 
 ```json
 {
-  // Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and
-  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
-  // same ids are connected.
-  // Example:
-  // "Print to console": {
-  // 	"prefix": "log",
-  // 	"body": [
-  // 		"console.log('$1');",
-  // 		"$2"
-  // 	],
-  // 	"description": "Log output to console"
-  // }
   "Vue3": {
     "prefix": " v3",
     "body": [
-      "<script lang=\"ts\" setup>",
+      "<script setup lang=\"ts\">",
       "",
       "</script>",
       "",
       "<template>",
-      "  <div>",
       "",
-      "  </div>",
       "</template>",
       "",
-      "<style lang=\"css\" scoped>",
+      "<style scoped lang=\"css\">",
       "",
       "</style>"
     ],
-    "description": "Composition API"
+    "description": "Snippet (Composition API)"
   }
 }
 ```
@@ -148,6 +133,7 @@ export default {
     const addCnt = () => {
       cnt.value++;
     };
+    // 一定要 return
     return {
       cnt,
       addCnt,

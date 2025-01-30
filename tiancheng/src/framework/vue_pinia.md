@@ -239,7 +239,11 @@ export const useUserStore2 = defineStore("user2", () => {
   const changeAge: (delta: number) => void = (delta: number) => {
     age.value += delta;
   };
-  // 一定要 return
+  // 使用 setup 语法创建的 store 仓库实例未实现 $reset 方法, 需要手动实现
+  const $reset: () => void = () => {
+    [name.value, age.value, foobar.foo] = ["$reset", 1, "bar"];
+  };
+  // 一定要 return, 类比组件的 setup
   return {
     name, // Ref<string>
     age, // Ref<number>
@@ -247,6 +251,7 @@ export const useUserStore2 = defineStore("user2", () => {
     newName, // ComputedRef<string>
     setDefaultSync, // () => void
     changeAge, // (delta: number) => void
+    $reset,
   };
 }); // storeSetup 函数
 ```
@@ -282,7 +287,7 @@ function totalChange() {
     </button>
     <!-- getters -->
     <div>{{ userStore2.newName }}</div>
-    <!-- store 仓库实例 API -->
+    <!-- 手动实现的 $reset -->
     <button @click="userStore2.$reset()">$reset</button>
   </div>
 </template>
@@ -300,4 +305,9 @@ function totalChange() {
 ## Pinia 持久化
 
 - Pinia 和 Vuex 的通病: 页面刷新后 state 状态丢失
-- 解决: 使用 Pinia 持久化插件
+- 解决: 编写 Pinia 持久化插件 (localStorage, sessionStorage)
+
+对比 localStorage 和 sessionStorage
+
+- localStorage: 数据存储到磁盘, 没有过期时间
+- sessionStorage: 数据缓存到内存, 会话结束时, 自动清除数据
