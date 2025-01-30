@@ -56,7 +56,7 @@ export default {
   ],
   "/framework/": [
     { text: "Vue3 基础", link: "/framework/vue" },
-    { text: "Vue3 高级", link: "/framework/vue_pro" },
+    { text: "Vue3 高级", link: "/framework/d2vue" },
     { text: "Vue3 Pinia", link: "/framework/vue_pinia" },
     { text: "Vue3 路由", link: "/framework/vue_router" },
     { text: "React", link: "/framework/react" },

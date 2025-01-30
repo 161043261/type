@@ -30,7 +30,7 @@ export const _useCountStore = defineStore('count', () => {
   // state
   const n = ref(0)
   const arr = ref([1, 2, 3])
-  // functions, getters
+  // actions
   function addSum(delta: number) {
     n.value += delta
   }
@@ -38,7 +38,7 @@ export const _useCountStore = defineStore('count', () => {
     return 100 * n.value
   }
 
-  // computed property
+  // getters (computed property)
   const sum = computed(() => {
     return arr.value.reduce((pre: number, cur: number) => pre + cur, 0)
   })

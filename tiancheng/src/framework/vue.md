@@ -327,9 +327,10 @@ console.log(str);
 > [!IMPORTANT]
 > diff 算法
 
-**没有 key**: 替换, 新增, 删除. 性能差
+- 没有 key: 替换, 新增, 删除性能差
+- 有 key: 性能好
 
-**有 key**: 性能好
+vnode: Virtual DOM Node
 
 1. 从头到尾对比 vnode 类型和 key, 不同则 break, 转到 2
 2. 从尾到头对比 vnode 类型和 key, 不同则 break, 转到 3
@@ -339,8 +340,8 @@ console.log(str);
 
 原序列 2,3,4,0,6,1 的最长递增子序列为 2,3,4. 将原 vnode 序列的最长递增子序列作为参照序列, 移动不在参照序列中的节点
 
-- **错误实践**: 使用索引 index (拼接其他值) 作为 key
-- **正确实践**: 使用唯一值 id 作为 key
+- 错误实践: 使用索引 index (拼接其他值) 作为 key
+- 正确实践: 使用唯一值 id 作为 key
 
 ```vue
 <script lang="ts" setup>
@@ -490,6 +491,7 @@ console.log(itemsProxy, readonlyItemsProxy);
 ## toRef, toRefs, toRaw
 
 - toRef, toRefs 将 refObj.value 或 reactiveObj 的属性转换为响应式对象
+- 直接解构会失去响应式, 使用 toRefs 解构可以保留响应式
 - toRaw: 将 refObj.value 或 reactiveObj 转换为普通对象
 
 ```vue
@@ -586,7 +588,7 @@ const readonlyFullName = computed<string>(
      - `flush: 'post'` 组件挂载/更新后触发 callback
    - `once: true` 一次性侦听器, callback 只触发一次
    - 调试选项 onTrigger, onTrack 例 `onTrigger(ev) { debugger }`
-8. watch 可以返回停止侦听的函数 unwatch
+8. watch 可以返回停止侦听的函数
 
 [WatchDemo](https://github.com/161043261/type/blob/main/awesome/vue-third/src/components/WatchDemo.vue)
 
