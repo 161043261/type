@@ -1,19 +1,12 @@
-function intersect(nums1: number[], nums2: number[]): number[] {
-  const toMap = (nums: number[]) => {
-    const numToCnt = new Map<number, number>();
-    nums.forEach((num) => numToCnt.set(num, (numToCnt.get(num) ?? 0) + 1));
-    return numToCnt;
-  };
-  const [numToCnt1, numToCnt2] = [toMap(nums1), toMap(nums2)];
-  const ans: number[] = [];
-  for (const [num, cnt] of numToCnt1) {
-    if (numToCnt2.has(num)) {
-      const len = Math.min(cnt, numToCnt2.get(num)!);
-      ans.push(...new Array(len).fill(num));
-    }
+function reverseStr(s: string, k: number): string {
+  let ans = "";
+  for (let i = 0; i < s.length; i += 2 * k) {
+    const n = Math.min(s.length - i, k);
+    const subStr = s.substring(i, i + n);
+    ans += subStr.split("").reverse().join("");
+    ans += s.substring(i + n, Math.min(s.length, i + 2 * k));
   }
   return ans;
 }
-
-console.log(intersect([1, 2, 2, 1], [2, 2]));
-console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]));
+console.log(reverseStr("abcdefg", 2));
+console.log(reverseStr("abcd", 2));

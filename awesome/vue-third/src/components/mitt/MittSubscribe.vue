@@ -8,14 +8,14 @@ const timeStr = ref('mitt')
 const curInstance = getCurrentInstance()
 function sub() {
   // eventType === "eventType", 订阅指定类型的事件
-  // 回调函数的第一个参数是发布的参数列表
+  // 回调函数的第一个参数是发布的消息数组
   curInstance?.proxy?.$bus.on('eventType', (args: any) => {
     console.log('args:', args)
     ;[flag.value, timeStr.value] = args
   })
 
   // eventType === '*', 订阅所有类型的事件
-  // 回调函数的第一个参数是事件类型, 第二个参数是发布的参数列表
+  // 回调函数的第一个参数是事件类型, 第二个参数是发布的消息数组
   // curInstance?.proxy?.$bus.on('*', (eventType, args) => {
   //   console.log("eventType:", eventType);
   //   console.log("args:", args)

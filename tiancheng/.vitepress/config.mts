@@ -26,4 +26,54 @@ export default defineConfig({
     sidebar: sidebar,
     socialLinks: [{ icon: "github", link: "https://github.com/161043261" }],
   },
+  transformHead({ assets }) {
+    const MenloRegular = assets.find((file) => /Menlo-Regular\.\w+\.woff2/)!;
+    const MenloItalic = assets.find((file) => /Menlo-Italic\.\w+\.woff2/)!;
+    const MenloBold = assets.find((file) => /Menlo-Bold\.\w+\.woff2/)!;
+    const MenloBoldItalic = assets.find(
+      (file) => /Menlo-BoldItalic\.\w+\.woff2/,
+    )!;
+    return [
+      [
+        "link",
+        {
+          rel: "preload",
+          href: MenloRegular,
+          as: "font",
+          type: "font/woff2",
+          crossorigin: "",
+        },
+      ],
+      [
+        "link",
+        {
+          rel: "preload",
+          href: MenloItalic,
+          as: "font",
+          type: "font/woff2",
+          crossorigin: "",
+        },
+      ],
+      [
+        "link",
+        {
+          rel: "preload",
+          href: MenloBold,
+          as: "font",
+          type: "font/woff2",
+          crossorigin: "",
+        },
+      ],
+      [
+        "link",
+        {
+          rel: "preload",
+          href: MenloBoldItalic,
+          as: "font",
+          type: "font/woff2",
+          crossorigin: "",
+        },
+      ],
+    ];
+  },
 });

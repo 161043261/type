@@ -2,6 +2,9 @@
 
 ## 使用 vue-router
 
+- RouterLink 链接到 to 属性指定的路由
+- RouterView 内置组件, 路由匹配到的视图组件的容器
+
 ::: code-group
 
 ```vue [LoginView.vue]
@@ -65,6 +68,26 @@ const router = createRouter({
 export default router;
 ```
 
+```vue [App.vue]
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+</script>
+
+<template>
+  <div>
+    <!-- RouterLink 链接到 to 属性指定的路由 -->
+    <RouterLink style="text-decoration: none; margin-left: 10px" to="/"
+      >Login</RouterLink
+    >
+    <RouterLink style="text-decoration: none; margin-left: 10px" to="/reg"
+      >Register</RouterLink
+    >
+    <!-- RouterView 路由匹配到的视图组件的容器 -->
+    <RouterView></RouterView>
+  </div>
+</template>
+```
+
 ```ts [main.ts]
 // @/main.ts
 import { createApp } from "vue";
@@ -76,12 +99,12 @@ app.use(router);
 app.mount("#app");
 ```
 
-## 路由模式
-
 :::
 
-| mode           | Vue2     | Vue3                 |
-| -------------- | -------- | -------------------- |
-| 历史记录       | history  | createWebHistory     |
-| 哈希           | hash     | createWebHashHistory |
-| SSR 服务端渲染 | abstract | createMemoryHistory  |
+## 路由模式
+
+| mode           | Vue2     | Vue3                   |
+| -------------- | -------- | ---------------------- |
+| 历史记录       | history  | createWebHistory()     |
+| 哈希           | hash     | createWebHashHistory() |
+| SSR 服务端渲染 | abstract | createMemoryHistory()  |

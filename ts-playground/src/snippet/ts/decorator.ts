@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // 使用高阶函数
 const cache: () => MethodDecorator = () => {
-  // 缓存参数列表到返回值的映射
+  // 缓存参数数组到返回值的映射
   const args2returnVal = new Map<string, any>();
   return (target, propertyKey, descriptor: any) => {
     const originalMethod: any = descriptor.value;
     descriptor.value = function (...args) {
-      // 这里使用 JSON.stringify 将参数列表转换为字符串
-      // TODO 可能有更好的方法
+      // 使用 JSON.stringify 将参数数组转换为字符串
       const argsStr = JSON.stringify(args);
       if (args2returnVal.has(argsStr)) {
         console.log("Cache hit"); // 缓存命中
