@@ -103,8 +103,71 @@ app.mount("#app");
 
 ## 路由模式
 
-| mode           | Vue2     | Vue3                   |
-| -------------- | -------- | ---------------------- |
-| 历史记录       | history  | createWebHistory()     |
-| 哈希           | hash     | createWebHashHistory() |
-| SSR 服务端渲染 | abstract | createMemoryHistory()  |
+| 路由模式                                     | vue-router 4                      | vue-router 3      |
+| -------------------------------------------- | --------------------------------- | ----------------- |
+| HTML5 模式 (history 模式, 推荐)              | `history: createWebHistory()`     | `mode: 'history'` |
+| hash 模式 (#, 对 SEO 不友好)                 | `history: createWebHashHistory()` | `mode: 'hash'`    |
+| Memory 模式, 适合 node 环境和 SSR 服务端渲染 | `history: createMemoryHistory()`  |                   |
+
+### hash 模式
+
+`location.hash` 是 URL 中 hash(#) 和后面的部分, 例 `http://localhost:5173/framework/vue#sfc`, `location.hash = '#sfc'`, 改变 URL 中的 hash 值不会引起页面刷新, 通常用于单页面内的导航
+
+> [!warning] hash 模式和 hashchange 事件
+>
+> - Vue3 路由的 hash 模式通过改变 `location.hash` 的值, 触发 hashchange 事件
+> - vue-router 监听 hashchange 事件, 实现无刷新的路由跳转, 对 SEO 不友好
+
+```js
+addEventListener("hashchange", (ev) => {
+  console.log(ev);
+});
+```
+
+#### 改变 URL 的方式
+
+1. 改变 `location.href` 的值
+2. 改变 `location.hash` 的值, 不会引起页面刷新
+3. 点击浏览器的前进/后退按钮
+4. 点击 `<a>` 标签 (例 `<RouterLink>` 默认渲染为 `<a>` 标签)
+5. 调用 `history.pushState(), history.replaceState()`, 不会引起页面刷新
+6. 调用 `history.back(), history.go(delta: number), history.forward()`, 等价于 3.
+
+### HTML5 模式 (history 模式)
+
+> [!warning] HTML5 模式 (history 模式) 和 popstate 事件
+>
+> - 点击浏览器的前进/后退按钮改变 URL 时, 会触发 popstate 事件
+> - 点击 `<a>` 标签, 或调用 `history.pushState(), history.replaceState()` 改变 URL 时, 不会触发 popstate 事件
+> - vue-router 拦截 `<a>` 标签的点击事件和 `history.pushState(), history.replaceState()` 的调用, 调用 `history.back(), > history.go(delta: number), history.forward()` 触发 popstate 事件
+> - vue-router 监听 popstate 事件, 实现无刷新的路由跳转
+
+```js
+addEventListener("popstate", (ev) => {
+  console.log(ev);
+});
+```
+
+```js
+location.href = "http://localhost:5173/framework/vue"; // 页面刷新
+console.log(history.length); // 2
+
+history.pushState({} /** state */, "" /** unused */, "push" /** url */);
+console.log(history.length); // 3
+console.log(location.href); // http://localhost:5173/framework/push
+
+history.pushState({}, "", "/push");
+console.log(history.length); // 4
+console.log(location.href); // http://localhost:5173/push
+
+location.href = "http://localhost:5173/framework/vue"; // 页面刷新
+console.log(history.length); // 5
+
+history.replaceState({}, "", "replace");
+console.log(history.length); // 5
+console.log(location.href); // http://localhost:5173/framework/replace
+
+history.replaceState({}, "", "/replace");
+console.log(history.length); // 5
+console.log(location.href); // http://localhost:5173/replace
+```

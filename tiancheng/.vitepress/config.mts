@@ -27,18 +27,22 @@ export default defineConfig({
     socialLinks: [{ icon: "github", link: "https://github.com/161043261" }],
   },
   transformHead({ assets }) {
-    const MenloRegular = assets.find((file) => /Menlo-Regular\.\w+\.woff2/)!;
-    const MenloItalic = assets.find((file) => /Menlo-Italic\.\w+\.woff2/)!;
-    const MenloBold = assets.find((file) => /Menlo-Bold\.\w+\.woff2/)!;
-    const MenloBoldItalic = assets.find(
-      (file) => /Menlo-BoldItalic\.\w+\.woff2/,
+    const Iosevka = assets.find((file) => /Iosevka-SemiExtended\.\w+\.woff2/)!;
+    const IosevkaItalic = assets.find(
+      (file) => /Iosevka-SemiExtendedItalic\.\w+\.woff2/,
+    )!;
+    const IosevkaBold = assets.find(
+      (file) => /Iosevka-SemiExtendedBold\.\w+\.woff2/,
+    )!;
+    const IosevkaBoldItalic = assets.find(
+      (file) => /Iosevka-SemiExtendedBoldItalic\.\w+\.woff2/,
     )!;
     return [
       [
         "link",
         {
           rel: "preload",
-          href: MenloRegular,
+          href: Iosevka,
           as: "font",
           type: "font/woff2",
           crossorigin: "",
@@ -48,7 +52,7 @@ export default defineConfig({
         "link",
         {
           rel: "preload",
-          href: MenloItalic,
+          href: IosevkaItalic,
           as: "font",
           type: "font/woff2",
           crossorigin: "",
@@ -58,7 +62,7 @@ export default defineConfig({
         "link",
         {
           rel: "preload",
-          href: MenloBold,
+          href: IosevkaBold,
           as: "font",
           type: "font/woff2",
           crossorigin: "",
@@ -68,7 +72,7 @@ export default defineConfig({
         "link",
         {
           rel: "preload",
-          href: MenloBoldItalic,
+          href: IosevkaBoldItalic,
           as: "font",
           type: "font/woff2",
           crossorigin: "",

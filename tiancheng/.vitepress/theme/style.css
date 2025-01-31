@@ -1,42 +1,43 @@
 @font-face {
-  font-family: "Menlo Web";
+  font-family: "Iosevka Web";
   font-display: swap;
   font-weight: 400;
   font-stretch: normal;
   font-style: normal;
-  src: url("../../src/assets/Menlo-Regular.woff2") format("woff2");
+  src: url("../../src/assets/Iosevka-SemiExtended.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Menlo Web";
+  font-family: "Iosevka Web";
   font-display: swap;
   font-weight: 400;
   font-stretch: normal;
   font-style: italic;
-  src: url("../../src/assets/Menlo-Italic.woff2") format("woff2");
+  src: url("../../src/assets/Iosevka-SemiExtendedItalic.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Menlo Web";
+  font-family: "Iosevka Web";
   font-display: swap;
-  font-weight: 600;
+  font-weight: 700;
   font-stretch: normal;
   font-style: normal;
-  src: url(../../src/assets/Menlo-Bold.woff2) format("woff2");
+  src: url("../../src/assets/Iosevka-SemiExtendedBold.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Menlo Web";
+  font-family: "Iosevka Web";
   font-display: swap;
-  font-weight: 600;
+  font-weight: 700;
   font-stretch: normal;
   font-style: italic;
-  src: url(../../src/assets/Menlo-BoldItalic.woff2) format("woff2");
+  src: url("../../src/assets/Iosevka-SemiExtendedBoldItalic.woff2")
+    format("woff2");
 }
 
 :root {
-  --vp-font-family-base: "Menlo", "DejaVu Sans Mono", "Menlo Web",
+  --vp-font-family-base: "Menlo", "DejaVu Sans Mono", "Iosevka Web",
     "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace;
-  --vp-font-family-mono: "Menlo", "DejaVu Sans Mono", "Menlo Web",
+  --vp-font-family-mono: "Menlo", "DejaVu Sans Mono", "Iosevka Web",
     "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace;
 }
