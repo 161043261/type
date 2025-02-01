@@ -181,7 +181,7 @@ export default createRouter({
 </template>
 ```
 
-## 编程式导航
+## 编程式路由
 
 - `router.push` 向 history 栈顶添加一条记录
 - `router.replace` 替换 history 栈顶的记录
@@ -223,8 +223,11 @@ function next(delta?: number) {
 
 ## 路由传参
 
-- query: URL 查询参数 (URL query parameters)
-- params: URL 路径参数 (URL path parameters)
+1. 使用 Pinia 缓存
+2. query: URL 查询参数 (URL query parameters)
+3. state
+4. 路由前置守卫
+5. params: URL 路径参数 (URL path parameters)
 
 ::: code-group
 
@@ -236,7 +239,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/RegisterView.vue"),
   },
   {
-    path: "/register/:id", // id: URL 路径参数, 必须传递
+    path: "/register/:id", // id: URL 路径参数
+    // :id 必传参数, :name? :price? 可选参数
     name: "RegisterWithId",
     component: () => import("@/views/RegisterView.vue"),
   },
@@ -316,6 +320,32 @@ console.log(isProxy(route)); // true
 
 :::
 
+### 布尔模式
+
+props 是一个布尔值时, `props: true`, 将 route.params 设置为路由组件的 props
+
+对于有命名视图的路由: `props: { default: true, nameB: true, nameC: false }`
+
+### 对象模式
+
+props 是一个对象时, `props: { foo: 1 }`, 将该对象 `{ foo: 1 }` 设置为路由组件的 props
+
+### 函数模式
+
+props 是一个函数时, `props: (route) => route.query`, 将该函数的返回值设置为路由组件的 props
+
+### 使用 RouterView 插槽传递参数
+
+```vue
+<template>
+  <!-- RouterView 插槽 -->
+  <RouterView v-slot="{ Component }">
+    <!-- 使用 RouterView 插槽传递 propKey -->
+    <component :is="Component" propKey="propVal"></component>
+  </RouterView>
+</template>
+```
+
 ## 嵌套路由
 
 ::: code-group
@@ -361,9 +391,11 @@ const routes: Array<RouteRecordRaw> = [
 
 ## 命名视图
 
+RouterView 的 name 属性
+
 ::: code-group
 
-```ts{6} [@/router/index.ts]
+```ts{6,7} [@/router/index.ts]
 const routes: Array<RouteRecordRaw> = [
   // 命名视图
   {
@@ -413,6 +445,9 @@ const routes: Array<RouteRecordRaw> = [
 
 ## 路由重定向, 路由别名
 
+- 路由重定向 redirect
+- 路由别名 alias
+
 ```ts
 const routes: Array<RouteRecordRaw> = [
   {
@@ -446,3 +481,9 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 ```
+
+## 路由守卫
+
+### 前置守卫
+
+### 后置守卫

@@ -34,6 +34,8 @@ const router = createRouter({
           name: 'queryChild',
           path: 'child',
           component: QueryChild, // <QueryChild/>
+
+          //! props 是一个函数时, `props: (route) => route.query`, 将该函数的返回值设置为路由组件的 props
           props(route) {
             return route.query
           } // <QueryChild :id=? :title=? :content=?/>
@@ -49,11 +51,15 @@ const router = createRouter({
           name: 'paramChild',
           path: 'child/:id/:title/:content?', // ? optional path variable
           component: ParamChild, // <ParamChild />
+
+          //! props 是一个布尔值时, `props: true`, 将 route.params 设置为路由组件的 props
           props: true // <ParamChild :id=? :title=? :content=? />
           // props(route) { return route.params; }
         }
       ]
     },
+
+    // props 是一个对象时, `props: { foo: 1 }`, 将该对象 `{ foo: 1 }` 设置为路由组件的 props
     { path: '/', redirect: '/computed' },
     { path: '/props', component: Props },
     { path: '/event', component: Event },

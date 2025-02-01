@@ -2,6 +2,7 @@
 import { toRefs } from 'vue'
 import { useRoute } from 'vue-router'
 
+// props 是一个函数时, `props: (route) => route.query`, 将该函数的返回值设置为路由组件的 props
 defineProps(['id', 'title', 'content'])
 
 const route = useRoute()

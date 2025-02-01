@@ -1746,7 +1746,7 @@ export default new Bus();
 
 :::
 
-## mitt 发布/订阅第三方库
+## mitt 发布/订阅库
 
 ### 全局使用 mitt
 

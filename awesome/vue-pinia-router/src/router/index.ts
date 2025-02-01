@@ -13,7 +13,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/RegisterView.vue'), // 异步导入的路由组件, 分开打包
   },
   {
-    path: '/register/:id', // id: URL 路径参数, 必须传递
+    path: '/register/:id', // id: URL 路径参数
+    // :id 必传参数, :name? :price? 可选参数
     name: 'RegisterWithId',
     component: () => import('@/views/RegisterView.vue'),
   },

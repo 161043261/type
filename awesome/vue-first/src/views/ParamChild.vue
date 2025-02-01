@@ -4,6 +4,8 @@ import { toRefs } from 'vue'
 
 const route = useRoute()
 let { params } = toRefs(route)
+
+// props 是一个布尔值时, `props: true`, 将 route.params 设置为路由组件的 props
 defineProps(['id', 'title', 'content'])
 </script>
 

@@ -39,7 +39,23 @@ function next(delta?: number) {
     <!-- :replace="true" 可以简写为 replace -->
     <!-- <RouterLink replace :to="{ name: 'Register' }">Register</RouterLink> -->
     <!-- RouterView 路由组件的容器 -->
-    <RouterView></RouterView>
+
+    <RouterView v-slot="{ Component }">
+      <component :is="Component" propKey="propVal"></component>
+    </RouterView>
+
+    <!--
+    @/App.vue
+    <LoginView>
+      <template v-slot="{ Component }">
+        <component :is="Component" propKey="propVal"></component>
+      </template>
+    </LoginView>
+
+    @/views/LoginView.vue
+    <slot></slot>
+    -->
+
     <button @click="routeJumpByURL('/')">jumpToLoginByURL</button>
     <button @click="routeJumpByURL('/register')">jumpToRegisterByURL</button>
     <button @click="routeJumpByName('Login')">jumpToLoginByName</button>
