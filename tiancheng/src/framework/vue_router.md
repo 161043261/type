@@ -316,4 +316,133 @@ console.log(isProxy(route)); // true
 
 :::
 
-### 嵌套路由
+## 嵌套路由
+
+::: code-group
+
+```ts{13,14} [@/router/index.ts]
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/root",
+    component: () => import("../views/RootView.vue"),
+    children: [
+      {
+        path: "",
+        name: "RootLogin",
+        component: () => import("@/views/LoginView.vue"),
+      },
+      {
+        path: "register",
+        // path: "register", 实际路由 "/root/register"
+        // path: "/register", 实际路由 "/register"
+        name: "RootRegister",
+        component: () => import("@/views/RegisterView.vue"),
+      },
+    ],
+  },
+];
+```
+
+```vue [RootView.vue]
+<template>
+  <div class="root">
+    <h1>Root 父路由组件</h1>
+    <RouterView></RouterView>
+    <!-- 必须加上 /root 父路由前缀 -->
+    <RouterLink style="margin-left: 10px" to="/root">RootLogin</RouterLink>
+    <RouterLink style="margin-left: 10px" to="/root/register"
+      >RootRegister</RouterLink
+    >
+  </div>
+</template>
+```
+
+:::
+
+## 命名视图
+
+::: code-group
+
+```ts{6} [@/router/index.ts]
+const routes: Array<RouteRecordRaw> = [
+  // 命名视图
+  {
+    path: "/container",
+    component: () => import("@/views/ViewsContainer.vue"),
+    redirect: '/container/ab', // 路由重定向
+    alias: '/views/container', // 路由别名
+    children: [
+      {
+        path: "ab",
+        name: 'AB',
+        components: {
+          default: () => import("@/views/NameA.vue"), // 视图名 default
+          nameB: () => import("@/views/NameB.vue"), // 视图名 nameB
+        },
+      },
+      {
+        path: "bc",
+        name: 'BC',
+        components: {
+          nameB: () => import("@/views/NameB.vue"), // 视图名 nameB
+          nameC: () => import("@/views/NameC.vue"), // 视图名 nameC
+        },
+      },
+    ],
+  },
+];
+```
+
+```vue [ViewsContainer.vue]
+<template>
+  <div style="background: azure">
+    <div>name: default (视图 @/views/NameA 的容器)</div>
+    <!-- name="default" -->
+    <RouterView></RouterView>
+    <div>name: nameB (视图 @/views/NameB 的容器)</div>
+    <RouterView name="nameB"></RouterView>
+    <div>name: nameC (视图 @/views/NameC 的容器)</div>
+    <RouterView name="nameC"></RouterView>
+    <RouterLink to="/container/ab">AB</RouterLink>
+    <RouterLink to="/container/bc">BC</RouterLink>
+  </div>
+</template>
+```
+
+:::
+
+## 路由重定向, 路由别名
+
+```ts
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/container",
+    component: () => import("@/views/ViewsContainer.vue"),
+    // redirect: '/container/ab', // 路由重定向
+
+    // redirect: {
+    //   path: '/container/ab',
+    //   // name: 'AB',
+    // },
+
+    // http://localhost:5173/container?k=v
+    // 重定向到 http://localhost:5173/container/ab?k=v
+    redirect: (to) => {
+      console.log("to:", to);
+      // return '/container/ab'
+
+      return {
+        // path: '/container/ab',
+        name: "AB",
+        query: to.query, // 默认
+      };
+    },
+
+    // alias: '/views/container', // 路由别名
+    alias: ["/ViewsContainer", "/views/container"],
+    // http://localhost:5173/ViewsContainer?k=v // 不区分大小写
+    // http://localhost:5173/views/container?k=v
+    // 都重定向到 http://localhost:5173/container/ab?k=v
+  },
+];
+```

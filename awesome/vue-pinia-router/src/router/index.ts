@@ -17,6 +17,71 @@ const routes: Array<RouteRecordRaw> = [
     name: 'RegisterWithId',
     component: () => import('@/views/RegisterView.vue'),
   },
+  // 嵌套路由
+  {
+    path: '/root',
+    component: () => import('@/views/RootView.vue'),
+    children: [
+      {
+        path: '',
+        name: 'RootLogin',
+        component: () => import('@/views/LoginView.vue'),
+      },
+      {
+        path: 'register',
+        name: 'RootRegister',
+        component: () => import('@/views/RegisterView.vue'),
+      },
+    ],
+  },
+  // 命名视图
+  {
+    path: '/container',
+    component: () => import('@/views/ViewsContainer.vue'),
+    // redirect: '/container/ab', //! 路由重定向
+
+    // redirect: {
+    //   path: '/container/ab',
+    //   // name: 'AB',
+    // },
+
+    // http://localhost:5173/container?k=v
+    // 重定向到 http://localhost:5173/container/ab?k=v
+    redirect: (to) => {
+      console.log('to:', to)
+      // return '/container/ab'
+      return {
+        // path: '/container/ab',
+        name: 'AB',
+        query: to.query, // 默认
+      }
+    },
+
+    // alias: '/views/container', //! 路由别名
+    alias: ['/ViewsContainer', '/views/container'],
+    // http://localhost:5173/ViewsContainer?k=v // 不区分大小写
+    // http://localhost:5173/views/container?k=v
+    // 都重定向到 http://localhost:5173/container/ab?k=v
+
+    children: [
+      {
+        path: 'ab',
+        name: 'AB',
+        components: {
+          default: () => import('@/views/NameA.vue'), // 视图名 default
+          nameB: () => import('@/views/NameB.vue'), // 视图名 nameB
+        },
+      },
+      {
+        path: 'bc',
+        name: 'BC',
+        components: {
+          nameB: () => import('@/views/NameB.vue'), // 视图名 nameB
+          nameC: () => import('@/views/NameC.vue'), // 视图名 nameC
+        },
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
