@@ -1,6 +1,6 @@
 # vitepress
 
-vitepress 是一个静态站点生成器 (Static Site Generator, SSG), 每个 md 页面都是 Vue 单文件组件
+vitepress 是一个静态站点生成器 (Static Site Generator, SSG)
 
 ```shell
 pnpm add -D vitepress # npm
@@ -62,22 +62,24 @@ export default defineConfig({
 ````md
 ::: code-group
 
-```json [tsconfig.json]
-{}
+```vue [script]
+<script lang="ts" setup></script>
 ```
 
-```json [tsconfig.app.json]
-{}
+```vue [template]
+<template></template>
 ```
 
 :::
 ````
 
+````md
 ```js{2}
 export default {
   msg: 'highlighted!'
 }
 ```
+````
 
 ```md
 > [!important] | [!tip] | [!note] | [!warning] | [!caution]

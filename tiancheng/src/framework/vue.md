@@ -8,6 +8,24 @@ MVVM, Model-View-ViewModel 架构
 2. ViewModel 例 .vue, .jsx, .tsx
 3. Model 数据层
 
+## 使用 vscode 调试
+
+```json
+// launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "vue3: chrome",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/src"
+    }
+  ]
+}
+```
+
 ## Vue3 新特性
 
 ### 重写双向数据绑定
@@ -1459,7 +1477,7 @@ const SuspenseAsync = defineAsyncComponent(
 
 ![defineAsyncComponent](../assets/defineAsyncComponent.png)
 
-- 红色: public 目录下, 合并打包
+- 红色: public 目录下, 不打包
 - 蓝色: 异步导入的路由组件, 分开打包
 - 绿色: 异步组件, 分开打包, 懒加载
 
