@@ -1,8 +1,43 @@
-import { createApp } from 'vue'
+import { createApp, createVNode, render } from 'vue'
 import { createPinia, type PiniaPlugin, type PiniaPluginContext } from 'pinia'
 import App from './App.vue'
 import { deepToRaw } from './utils'
 import router from './router'
+
+// 导入 element-plus 的 css 文件
+import 'element-plus/dist/index.css'
+import ProgressBar from './views/ProgressBar.vue'
+const whitelist = ['/', '/login']
+
+const barVNode = createVNode(ProgressBar) // 创建虚拟 DOM
+console.log('barVNode:', barVNode)
+// <body>
+//   <barVNode />
+// </body>
+render(barVNode, document.body) // 渲染真实 DOM
+
+// 路由前置守卫, 前置守卫函数在 redirect 重定向后, 路由跳转前执行
+router.beforeEach(
+  (to /** (@/router/index.ts 重定向后的) 目的路由 */, from /** 源路由 */, next) => {
+    barVNode.component?.exposed?.loadStart()
+    console.log('[router.beforeEach] from:', from)
+    console.log('[router.beforeEach] to:', to)
+    if (whitelist.includes(to.path) || sessionStorage.getItem('token')) {
+      next() // 放行
+    } else {
+      next('/login') // 重定向到登录
+    }
+  } /** guard 前置守卫函数 */,
+)
+
+// 路由后置守卫, 后置守卫函数在路由跳转后执行
+router.afterEach(
+  (to, from) => {
+    console.log('[router.afterEach] from:', from)
+    console.log('[router.afterEach] to:', to)
+    barVNode.component?.exposed?.loadEnd()
+  } /** guard 后置守卫函数 */,
+)
 
 function setLocalStorage(key: string, value: unknown) {
   const rawValue = deepToRaw(value)

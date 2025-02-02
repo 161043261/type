@@ -40,15 +40,16 @@ function next(delta?: number) {
     <!-- <RouterLink replace :to="{ name: 'Register' }">Register</RouterLink> -->
     <!-- RouterView 路由组件的容器 -->
 
+    <!-- <RouterView></RouterView> 等价于 -->
     <RouterView v-slot="{ Component }">
-      <component :is="Component" propKey="propVal"></component>
+      <component :is="Component"></component>
     </RouterView>
 
     <!--
     @/App.vue
     <LoginView>
       <template v-slot="{ Component }">
-        <component :is="Component" propKey="propVal"></component>
+        <component :is="Component"></component>
       </template>
     </LoginView>
 
@@ -63,14 +64,16 @@ function next(delta?: number) {
     <button @click="prev()">prev</button>
     <button @click="next()">next</button>
 
-    <hr />
     <!-- Vue3 Pinia -->
-    <PiniaDemo />
-    <PiniaDemo2 />
-    <h1>Pinia 持久化插件</h1>
-    <PiniaFoo />
-    <PiniaBar />
-    <button @click="clearLocalStorage">clearLocalStorage</button>
+    <div v-if="$route.path === '/'">
+      <hr />
+      <PiniaDemo />
+      <PiniaDemo2 />
+      <h1>Pinia 持久化插件</h1>
+      <PiniaFoo />
+      <PiniaBar />
+      <button @click="clearLocalStorage">clearLocalStorage</button>
+    </div>
   </div>
 </template>
 
