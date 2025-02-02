@@ -1,7 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="index">Index</div>
+  <div class="index">
+    <div>********** Index **********</div>
+    <!-- 动态添加的路由组件不要使用 name, 使用 path -->
+    <RouterLink to="/demo">Demo</RouterLink>
+    <RouterLink :to="{ path: '/demo2' }">Demo2</RouterLink>
+    <RouterLink :to="{ path: '/demo3' }">Demo3</RouterLink>
+  </div>
 </template>
 
 <style scoped lang="css">

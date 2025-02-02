@@ -104,7 +104,7 @@ SFC, Single File Component 单文件组件
       "</script>",
       "",
       "<template>",
-      "  <div class=\"\">",
+      "  <div>",
       "",
       "  </div>",
       "</template>",

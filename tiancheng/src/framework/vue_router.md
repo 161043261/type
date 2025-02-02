@@ -748,3 +748,119 @@ const router = createRouter({
 ```
 
 ## 动态路由
+
+- `router.addRoute()` 动态添加路由
+- `router.removeRoute()` 动态删除路由
+- `router.hasRoute()` 判断路由是否存在
+- `router.getRoutes()` 获取所有路由信息
+
+案例: 根据后端的响应, 动态添加路由
+
+```ts
+import express from "express";
+import fs from "node:fs";
+
+const files = fs.readdirSync("../src/views");
+for (const file of files) {
+  if (file.startsWith("Demo")) {
+    console.log(file); // DemoView.vue DemoView2.vue DemoView3.vue
+  }
+}
+
+const app = express();
+app.get("/login", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  // get 方法, 使用 req.query 获取参数
+  // post 方法, 使用 req.body 获取参数
+  console.log(req.query);
+  if (req.query.username === "admin") {
+    res.json({
+      routes: [
+        { path: "/demo", name: "Demo", component: "DemoView" },
+        { path: "/demo2", name: "Demo2", component: "DemoView2" },
+      ],
+    });
+  } else if (req.query.username === "admin2") {
+    res.json({
+      routes: [
+        { path: "/demo", name: "Demo", component: "DemoView" },
+        { path: "/demo3", name: "Demo3", component: "DemoView3" },
+      ],
+    });
+  } else {
+    res.json({
+      routes: [],
+      message: "Not admin",
+    });
+  }
+});
+
+app.listen(3333, () => {
+  console.log("http://localhost:3333");
+});
+```
+
+> [!info]
+> curl http://localhost:3333/login?username=admin
+> res.data `{"routes":[{"path":"/demo","name":"Demo","component":"DemoView"},{"path":"/demo2","name":"Demo2","component":"DemoView2"}]}`
+>
+> curl http://localhost:3333/login?username=admin2
+> res.data `{"routes":[{"path":"/demo","name":"Demo","component":"DemoView"},{"path":"/demo3","name":"Demo3","component":"DemoView3"}]}`
+
+```vue
+<script setup lang="ts">
+const router = useRouter();
+const onSubmit = () => {
+  // console.log(form.value)
+  form.value?.validate((isValid) => {
+    console.log("isValid:", isValid);
+    if (isValid) {
+      addDynamicRouter(); // 根据后端的响应, 动态添加路由
+      router.push("/index");
+      sessionStorage.setItem("token", Date.now().toString());
+    } else {
+      ElMessage.error("请输入账号/密码");
+    }
+  });
+};
+
+// http://localhost:5173/login
+async function addDynamicRouter() {
+  const res = await axios.get("http://localhost:3333/login", {
+    params: formData, // { username: 'admin' | 'admin2', password: '1234' }
+  });
+  console.log(res);
+  // 根据后端的响应, 动态添加路由
+  res.data.routes.forEach(
+    (route: { path: string; name: string; component: string }) => {
+      // router.addRoute() 动态添加路由, 返回删除该路由的回调函数
+      /* const removeRoute =  */ router.addRoute({
+        path: route.path,
+        name: route.name,
+        // 这里动态导入时, 不要使用 @ (src 别名), 使用相对路径
+        // component: () => import(`@/views/${route.component}.vue`),
+        component: () => import(`../views/${route.component}.vue`),
+      });
+    },
+  );
+  // router.getRoutes() 获取所有路由信息
+  console.log(router.getRoutes());
+}
+</script>
+
+<template>
+  <div class="login">
+    <el-form
+      ref="form"
+      :rules="rules"
+      :model="formData"
+      class="demo-form-inline"
+    >
+      <!-- ... -->
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">登录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+```
