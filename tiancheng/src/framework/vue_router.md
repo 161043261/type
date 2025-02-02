@@ -756,7 +756,9 @@ const router = createRouter({
 
 案例: 根据后端的响应, 动态添加路由
 
-```ts
+::: code-group
+
+```ts [后端]
 import express from "express";
 import fs from "node:fs";
 
@@ -800,14 +802,7 @@ app.listen(3333, () => {
 });
 ```
 
-> [!info]
-> curl http://localhost:3333/login?username=admin
-> res.data `{"routes":[{"path":"/demo","name":"Demo","component":"DemoView"},{"path":"/demo2","name":"Demo2","component":"DemoView2"}]}`
->
-> curl http://localhost:3333/login?username=admin2
-> res.data `{"routes":[{"path":"/demo","name":"Demo","component":"DemoView"},{"path":"/demo3","name":"Demo3","component":"DemoView3"}]}`
-
-```vue
+```vue [前端]
 <script setup lang="ts">
 const router = useRouter();
 const onSubmit = () => {
@@ -864,3 +859,5 @@ async function addDynamicRouter() {
   </div>
 </template>
 ```
+
+:::

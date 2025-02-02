@@ -95,3 +95,5 @@ sudo systemctl restart nginx
 sudo chmod -R 755 /var/www/dist
 echo "IPv4: http://121.41.121.204"
 ```
+
+`cd /path/to/dist && du -sh * | sort -h`
