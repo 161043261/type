@@ -10,29 +10,10 @@
 @font-face {
   font-family: "Iosevka Web";
   font-display: swap;
-  font-weight: 400;
-  font-stretch: normal;
-  font-style: italic;
-  src: url("../../src/assets/Iosevka-SemiExtendedItalic.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Iosevka Web";
-  font-display: swap;
   font-weight: 700;
   font-stretch: normal;
   font-style: normal;
   src: url("../../src/assets/Iosevka-SemiExtendedBold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Iosevka Web";
-  font-display: swap;
-  font-weight: 700;
-  font-stretch: normal;
-  font-style: italic;
-  src: url("../../src/assets/Iosevka-SemiExtendedBoldItalic.woff2")
-    format("woff2");
 }
 
 :root {

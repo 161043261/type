@@ -97,8 +97,8 @@ userStore.$onAction(
 <style lang="css" scoped>
 .box {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   /** 单行, 侧轴起点对齐 */
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 </style>

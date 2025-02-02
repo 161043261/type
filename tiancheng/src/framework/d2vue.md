@@ -211,8 +211,10 @@ const mountOrNot = ref(true);
 
 ### TransitionGroup
 
-- Transition 只允许一个直接子元素
-- TransitionGroup 允许多个直接子元素, 例如 v-for
+> [!warning]
+>
+> - Transition 只允许一个直接子元素; Transition 包裹组件时, 组件必须有唯一的根元素, 否则不能被动画化
+> - TransitionGroup 允许多个直接子元素
 
 ```vue
 <script lang="ts" setup>

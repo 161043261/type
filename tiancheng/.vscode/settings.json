@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "bilibili",
     "genshin",
     "gsap",
     "hashchange",
@@ -15,5 +16,5 @@
     "vuejs",
     "yukino"
   ],
-  "editor.fontFamily": "Iosevka, Microsoft YaHei"
+  "editor.fontFamily": "Maple Mono, Microsoft YaHei"
 }

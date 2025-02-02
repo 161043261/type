@@ -39,27 +39,29 @@ function routeJumpByParams(item: Item) {
 </script>
 
 <template>
-  <div class="login">Login</div>
-  <table>
-    <thead>
-      <tr>
-        <th>brand</th>
-        <th>price</th>
-        <th>operation</th>
-      </tr>
-    </thead>
+  <div>
+    <div class="login">Login</div>
+    <table>
+      <thead>
+        <tr>
+          <th>brand</th>
+          <th>price</th>
+          <th>operation</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr v-for="item of data" :key="item.id">
-        <th>{{ item.name }}</th>
-        <th>{{ item.price }}</th>
-        <th>
-          <button @click="routeJumpByQuery(item)">routeJumpByQuery</button>
-          <button @click="routeJumpByParams(item)">routeJumpByParams</button>
-        </th>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr v-for="item of data" :key="item.id">
+          <th>{{ item.name }}</th>
+          <th>{{ item.price }}</th>
+          <th>
+            <button @click="routeJumpByQuery(item)">routeJumpByQuery</button>
+            <button @click="routeJumpByParams(item)">routeJumpByParams</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped lang="css">

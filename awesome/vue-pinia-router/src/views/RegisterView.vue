@@ -9,18 +9,20 @@ console.log(`name: ${name}, price: ${price}, id: ${id}`) // item1 1000 1
 </script>
 
 <template>
-  <div class="register">Register</div>
   <div>
-    route.query.name:
-    {{ route.query.name ?? data.find((val) => val.id === Number(route.params.id))?.name }}
-  </div>
-  <div>
-    route.query.price:
-    {{ route.query.price ?? data.find((val) => val.id === Number(route.params.id))?.price }}
-  </div>
-  <!-- query: URL 查询参数 (URL query parameters)
+    <div class="register">Register</div>
+    <div>
+      route.query.name:
+      {{ route.query.name ?? data.find((val) => val.id === Number(route.params.id))?.name }}
+    </div>
+    <div>
+      route.query.price:
+      {{ route.query.price ?? data.find((val) => val.id === Number(route.params.id))?.price }}
+    </div>
+    <!-- query: URL 查询参数 (URL query parameters)
        params: URL 路径参数 (URL path parameters) -->
-  <div>route.query.id: {{ route.query.id ?? route.params.id }}</div>
+    <div>route.query.id: {{ route.query.id ?? route.params.id }}</div>
+  </div>
 </template>
 
 <style scoped lang="css">

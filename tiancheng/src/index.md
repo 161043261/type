@@ -5,13 +5,13 @@ layout: home
 hero:
   name: "你好"
   text: "Here's Tiancheng"
-  tagline: "就像蝴蝶飞不过沧海, 没有谁忍心责怪"
+  tagline: "QQ: 161043261"
   image:
     src: /bg.png
     alt: bg
   actions:
     - theme: brand
-      text: 关于
+      text: 关于我
       link: /about/me
     - theme: alt
       text: HTML/CSS

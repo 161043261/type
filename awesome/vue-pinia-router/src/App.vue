@@ -41,21 +41,31 @@ function next(delta?: number) {
     <!-- RouterView 路由组件的容器 -->
 
     <!-- <RouterView></RouterView> 等价于 -->
-    <RouterView v-slot="{ Component }">
-      <component :is="Component"></component>
+    <!-- Component inside <Transition> renders non-element root node that cannot be animated.  -->
+
+    <RouterView v-slot="{ route, Component }">
+      <!-- Transition 只允许一个直接子元素
+     Transition 包裹组件时, 组件必须有唯一的根元素, 否则不能被动画化 -->
+      <Transition
+        :enter-active-class="`animate__animated ${route.meta.transition ?? 'animate__bounceIn'}`"
+      >
+        <component :is="Component"></component>
+      </Transition>
     </RouterView>
 
-    <!--
-    @/App.vue
-    <LoginView>
-      <template v-slot="{ Component }">
-        <component :is="Component"></component>
-      </template>
-    </LoginView>
+    <!-- @/App.vue -->
+    <!--<template>
+          <RouteChildComponent>
+            <template v-slot="{ route, Component }">
+              <component :is="Component"></component>
+            </template>
+          </RouteChildComponent>
+        </template> -->
 
-    @/views/LoginView.vue
-    <slot></slot>
-    -->
+    <!-- 路由子组件 -->
+    <!--<template>
+          <slot></slot>
+        </template> -->
 
     <button @click="routeJumpByURL('/')">jumpToLoginByURL</button>
     <button @click="routeJumpByURL('/register')">jumpToRegisterByURL</button>

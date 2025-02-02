@@ -6,6 +6,9 @@ import router from './router'
 
 // 导入 element-plus 的 css 文件
 import 'element-plus/dist/index.css'
+// 全局导入 animate.css
+import 'animate.css'
+
 import ProgressBar from './views/ProgressBar.vue'
 const whitelist = ['/', '/login']
 
@@ -22,6 +25,12 @@ router.beforeEach(
     barVNode.component?.exposed?.loadStart()
     console.log('[router.beforeEach] from:', from)
     console.log('[router.beforeEach] to:', to)
+
+    // 路由元信息
+    if (to.meta.title) {
+      document.title = to.meta /** : RouteMeta */.title
+    }
+
     if (whitelist.includes(to.path) || sessionStorage.getItem('token')) {
       next() // 放行
     } else {

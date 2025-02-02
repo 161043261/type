@@ -1,11 +1,23 @@
 import LoginView from '@/views/LoginView.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    title: string
+    transition: string
+  }
+}
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Login', // 指定路由的名字
     component: LoginView, // 合并打包
+    // 路由元信息
+    meta: {
+      title: 'Pinia 状态管理库',
+      transition: 'animate__bounceIn',
+    },
   },
   {
     path: '/register',
@@ -95,6 +107,37 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(),
+
+  // 滚动行为, 仅 history.pushState 时可用
+  scrollBehavior: (to, from, savedPosition) => {
+    // 滚动到原位置
+    if (savedPosition) {
+      console.log('savedPosition:', savedPosition)
+      return savedPosition
+    }
+    // 滚动到锚点
+    if (to.hash) {
+      console.log('to.hash:', to.hash)
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }
+    // 滚动到顶部
+    return {
+      top: 0,
+    }
+    // 延迟滚动
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve({
+    //       left: 0,
+    //       top: 0
+    //     })
+    //  }, 1000)
+    // })
+  },
+
   routes, // routes: routes
 }) // options
 

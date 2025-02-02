@@ -24,18 +24,17 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: "主页", link: "/" }],
     sidebar: sidebar,
-    socialLinks: [{ icon: "github", link: "https://github.com/161043261" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/161043261" },
+      { icon: "qq", link: "https://qm.qq.com/q/YDORema7As" },
+      { icon: "twitter", link: "https://x.com/yukino161043261" },
+      { icon: "youtube", link: "https://www.youtube.com/@yukino0228" },
+    ],
   },
   transformHead({ assets }) {
     const Iosevka = assets.find((file) => /Iosevka-SemiExtended\.\w+\.woff2/)!;
-    const IosevkaItalic = assets.find(
-      (file) => /Iosevka-SemiExtendedItalic\.\w+\.woff2/,
-    )!;
     const IosevkaBold = assets.find(
       (file) => /Iosevka-SemiExtendedBold\.\w+\.woff2/,
-    )!;
-    const IosevkaBoldItalic = assets.find(
-      (file) => /Iosevka-SemiExtendedBoldItalic\.\w+\.woff2/,
     )!;
     return [
       [
@@ -52,27 +51,7 @@ export default defineConfig({
         "link",
         {
           rel: "preload",
-          href: IosevkaItalic,
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "",
-        },
-      ],
-      [
-        "link",
-        {
-          rel: "preload",
           href: IosevkaBold,
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "",
-        },
-      ],
-      [
-        "link",
-        {
-          rel: "preload",
-          href: IosevkaBoldItalic,
           as: "font",
           type: "font/woff2",
           crossorigin: "",

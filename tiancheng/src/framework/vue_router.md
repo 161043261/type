@@ -339,30 +339,25 @@ props 是一个函数时, `props: (route) => route.query`, 将该函数的返回
 ```vue
 <template>
   <!-- <RouterView></RouterView> 等价于 -->
-
   <!-- RouterView 插槽 -->
   <RouterView v-slot="{ Component }">
     <component :is="Component"></component>
   </RouterView>
 </template>
 
-<!-- @/App.vue
-<template>
-  <DemoComponent>
-    <template v-slot="{ Component }">
-      <component :is="Component"></component>
-    </template>
-  </DemoComponent>
-</template>
+<!-- @/App.vue -->
+<!--<template>
+      <RouteChildComponent>
+        <template v-slot="{ route, Component }">
+          <component :is="Component"></component>
+        </template>
+      </RouteChildComponent>
+    </template> -->
 
-@/views/DemoComponent.vue
-<script lang="ts" setup>
-defineProps(['propKey']);
-</script>
-
-<template>
-  <slot></slot>
-</template> -->
+<!-- 路由子组件 -->
+<!--<template>
+      <slot></slot>
+    </template> -->
 ```
 
 ## 嵌套路由
@@ -620,3 +615,136 @@ router.afterEach(
 ```
 
 :::
+
+## 路由元信息
+
+::: code-group
+
+```ts [@/router/index.ts]
+declare module "vue-router" {
+  interface RouteMeta {
+    title: string;
+  }
+}
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "PiniaView",
+    component: () => import("@/views/PiniaView.vue"),
+    // 路由元信息
+    meta: {
+      title: "Pinia 状态管理库",
+    },
+  },
+];
+```
+
+```ts [main.ts]
+// 路由前置守卫
+router.beforeEach(
+  (to, from, next) => {
+    // 路由元信息
+    if (to.meta.title) {
+      document.title = to.meta /** : RouteMeta */.title;
+    }
+  } /** guard 前置守卫函数 */,
+);
+```
+
+:::
+
+## 路由过渡动效
+
+参考 [Transition 过渡/动画组件](./d2vue#transition-过渡-动画组件)
+
+::: code-group
+
+```ts [main.ts]
+//! pnpm install animate.css
+// 全局导入 animate.css
+import "animate.css";
+```
+
+```ts [@/router/index.ts]
+declare module "vue-router" {
+  interface RouteMeta {
+    title: string;
+    transition: string;
+  }
+}
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "PiniaView",
+    component: () => import("@/views/PiniaView.vue"),
+    // 路由元信息
+    meta: {
+      title: "Pinia 状态管理库",
+      transition: "animate__bounceIn",
+    },
+  },
+];
+```
+
+```vue [@/App.vue]
+<template>
+  <RouterView v-slot="{ route, Component }">
+    <!-- Transition 只允许一个直接子元素
+     Transition 包裹组件时, 组件必须有唯一的根元素, 否则不能被动画化 -->
+    <Transition
+      :enter-active-class="`animate__animated ${route.meta.transition ?? 'animate__bounceIn'}`"
+    >
+      <!-- Component 必须有唯一的根元素 -->
+      <component :is="Component"></component>
+    </Transition>
+  </RouterView>
+</template>
+```
+
+:::
+
+## 滚动行为
+
+仅 `history.pushState` 时可用
+
+```ts
+const router = createRouter({
+  history: createWebHistory(),
+
+  // 滚动行为, 仅 history.pushState 时可用
+  scrollBehavior: (to, from, savedPosition) => {
+    // 滚动到原位置
+    if (savedPosition) {
+      console.log("savedPosition:", savedPosition);
+      return savedPosition;
+    }
+    // 滚动到锚点
+    if (to.hash) {
+      console.log("to.hash:", to.hash);
+      return {
+        el: to.hash,
+        behavior: "smooth",
+      };
+    }
+    // 滚动到顶部
+    return {
+      top: 0,
+    };
+    // 延迟滚动
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve({
+    //       left: 0,
+    //       top: 0
+    //     })
+    //  }, 1000)
+    // })
+  },
+
+  routes, // routes: routes
+}); // options
+```
+
+## 动态路由
