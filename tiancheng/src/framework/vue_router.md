@@ -802,7 +802,7 @@ app.listen(3333, () => {
 });
 ```
 
-```vue [前端]
+```vue [@/views/LoginDemo.vue]
 <script setup lang="ts">
 const router = useRouter();
 const onSubmit = () => {
@@ -856,6 +856,18 @@ async function addDynamicRouter() {
         <el-button type="primary" @click="onSubmit">登录</el-button>
       </el-form-item>
     </el-form>
+  </div>
+</template>
+```
+
+```vue [@/views/IndexDemo.vue]
+<template>
+  <div class="index">
+    <div>Index</div>
+    <!-- 对于动态导入的路由组件, 不要指定 name, 指定 path -->
+    <RouterLink to="/demo">Demo</RouterLink>
+    <RouterLink to="/demo2">Demo2</RouterLink>
+    <RouterLink :to="{ path: '/demo3' }">Demo3</RouterLink>
   </div>
 </template>
 ```

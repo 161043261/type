@@ -97,11 +97,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
-    component: () => import('@/views/LoginElem.vue'),
+    component: () => import('@/views/LoginDemo.vue'),
   },
   {
     path: '/index',
-    component: () => import('@/views/IndexView.vue'),
+    component: () => import('@/views/IndexDemo.vue'),
   },
 ]
 
