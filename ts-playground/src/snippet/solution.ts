@@ -1,19 +1,16 @@
-function validPalindrome(s: string): boolean {
-
-  const isValid = (s: string): boolean => {
-    for (let i = 0; i < s.length; i++) {
-      if (s[i] !== s[s.length - i - 1]) return false;
+/* eslint-disable @typescript-eslint/no-unused-vars */
+function sortArrayByParityII(nums: number[]): number[] {
+  let evenIdx = 0,
+    oddIdx = 1;
+  const ans = new Array<number>(nums.length);
+  nums.forEach((item) => {
+    if (item % 2) {
+      ans[oddIdx] = item;
+      oddIdx += 2;
+    } else {
+      ans[evenIdx] = item;
+      evenIdx += 2;
     }
-    return true;
-  }
-
-  for (let i = 0, j = s.length - 1; i < j;) {
-    if (s[i] === s[j]) {
-      i++;
-      j--;
-      continue
-    }
-    return isValid(s.substring(i + 1, j + 1)) || isValid(s.substring(i, j))
-  }
-  return true
+  });
+  return ans;
 }

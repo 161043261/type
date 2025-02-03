@@ -1164,6 +1164,7 @@ transform: 转换属性, 设置元素的位置
 
 过渡: 使得元素从一种样式, 平滑的过渡到另一种样式
 
+> [!warning]
 > 为元素自身设置 transition, 而不是 :hover
 
 - transition-duration 指定过渡效果的持续时间 `transition-duration: 2s;`
@@ -1173,14 +1174,14 @@ transform: 转换属性, 设置元素的位置
 
 ```css
 .selector {
-  /* 不设置任何过渡效果, 默认 */
+  /* 不设置任何过渡效果 */
   transition-property: none;
-  /* 为所有可以设置过渡效果的属性, 设置过渡效果 */
+  /* 默认所有可过渡属性都会获得过渡效果 */
   transition-property: all;
   /* 为宽高设置过渡效果 */
   transition-property: width, height;
 }
-```
+``` 
 
 - transition-delay: 过渡效果的延迟时间
 - transition-timing-function: 过渡计时函数

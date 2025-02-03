@@ -3,7 +3,7 @@
 <template>
   <div class="index">
     <div>Index</div>
-    <!-- 动态添加的路由组件不要指定 name, 指定 path -->
+    <!-- 对于动态导入的路由组件, 不要指定 name, 指定 path -->
     <RouterLink to="/demo">Demo</RouterLink>
     <RouterLink to="/demo2">Demo2</RouterLink>
     <RouterLink :to="{ path: '/demo3' }">Demo3</RouterLink>
