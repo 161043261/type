@@ -36,3 +36,13 @@ HTML 全局属性
 - dir 内容的方向: `<html lang="en" dir="ltr | rtl">`
 - title
 - lang
+
+## HTML5 语义化标签
+
+- header 头部
+- footer 底部
+- nav 导航
+- article 文档
+- section 区域
+- aside 侧边栏
+- main 主要部分

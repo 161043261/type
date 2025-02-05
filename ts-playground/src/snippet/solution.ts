@@ -1,16 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-function sortArrayByParityII(nums: number[]): number[] {
-  let evenIdx = 0,
-    oddIdx = 1;
-  const ans = new Array<number>(nums.length);
-  nums.forEach((item) => {
-    if (item % 2) {
-      ans[oddIdx] = item;
-      oddIdx += 2;
-    } else {
-      ans[evenIdx] = item;
-      evenIdx += 2;
+function permuteUnique(nums: number[]): number[][] {
+  nums.sort((a, b) => a - b);
+  const item: number[] = []
+  const used = new Array<boolean>(nums.length).fill(false)
+  const ans: number[][] = [];
+  const backtrack = () => {
+    if (item.length === nums.length) {
+      ans.push([...item])
+      return;
     }
-  });
-  return ans;
-}
+
+    for (let i = 0; i < nums.length; i++) {
+      if (used[i] || (i > 0 && nums[i] === nums[i - 1] && !used[i - 1])) continue;
+      item.push(nums[i]);
+      used[i] = true;
+      backtrack()
+      item.pop();
+      used[i] = false;
+    }
+  }
+  backtrack()
+  return ans
+};

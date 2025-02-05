@@ -7,7 +7,7 @@ hero:
   text: "Here's Tiancheng"
   tagline: "QQ: 161043261"
   image:
-    src: /bg.png
+    src: /bg.jpg
     alt: bg
   actions:
     - theme: brand
