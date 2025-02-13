@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List</title>
+    <style>
+      * {
+        font-family: "Iosevka", "Menlo", "DejaVu Sans Mono", "Cascadia Code",
+          "PingFang SC", "Microsoft YaHei", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p id="title"></p>
+  </body>
+  <script>
+    console.log(localStorage.getItem("token"));
+    fetch("http://localhost:3000/api/list", {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        document.querySelector("#title").innerText = resp.msg;
+      });
+  </script>
+</html>

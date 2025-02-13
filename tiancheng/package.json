@@ -1,0 +1,19 @@
+{
+  "author": "",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "vitepress": "^1.5.0"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "name": "tiancheng",
+  "scripts": {
+    "build": "vitepress build",
+    "dev": "vitepress dev --open",
+    "preview": "vitepress preview",
+    "format": "prettier --write ./src .vitepress/theme"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

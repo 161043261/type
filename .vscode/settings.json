@@ -1,0 +1,4 @@
+{
+  "vitest.disableWorkspaceWarning": true,
+  "cmake.ignoreCMakeListsMissing": true
+}

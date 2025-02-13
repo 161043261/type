@@ -1,0 +1,49 @@
+{
+  "name": "react-vite",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "dev": "vite",
+    "format": "prettier --write ./public ./src",
+    "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "antd": "^5.23.0",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "mockjs": "^1.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@eslint/js": "^9.17.0",
+    "@swc/cli": "^0.5.2",
+    "@swc/core": "^1.10.4",
+    "@types/antd": "^1.0.4",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.0",
+    "@types/mockjs": "^1.0.10",
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "openai": "^4.77.3",
+    "prettier": "^3.4.2",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}

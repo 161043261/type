@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    // 生成 .d.ts 类型声明文件
+    "declaration": true,
+    // 删除注释
+    "removeComments": true,
+    // 支持装饰器
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // 允许默认导入没有默认导出的模块
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    // sourceMap 文件可以将编译后的 JS 代码映射回 TS 代码
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    // 增量编译
+    "incremental": true,
+    // 跳过对 node_modules 中 .d.ts 的类型检查
+    "skipLibCheck": true,
+    // 严格的空值检查
+    "strictNullChecks": true,
+    // 文件名区分大小写
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    // 禁止 switch 语句中 fall-through
+    "noFallthroughCasesInSwitch": false
+  }
+}

@@ -1,0 +1,66 @@
+# docker-compose up -d # daemon
+services:
+  # docker-compose up -d redis_service
+  redis_service:
+    image: redis:latest
+    container_name: redis_container
+    hostname: redis_host
+    ports:
+      - "6379:6379"
+    restart: always
+  # docker-compose down redis_service -v
+
+  # docker-compose up -d mysql_service
+  mysql_service:
+    image: mysql:latest
+    container_name: mysql_container
+    hostname: mysql_host
+    ports:
+      - "3306:3306"
+    privileged: true
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass # 如果是数字, 则必须加 ""
+      TZ: Asia/Shanghai
+  # docker-compose down mysql_service -v
+
+  # docker-compose up -d mongo_service
+  mongo_service:
+    image: mongo
+    container_name: mongo_container
+    hostname: mongo_host
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+  # docker-compose down mongo_service -v
+
+  # docker-compose up -d mongo-express_service
+  mongo-express_service:
+    image: mongo-express
+    container_name: mongo-express_container
+    hostname: mongo-express_host
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_URL: mongodb://root:pass@mongo_host:27017/
+      ME_CONFIG_BASICAUTH: false
+  # docker-compose down mongo-express_service -v
+
+  # docker-compose up -d nginx_service
+  # nginx_service:
+  #   image: nginx
+  #   container_name: nginx_container
+  #   hostname: nginx_host
+  #   restart: always
+  #   ports:
+  #     - "80:80"
+  #   environment:
+  #     - NGINX_PORT=80
+  # docker-compose down nginx_service -v
+# docker-compose down -v # volume

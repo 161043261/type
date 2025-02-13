@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Iosevka Web";
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  src: url("../../src/assets/Iosevka-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Iosevka Web";
+  font-display: swap;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  src: url("../../src/assets/Iosevka-Bold.woff2") format("woff2");
+}
+
+:root {
+  --vue-green: #42b883;
+  --react-blue: #087ea4;
+  --vp-font-family-base: "Iosevka Web", "Menlo", "DejaVu Sans Mono",
+    "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace !important;
+  --vp-font-family-mono: "Iosevka Web", "Menlo", "DejaVu Sans Mono",
+    "Cascadia Code", "PingFang SC", "Microsoft YaHei", monospace !important;
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    180deg,
+    var(--vue-green),
+    var(--react-blue)
+  );
+}

@@ -1,0 +1,11 @@
+{
+  "Name": "go-socket",
+  "Ver": "1.0",
+  "HostIp": "0.0.0.0",
+  "Port": 3302,
+  "MaxConnNum": 3,
+  "MaxPacketSize": 4096,
+  "WorkerPoolSize": 10,
+  "ReqChanLen": 1024,
+  "UseMsgSerializer": false
+}
