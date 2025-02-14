@@ -45,5 +45,10 @@ export default createRouter({
       name: 'FunctionalDemo',
       component: () => import('@/views/FunctionalDemo.vue'),
     },
+    {
+      path: '/virtualList',
+      name: 'VirtualList',
+      component: () => import('@/views/VirtualList.vue'),
+    },
   ],
 })

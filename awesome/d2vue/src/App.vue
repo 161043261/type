@@ -40,9 +40,9 @@ console.log('import.meta.env:', import.meta.env)
 // }
 
 // fetch('http://localhost:8080/user')
-fetch('/api/user')
-  .then((res) => res.json())
-  .then((data) => console.log(data))
+// fetch('/api/user')
+//   .then((res) => res.json())
+//   .then((data) => console.log(data))
 </script>
 
 <template>
@@ -60,6 +60,7 @@ fetch('/api/user')
       <RouterLink :to="{ name: 'NextTick2' }">NextTick2</RouterLink>
       <RouterLink :to="{ name: 'ThreeColumn' }">ThreeColumn</RouterLink>
       <RouterLink :to="{ name: 'FunctionalDemo' }">FunctionalDemo</RouterLink>
+      <RouterLink :to="{ name: 'VirtualList' }">VirtualList</RouterLink>
     </div>
     <RouterView></RouterView>
     <hr />

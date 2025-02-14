@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isAlive = ref<boolean>(true)
+const isAlive = ref<boolean>(false)
 
 function changeAlive() {
   isAlive.value = !isAlive.value
