@@ -3,6 +3,9 @@
 //! vue 插值 {{}}
 //! jsx 插值 {}
 
+// css-module
+import styled from "./app.module.scss";
+console.log("styled:", styled);
 import { UseStatePrimary } from "./hook/useState_primary";
 import { UseStateArr } from "./hook/useState_arr";
 import { UseStateObj } from "./hook/useState_obj";
@@ -30,6 +33,9 @@ import { UseCallbackDemo } from "./hook/useCallback_demo";
 import { UseCallbackDemo2 } from "./hook/useCallback_demo2";
 import Card from "./components/Card";
 import CardBro from "./components/CardBro";
+import { UseDebugValueDemo } from "./hook/useDebugValue_demo.tsx";
+import { UseIdDemo } from "./hook/useID_demo.tsx";
+import { ComponentDemo } from "./components/demo.tsx";
 
 export function App() {
   // jsx 插值: 支持数字, 字符串, 基本类型数组, html 元素, 表达式; 不支持对象
@@ -68,7 +74,6 @@ export function App() {
   const rowStyle = {
     display: "flex",
     justifyContent: "space-around",
-    alignItems: "space-between",
     height: "200px",
   };
 
@@ -98,8 +103,10 @@ export function App() {
 
       <div dangerouslySetInnerHTML={{ __html: htmlSnippet }}></div>
 
-      <div style={rowStyle}>
-        <div style={itemStyle}>
+      <div className={styled.rowStyle}>
+        <div className={styled.itemStyle}>
+          {/*<div style={rowStyle}>*/}
+          {/*  <div style={itemStyle}>*/}
           <ul>
             {arr.map((item) => {
               // key: 数值或字符串
@@ -154,6 +161,9 @@ export function App() {
       </div>
 
       <div style={rowStyle}>
+        <UseDebugValueDemo />
+        <UseIdDemo />
+
         <div style={itemStyle}>
           <button type="button" onClick={() => window.msgPrompt()}>
             msgPrompt
@@ -166,6 +176,7 @@ export function App() {
         </Card>
 
         <CardBro title={"兄弟组件"}></CardBro>
+        <ComponentDemo></ComponentDemo>
       </div>
     </>
   );

@@ -75,7 +75,7 @@ react 中应该将数组视为**只读**, 不要修改原数组, 不要使用 pu
 | 替换 | splice(), arr[i] = newVal | map(),toSpliced(), with()          |
 | 排序 | reverse(), sort()         | toReversed(), toSorted()           |
 
-以下 4 个方法不会修改原数组, 返回一个新数组, 参考 [Array](/script/js08)
+以下 4 个方法不会修改原数组, 返回一个新数组
 
 - toReversed(): 逆序
 - toSorted(): 升序排序
@@ -399,13 +399,72 @@ function useCallback<T extends Function>(callback: T, dependencies: Array): T;
 
 ## hook: useDebugValue
 
-调试用 hook
+调试用 hook: 检查 -> Components
+
+```tsx
+// 自定义 hook
+const useCookie = (name: string, initialValue: string = "") => {
+  const getCookie = () => {
+    const match = document.cookie.match(new RegExp(`${name}`));
+    return match ? match[2] : initialValue;
+  };
+  const [cookieState, setCookie] = useState(getCookie());
+
+  useDebugValue(cookieState, (val) => {
+    return `格式化输出: ${cookieState}, ${val}`;
+  });
+
+  const updateCookie = (newVal: string) => {
+    document.cookie = `${name}=${newVal}`; // update cookie
+    setCookie(newVal); // update state
+  };
+
+  const deleteCookie = () => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`; // 过期删除
+    setCookie(""); // update state
+  };
+
+  return [cookieState, updateCookie, deleteCookie] as const;
+};
+
+export function UseDebugValueDemo() {
+  const [cookieState, updateCookie, deleteCookie] = useCookie(
+    "key" /* name */,
+    "value" /* initialValue */,
+  );
+  return (
+    <main style={itemStyle}>
+      <div>cookieVal: {cookieState}</div>
+      <button onClick={() => updateCookie(cookieState + "!")}>
+        更新 cookie
+      </button>
+      <button onClick={() => deleteCookie()}>删除 cookie</button>
+    </main>
+  );
+}
+```
 
 ## hook: useId
 
-## 组件
+React18 新增 hook, 生成稳定的唯一 ID, 用于解决 SSR 场景下 ID 不一致问题
 
-### React 使用 props 进行组件通信
+案例: 为组件生成唯一 ID
+
+```tsx
+export const UseIdDemo: React.FC = () => {
+  const ID = useId();
+  const iptID = useId();
+  console.log(ID, iptID);
+  return (
+    <main style={itemStyle}>
+      <label htmlFor={iptID}>输入框</label>
+      <input type="text" id={iptID}></input>
+    </main>
+  );
+};
+```
+
+## 使用 props 进行组件通信
 
 ```js
 // 函数组件
@@ -416,7 +475,7 @@ props.children 类似 Vue 的插槽
 
 props 属性的类型: null, undefined, boolean, number, string, Object, Array, Function, JSX Element
 
-### 兄弟组件通信
+## 兄弟组件通信
 
 原理: 发布订阅 [mitt](https://github.com/developit/mitt)
 
@@ -433,6 +492,101 @@ emitter.emit("foo", { key: "value" });
 emitter.all.clear();
 // working with handler references:
 function onFoo() {}
-emitter.on("foo", onFoo); // listen
-emitter.off("foo", onFoo); // unlisten
+emitter.on("foo", onFoo); // 监听 foo 事件
+emitter.off("foo", onFoo); // 取消监听 foo 事件
+```
+
+## 受控组件/非受控组件
+
+- 受控组件: 数据双向绑定, 类似 Vue `v-model`
+- 非受控组件: 不是响应式数据, 操作原生 DOM 获取值
+- 特殊的非受控组件: input type="file", 文件上传
+
+```tsx
+export const ComponentDemo: React.FC = () => {
+  const [value, setValue] = useState("value");
+
+  const value2 = "value2";
+  const iptRef = useRef<HTMLInputElement>(null);
+  const handleChange = () => {
+    // 操作原生 DOM 获取值
+    console.log(iptRef.current?.value);
+  };
+
+  const fileRef = useRef<HTMLInputElement>(null);
+  const handleUpload = () => {
+    console.log(fileRef.current?.files);
+  };
+  return (
+    <main style={{ ...itemStyle, display: "flex", flexDirection: "column" }}>
+      <input
+        value={value}
+        type="text"
+        onChange={(ev: ChangeEvent<HTMLInputElement>) =>
+          setValue(ev.target.value)
+        }
+      />
+      <div>value: {value}</div>
+
+      <input defaultValue={value2} ref={iptRef} onChange={handleChange} />
+
+      <input type="file" ref={fileRef} onChange={handleUpload} />
+    </main>
+  );
+};
+```
+
+## CSS 模块化
+
+Vite 项目中使用 css-modules: 将文件名设置为 `filename.module.[css|scss|...]` 即可
+
+```bash
+pnpm install sass -D # 安装 CSS 预处理器
+```
+
+::: code-group
+
+```scss [app.module.scss]
+// app.module.scss
+.rowStyle {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+
+  .itemStyle {
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    padding: 5px;
+  }
+}
+```
+
+```tsx [App.tsx]
+import styled from "./app.module.scss";
+export function App() {
+  const arr = ["Vue", "React", "Angular"];
+  return (
+    <div className={styled.rowStyle}>
+      <div className={styled.itemStyle}>
+        <ul>
+          {arr.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+:::
+
+打包后, 类名后面会加上哈希值
+
+![css_module](../assets/css_module.png)
+
+### vite.config.ts 中配置 css-module 规则
+
+```ts
+
 ```

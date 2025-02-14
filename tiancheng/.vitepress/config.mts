@@ -31,8 +31,13 @@ export default defineConfig({
     sidebar: sidebar,
     socialLinks: [
       { icon: "github", link: "https://github.com/161043261" },
-      { icon: "qq", link: "https://qm.qq.com/q/YDORema7As" },
+
       { icon: "bilibili", link: "https://b23.tv/vCth43f" },
+      { icon: "qq", link: "https://qm.qq.com/q/YDORema7As" },
+      {
+        icon: "linkedin",
+        link: "https://www.linkedin.com/in/tiancheng-hang-bab533302/",
+      },
       { icon: "twitter", link: "https://x.com/yukino161043261" },
       { icon: "youtube", link: "https://www.youtube.com/@yukino0228" },
     ],
@@ -60,7 +65,7 @@ export default defineConfig({
           type: "font/woff2",
           crossorigin: "",
         },
-      ]
+      ],
     ];
   },
 });
