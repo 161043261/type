@@ -45,4 +45,13 @@ export default defineConfig({
       },
     },
   },
+  // 基于 postcss-module
+  css: {
+    modules: {
+      localsConvention: 'dashes', // 修改 css-module 类名规则, 可以使用 xxxYyy, 也可以使用 xxx-yyy
+      // 修改打包后的类名规则: name 文件名, local 类名
+      generateScopedName: '[name]__[local]__[hash:base64:5]'
+    }
+  }
 });
+

@@ -1,4 +1,4 @@
-# React (建设中)
+# React 基础 (建设中)
 
 ## JSX 规则
 
@@ -538,7 +538,7 @@ export const ComponentDemo: React.FC = () => {
 
 ## CSS 模块化
 
-Vite 项目中使用 css-modules: 将文件名设置为 `filename.module.[css|scss|...]` 即可
+Vite 项目中使用 css-modules: 将文件命名为 `filename.module.[css|scss|...]` 即可
 
 ```bash
 pnpm install sass -D # 安装 CSS 预处理器
@@ -579,14 +579,77 @@ export function App() {
 }
 ```
 
+```html [编译后的 css 类名]
+<div class="_rowStyle_1dnxg_1">
+  <div class="_itemStyle_1dnxg_6"></div>
+</div>
+```
+
 :::
-
-打包后, 类名后面会加上哈希值
-
-![css_module](../assets/css_module.png)
 
 ### vite.config.ts 中配置 css-module 规则
 
-```ts
+::: code-group
 
+```ts [vite.config.ts]
+export default defineConfig({
+  // 基于 postcss-module
+  css: {
+    modules: {
+      // 修改 css-module 类名规则, 可以使用 xxxYyy, 也可以使用 xxx-yyy
+      localsConvention: "dashes",
+      // 修改编译后的类名规则: name 源文件名, local 原类名
+      generateScopedName: "[name]__[local]__[hash:base64:5]",
+    },
+  },
+});
 ```
+
+```html [编译后的 css 类名]
+<div class="app-module__rowStyle_YENXn">
+  <div class="app-module__itemStyle__QOx0D"></div>
+</div>
+```
+
+:::
+
+### 维持类名
+
+使用 :global() 保留, 不编译 `.module.css` 中的某些类名
+
+::: code-group
+
+```scss [app.module.scss]
+.rowStyle {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+
+  // 维持类名
+  :global(.itemStyle) {
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    padding: 5px;
+  }
+}
+```
+
+```tsx [App.tsx]
+import styled from "./app.module.scss";
+export function App() {
+  const arr = ["Vue", "React", "Angular"];
+  return (
+    <div className={styled.rowStyle}>
+      <div className="itemStyle">
+        <ul>
+          {arr.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+:::

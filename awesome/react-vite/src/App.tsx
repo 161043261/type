@@ -104,7 +104,7 @@ export function App() {
       <div dangerouslySetInnerHTML={{ __html: htmlSnippet }}></div>
 
       <div className={styled.rowStyle}>
-        <div className={styled.itemStyle}>
+        <div className="itemStyle">
           {/*<div style={rowStyle}>*/}
           {/*  <div style={itemStyle}>*/}
           <ul>
