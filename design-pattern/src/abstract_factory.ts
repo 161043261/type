@@ -1,0 +1,85 @@
+//
+// 创建型模式: 抽象工厂
+//
+interface AbstractFactory {
+  createProductA(): AbstractProductA;
+  createProductB(): AbstractProductB;
+}
+
+class ConcreteFactory1 implements AbstractFactory {
+  public createProductA(): AbstractProductA {
+    return new ConcreteProductA1();
+  }
+  public createProductB(): AbstractProductB {
+    return new ConcreteProductB1();
+  }
+}
+
+class ConcreteFactory2 implements AbstractFactory {
+  public createProductA(): AbstractProductA {
+    return new ConcreteProductA2();
+  }
+  public createProductB(): AbstractProductB {
+    return new ConcreteProductB2();
+  }
+}
+
+// AbstractProductA: A 产品族
+interface AbstractProductA {
+  usefulFunctionA(): string;
+}
+
+class ConcreteProductA1 implements AbstractProductA {
+  public usefulFunctionA(): string {
+    return "我是具体产品 A1";
+  }
+}
+
+class ConcreteProductA2 implements AbstractProductA {
+  public usefulFunctionA(): string {
+    return "我是具体产品 A2";
+  }
+}
+
+// AbstractProductB: B 产品族
+interface AbstractProductB {
+  usefulFunctionB(): string;
+  anotherUsefulFunctionB(collaborator: AbstractProductA): string;
+}
+
+class ConcreteProductB1 implements AbstractProductB {
+  public usefulFunctionB(): string {
+    return "我是具体产品 B1";
+  }
+
+  public anotherUsefulFunctionB(collaborator: AbstractProductA): string {
+    const result = collaborator.usefulFunctionA();
+    return `我是具体产品 B1, 合作者: ${result}`;
+  }
+}
+
+class ConcreteProductB2 implements AbstractProductB {
+  public usefulFunctionB(): string {
+    return "我是具体产品 B2";
+  }
+
+  public anotherUsefulFunctionB(collaborator: AbstractProductA): string {
+    const result = collaborator.usefulFunctionA();
+    return `我是具体产品 B2, 合作者: ${result}`;
+  }
+}
+
+/////////////////////////////////////////////////
+
+function clientCode(factory: AbstractFactory) {
+  const productA = factory.createProductA();
+  const productB = factory.createProductB();
+  console.log(productA.usefulFunctionA());
+  console.log(productB.usefulFunctionB());
+  console.log(productB.anotherUsefulFunctionB(productA));
+}
+
+clientCode(new ConcreteFactory1());
+clientCode(new ConcreteFactory2());
+
+export default {};
