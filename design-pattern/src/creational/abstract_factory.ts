@@ -1,6 +1,5 @@
-//
-// 创建型模式: 抽象工厂
-//
+// 创建型模式
+// 抽象工厂: 可以创建多种类型的对象, 且不依赖对象所属的类
 interface AbstractFactory {
   createProductA(): AbstractProductA;
   createProductB(): AbstractProductB;

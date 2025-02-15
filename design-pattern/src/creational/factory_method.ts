@@ -1,10 +1,9 @@
-//
-// 创建型模式: 工厂方法
-//
+// 创建型模式
+// 工厂方法: 抽象父类中声明创建对象的抽象方法, 子类中决定实例化对象的类型
 abstract class Creator {
   public abstract factoryMethod(): Product;
   public someOperation(): string {
-    const product = this.factoryMethod();
+    const product = this.factoryMethod(); // 工厂方法
     return product.operation();
   }
 }
