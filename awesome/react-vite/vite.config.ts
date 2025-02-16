@@ -11,7 +11,7 @@ function viteMockServer(): Plugin {
     name: "vite-mock-server",
     configureServer(server) {
       // 区分大小写
-      // http://localhost:5173/api/list?keyWord=11
+      // http://localhost:5173/api/list?keyword=11
       server.middlewares.use("/api/list", (req, res) => {
         const parseUrl = url.parse(
           req.originalUrl!,
@@ -22,7 +22,7 @@ function viteMockServer(): Plugin {
           "list|1000": [
             {
               "id|+1": 1,
-              name: parseUrl.keyWord,
+              name: parseUrl.keyword,
               address: "@county(true)",
             },
           ],
@@ -48,10 +48,9 @@ export default defineConfig({
   // 基于 postcss-module
   css: {
     modules: {
-      localsConvention: 'dashes', // 修改 css-module 类名规则, 可以使用 xxxYyy, 也可以使用 xxx-yyy
+      localsConvention: "dashes", // 修改 css-module 类名规则, 可以使用 xxxYyy, 也可以使用 xxx-yyy
       // 修改打包后的类名规则: name 文件名, local 类名
-      generateScopedName: '[name]__[local]__[hash:base64:5]'
-    }
-  }
+      generateScopedName: "[name]__[local]__[hash:base64:5]",
+    },
+  },
 });
-

@@ -23,7 +23,7 @@ export function UseTransitionAntd() {
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = e.target.value;
     setVal(newVal);
-    fetch("/api/list?keyWord=" + newVal)
+    fetch("/api/list?keyword=" + newVal)
       .then((res) => res.json())
       .then((res) => {
         // setList(res.list);

@@ -25,46 +25,46 @@ class ConcreteFactory2 implements AbstractFactory {
 
 // AbstractProductA: A 产品族
 interface AbstractProductA {
-  usefulFunctionA(): string;
+  funcA(): string;
 }
 
 class ConcreteProductA1 implements AbstractProductA {
-  public usefulFunctionA(): string {
-    return "我是具体产品 A1";
+  public funcA(): string {
+    return "具体产品 A1";
   }
 }
 
 class ConcreteProductA2 implements AbstractProductA {
-  public usefulFunctionA(): string {
-    return "我是具体产品 A2";
+  public funcA(): string {
+    return "具体产品 A2";
   }
 }
 
 // AbstractProductB: B 产品族
 interface AbstractProductB {
-  usefulFunctionB(): string;
-  anotherUsefulFunctionB(collaborator: AbstractProductA): string;
+  funcB(): string;
+  anotherFuncB(collaborator: AbstractProductA): string;
 }
 
 class ConcreteProductB1 implements AbstractProductB {
-  public usefulFunctionB(): string {
-    return "我是具体产品 B1";
+  public funcB(): string {
+    return "具体产品 B1";
   }
 
-  public anotherUsefulFunctionB(collaborator: AbstractProductA): string {
-    const result = collaborator.usefulFunctionA();
-    return `我是具体产品 B1, 合作者: ${result}`;
+  public anotherFuncB(collaborator: AbstractProductA): string {
+    const result = collaborator.funcA();
+    return `具体产品 B1, 合作者: ${result}`;
   }
 }
 
 class ConcreteProductB2 implements AbstractProductB {
-  public usefulFunctionB(): string {
-    return "我是具体产品 B2";
+  public funcB(): string {
+    return "具体产品 B2";
   }
 
-  public anotherUsefulFunctionB(collaborator: AbstractProductA): string {
-    const result = collaborator.usefulFunctionA();
-    return `我是具体产品 B2, 合作者: ${result}`;
+  public anotherFuncB(collaborator: AbstractProductA): string {
+    const result = collaborator.funcA();
+    return `具体产品 B2, 合作者: ${result}`;
   }
 }
 
@@ -73,9 +73,9 @@ class ConcreteProductB2 implements AbstractProductB {
 function clientCode(factory: AbstractFactory) {
   const productA = factory.createProductA();
   const productB = factory.createProductB();
-  console.log(productA.usefulFunctionA());
-  console.log(productB.usefulFunctionB());
-  console.log(productB.anotherUsefulFunctionB(productA));
+  console.log(productA.funcA());
+  console.log(productB.funcB());
+  console.log(productB.anotherFuncB(productA));
 }
 
 clientCode(new ConcreteFactory1());

@@ -498,6 +498,8 @@ const routes: Array<RouteRecordRaw> = [
 
 ## 路由守卫
 
+需要在 main.ts 中副作用导入路由守卫文件
+
 ### 前置守卫
 
 `router.beforeEach((to, from, next) => void)`;
@@ -507,7 +509,9 @@ const routes: Array<RouteRecordRaw> = [
 // 路由前置守卫, 前置守卫函数在 redirect 重定向后, 路由跳转前执行
 router.beforeEach(
   (
-    to /** (@/router/index.ts 重定向后的) 目的路由 */,
+    to /** (@/router/index.ts
+    createRouter
+    RouterOptions.routes 重定向后的) 目的路由 */,
     from /** 源路由 */,
     next,
   ) => {
@@ -520,6 +524,19 @@ router.beforeEach(
     }
   } /** guard 前置守卫函数 */,
 );
+```
+
+```ts
+router.beforeEach((to) => {
+  if (whitelist.includes(to.path) || sessionStorage.getItem("token")) {
+    // vue-router@4 新版本
+    // 没有返回值: 放行
+    // 有返回值: 重定向
+    return {
+      name: "Login",
+    };
+  }
+});
 ```
 
 ### 后置守卫
