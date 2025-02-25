@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    // 允许编译 js 文件
+    // "allowJs": true,
+    // 允许默认导入没有默认导出的模块, 用于兼容 commonjs 模块
+    "allowSyntheticDefaultImports": true,
+    // 强制导入文件名和实际文件名的大小写一致
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    //? "allowImportingTsExtensions": true,
+    //? "noEmit": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    //! import React from 'react';
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "dist",
+    "webpack.config.cjs"
+  ],
+  "outDir": "./dist"
+}
