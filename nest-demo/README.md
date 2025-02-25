@@ -17,7 +17,10 @@ nest generate controller demo # nest g co demo
 # 更新 app.module.ts 文件
 nest generate module demo # nest g mo demo
 nest generate service demo # nest g s demo
-nest generate resource robot # nest g res robot 自动生成增删改查
+
+nest generate resource user # nest g res user 自动生成增删改查
+nest g res chart
+nest g res robot
 ```
 
 ![generate](./assets/generate.png)
