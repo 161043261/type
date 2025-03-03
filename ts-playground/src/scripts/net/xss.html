@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family:
+          "Menlo", "DejaVu Sans Mono", "Cascadia Code", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+      #domXss {
+        width: 50%;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="domXss">DOM 型 XSS 注入</label>
+    <br />
+
+    <!-- <h1>DOM 型 XSS 注入</h1>
+    <script url="木马网站"></script> -->
+    <textarea name="domXss" id="domXss"></textarea>
+  </body>
+  <script>
+    // DOM 型 XSS 注入
+    document.addEventListener("keydown", (ev) => {
+      if (ev.keyCode === 13 /* enter */) {
+        let value = document.querySelector("#domXss").value;
+        // 预防 DOM 型 XSS 注入
+        value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        document.body.innerHTML += value;
+      }
+    });
+  </script>
+</html>

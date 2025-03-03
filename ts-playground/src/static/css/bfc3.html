@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        border: 3px slateblue solid;
+        overflow: hidden; /* bfc */
+      }
+      .l-box {
+        width: 100px;
+        height: 100px;
+        background-color: lightpink;
+        float: left;
+      }
+      .main {
+        height: 100px;
+        background-color: lightgreen;
+        /* 浮动盒不会和 bfc 重叠 */
+        overflow: hidden; /* bfc */
+      }
+      .r-box {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        float: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="l-box">left</div>
+      <div class="r-box">right</div>
+      <div class="main">main</div>
+    </div>
+  </body>
+</html>
