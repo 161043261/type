@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   font-family: 'Geist Mono', Iosevka, 'Yuanti SC', 'YouYuan' !important;
   --color-1st: #646cff;

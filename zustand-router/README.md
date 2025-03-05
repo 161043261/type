@@ -5,7 +5,7 @@
 ### 声明式导航
 
 ```tsx
-import { Link } from "react-router";
+import { Link } from 'react-router'
 
 export function Login() {
   return (
@@ -13,15 +13,15 @@ export function Login() {
       Login
       <Link to="/article">Link to article</Link>
     </div>
-  );
+  )
 }
 ```
 
-### 编程式导航
+### 编程式导航 (hook: useNavigate)
 
 ```tsx
 export function Login() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <div>
       Login
@@ -33,13 +33,25 @@ export function Login() {
 
 ## 路由导航传参
 
-### searchParams 传参
+### SearchParams 传参 (hook: useSearchParams)
 
 ```tsx
 // src/page/Login.tsx
-navigate('/article?name=whoami&age=23');
+navigate('/article?name=whoami&age=23')
 
 // src/page/Article.tsx
-const [params] = useSearchParams();
-const id = params.get('id');
+const [params, setParams] = useSearchParams()
+const name = params.get('name')
+const age = params.get('age')
+```
+
+### Params 传参 (hook: useParams)
+
+```tsx
+// src/page/Login.tsx
+navigate('/article?name=whoami&age=23')
+
+// src/page/Article.tsx
+const params = useParams() // params 只读
+console.log(params.name, params.age);
 ```

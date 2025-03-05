@@ -15,9 +15,22 @@ export function Login() {
   const navigate = useNavigate()
   return (
     <div>
-      Login
-      <button onClick={() => navigate('/article')}>Navigate to article</button>
-      <button onClick={() => navigate('/article?name=whoami&age=23')}>searchParams</button>
+      <h1>Login</h1>
+      <div className="flex flex-col gap-1">
+        <button className="border-1" type="button" onClick={() => navigate('/article')}>
+          Navigate to article
+        </button>
+        <button
+          className="border-1"
+          type="button"
+          onClick={() => navigate('/article?name=whoami&age=23')}
+        >
+          SearchParams
+        </button>
+        <button className="border-1" type="button" onClick={() => navigate('/article/whoami/23')}>
+          Params
+        </button>
+      </div>
     </div>
   )
 }

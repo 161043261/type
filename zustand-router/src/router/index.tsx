@@ -16,4 +16,8 @@ export const router = createBrowserRouter([
     path: '/article',
     element: <Article />,
   },
+  {
+    path: '/article/:name/:age',
+    element: <Article />,
+  },
 ])
