@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        grid-auto-rows: minmax(100px, auto);
+      }
+
+      .one {
+        /* 列网格线: 从 1 到 2 */
+        grid-column-start: 1;
+        grid-column-end: 2;
+      }
+
+      .two {
+        /* 列网格线: 从 2 到 4 */
+        grid-column-start: 2;
+        grid-column-end: 4;
+        /* 行网格线: 从 1 到 2 */
+        grid-row-start: 1;
+        grid-row-end: 2;
+        z-index: 1;
+        opacity: 50%;
+      }
+
+      .three {
+        /* 列网格线: 从 3 到 4 */
+        grid-column-start: 3;
+        grid-column-end: 4;
+        /* 行网格线: 从 1 到 4 */
+        grid-row-start: 1;
+        grid-row-end: 4;
+      }
+
+      .four {
+        /* 列网格线: 从 1 到 2 */
+        grid-column-start: 1;
+        grid-column-end: 2;
+        /* 行网格线: 从 2 到 5 */
+        grid-row-start: 2;
+        grid-row-end: 5;
+      }
+
+      .five {
+        /* 列网格线: 从 2 到 3 */
+        grid-column-start: 2;
+        grid-column-end: 3;
+        /* 行网格线: 从 2 到 5 */
+        grid-row-start: 2;
+        grid-row-end: 5;
+      }
+
+      .six {
+        /* 列网格线: 3, 从 3 到 4 */
+        grid-column: 3;
+        /* 行网格线: 4, 从 4 到 5 */
+        grid-row: 4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .wrapper {
+        margin: 60px;
+        display: grid;
+        /* 3 列: 100px, 100px, 100px */
+        grid-template-columns: repeat(3, 100px);
+        /* 2 行: 100px 200px */
+        grid-template-rows: 100px 200px;
+        gap: 20px;
+        /* row-gap: 20px; */
+        /* column-gap: 20px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+    </div>
+  </body>
+</html>

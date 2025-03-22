@@ -1,0 +1,56 @@
+.skeleton-container {
+  width: 300px;
+  height: 150px;
+  border: 1px solid #ccc;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.skeleton-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.skeleton-name,
+.skeleton-address {
+  width: 100px;
+  height: 20px;
+  background-color: #ccc;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-age {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Iosevka", "YouYuan" !important;
+      }
+
+      .left {
+        /* bfc */
+        background: lightgreen; /* 绿色 */
+        opacity: 0.5;
+        border: 3px solid slateblue;
+        width: 200px;
+        height: 200px;
+        float: left;
+      }
+
+      .right {
+        /* 粉色 */
+        background: lightpink;
+        opacity: 0.5;
+        border: 3px solid slateblue;
+        width: 400px;
+        min-height: 100px;
+      }
+
+      .box {
+        background: lightblue;
+        margin-left: 50px;
+      }
+
+      .bfc {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+
+    <button style="padding: 10px; background: none">
+      点击我, 让蓝色的成为 bfc
+    </button>
+  </body>
+
+  <script>
+    const button = document.querySelector("button");
+    button.addEventListener("click", () => {
+      const box = document.querySelector(".box");
+      // 如果 box 没有 bfc 则添加 bfc
+      // 如果 box 有 bfc 则移除 bfc
+      box.classList.toggle("bfc");
+    });
+  </script>
+</html>
