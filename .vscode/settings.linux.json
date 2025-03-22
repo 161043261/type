@@ -5,8 +5,6 @@
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
   ],
-  "cmake.showConfigureWithDebuggerNotification": false,
-  "cmake.showOptionsMovedNotification": false,
   "cmakeIntelliSence.cmakePath": "/usr/bin/cmake",
   "debug.console.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
   "debug.console.fontSize": 16,
