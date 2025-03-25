@@ -1,10 +1,18 @@
 {
+  "[cmake]": {
+    "editor.defaultFormatter": "KylinIdeTeam.cmake-intellisence"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "[snippets]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "chat.editor.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, Yuanti SC, YouYuan, PingFang SC, Microsoft YaHei",
   "chat.editor.fontSize": 16,
-  "cmakeIntelliSence.cmakePath": "C:/Program Files/CMake/bin/cmake",
   "debug.console.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, Yuanti SC, YouYuan, PingFang SC, Microsoft YaHei",
   "debug.console.fontSize": 16,
   "debug.onTaskErrors": "abort",
@@ -40,15 +48,9 @@
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "files.readonlyInclude": {
-    "**/.cargo/git/checkouts/**/*.rs": true,
-    "**/.cargo/registry/src/**/*.rs": true,
-    "**/lib/rustlib/src/rust/library/**/*.rs": true
-  },
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "lldb-dap.executable-path": "C:/Program Files/LLVM/bin/lldb-dap.exe",
   "makefile.configureOnOpen": true,
   "markdown.preview.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, Yuanti SC, YouYuan, PingFang SC, Microsoft YaHei",
   "markdown.preview.fontSize": 16,
