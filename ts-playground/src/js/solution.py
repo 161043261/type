@@ -56,7 +56,7 @@ def main():
         except IndexError:
             writeLog(args.log, args.ip, "timeout")
 
-    print(f"See {args.log}")
+    print(f"output: {args.log}")
 
 
 if __name__ == "__main__":
