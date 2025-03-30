@@ -15,7 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "sourceMap": true
   },
   "exclude": ["node_modules", "vite.config.ts"]
 }
