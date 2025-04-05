@@ -18,7 +18,8 @@ import { UseDebugValueDemo } from "../pages/UseDebugValue";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    // element: <App />,
+    Component: App,
   },
   {
     path: "/parent",
