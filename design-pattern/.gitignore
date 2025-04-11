@@ -1,0 +1,14 @@
+**/.idea/
+**/.DS_Store
+**/target/
+**/node_modules/
+**/build/
+**/dist/
+*.avi
+*.mp3
+*.mp4
+**/*.tar.gz
+**/*.tar
+**/.zip
+**/__cache__/
+
