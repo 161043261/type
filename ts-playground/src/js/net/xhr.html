@@ -60,11 +60,11 @@
               // 计算 xhr 请求时长
               this._xhrTrace.elapsedTime = endTime - this._xhrTrace.startTime;
               // 上报 xhr 请求信息给服务器
-              const reportError = (xhrTrace) => {
+              const reportInfo = (xhrTrace) => {
                 console.log("上报 xhr 请求信息");
                 console.log(xhrTrace);
               };
-              reportError(this._xhrTrace);
+              reportInfo(this._xhrTrace);
               // 执行原始的 send 方法
             });
             originalSend.apply(this, args);

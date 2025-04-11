@@ -2,11 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "typescript",
-      "tsconfig": "${workspaceFolder}/tsconfig.json",
-      "problemMatcher": ["$tsc"],
+      "type": "npm",
+      "script": "build",
       "group": "build",
-      "label": "tsc: build - tsconfig.json",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "tsc"
     }
   ]
 }

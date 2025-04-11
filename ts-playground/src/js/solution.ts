@@ -1,39 +1,66 @@
-function canPartition(nums: number[]): boolean {
-  const sum = nums.reduce((a, b) => a + b);
-  if (sum % 2 !== 0) {
-    return false;
-  }
-  const target = sum / 2;
-  const memo = new Map<string, boolean>();
-  const dfs = (i: number, j: number): boolean => {
-    const key = `${i}-${j}`;
-    if (memo.has(key)) {
-      return memo.get(key)!;
-    }
-    if (i < 0) {
-      return j === 0;
-    }
-    const ret = (j >= nums[i] && dfs(i - 1, j - nums[i])) || dfs(i - 1, j);
-    memo.set(key, ret);
-    return ret;
-  };
-  return dfs(nums.length - 1, target);
+interface ICrumb {
+  timeStamp: number;
 }
 
-function canPartition2(nums: number[]): boolean {
-  const sum = nums.reduce((a, b) => a + b);
-  if (sum % 2 !== 0) {
-    return false;
+class Breadcrumbs {
+  heapCap = 20;
+  minHeap: ICrumb[] = [];
+  constructor(maxBreadcrumbs_ = 20) {
+    this.heapCap = maxBreadcrumbs_;
   }
-  const target = sum / 2;
-  const dp = Array.from({ length: nums.length + 1 }, () =>
-    new Array(target + 1).fill(false),
-  );
-  dp[0][0] = true;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 0; j <= target; j++) {
-      dp[i + 1][j] = (j >= nums[i] && dp[i][j - nums[i]]) || dp[i][j];
+
+  push(...data: ICrumb[]) {
+    data = data.slice(0, this.heapCap);
+    this.minHeap.unshift(...data);
+    this.minHeap.slice(0, this.heapCap);
+    this.buildMinHeap(data.length - 1, this.minHeap.length);
+    return;
+  }
+
+  buildMinHeap(lastHeapifyIdx: number, heapSize: number) {
+    const lastLeafIdx = heapSize - 1;
+    const lastNonLeafIdx = Math.floor((lastLeafIdx - 1) / 2);
+    lastHeapifyIdx = Math.min(lastHeapifyIdx, lastNonLeafIdx);
+    for (let i = lastHeapifyIdx; i >= 0; i--) {
+      this.minHeapify(i, heapSize);
     }
   }
-  return dp[nums.length][target];
+
+  minHeapify(idx: number, heapSize: number) {
+    let childIdx = idx;
+    const left = idx * 2 + 1;
+    const right = idx * 2 + 2;
+    if (
+      left < heapSize &&
+      this.minHeap[left].timeStamp < this.minHeap[childIdx].timeStamp
+    ) {
+      childIdx = left;
+    }
+    if (
+      right < heapSize &&
+      this.minHeap[right].timeStamp < this.minHeap[childIdx].timeStamp
+    ) {
+      childIdx = right;
+    }
+    if (childIdx !== idx) {
+      [this.minHeap[idx], this.minHeap[childIdx]] = [
+        this.minHeap[childIdx],
+        this.minHeap[idx],
+      ];
+      this.minHeapify(childIdx, heapSize);
+    }
+  }
+
+  getAndClearHeap() {
+    const ret = this.minHeap;
+    this.minHeap = [];
+    return ret;
+  }
 }
+
+const breadcrumbs = new Breadcrumbs();
+breadcrumbs.push({ timeStamp: 1 }, { timeStamp: 2 });
+breadcrumbs.push({ timeStamp: 3 });
+console.log(breadcrumbs.getAndClearHeap());
+breadcrumbs.push({ timeStamp: 4 }, { timeStamp: 5 }, { timeStamp: 6 });
+console.log(breadcrumbs.minHeap);

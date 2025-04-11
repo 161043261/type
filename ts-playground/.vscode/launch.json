@@ -7,15 +7,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "solution.ts",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/js/solution.ts",
-      // "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": [
-        "${workspaceFolder}/dist/solution.js"
-      ]
+      "program": "${workspaceFolder}/dist/solution.js",
+      "preLaunchTask": "npm: build",
     }
   ]
 }

@@ -30,7 +30,7 @@
               url,
             };
 
-            const reportError = (xhrTrace) => {
+            const reportInfo = (xhrTrace) => {
               console.log("上报 fetch 请求信息");
               console.log(xhrTrace);
             };
@@ -48,7 +48,7 @@
                 resClone.text().then((data) => {
                   _fetchTrace.responseText = data;
                   // 上报 fetch 请求信息给服务器
-                  reportError(_fetchTrace);
+                  reportInfo(_fetchTrace);
                 });
                 // 返回原始 res, 外部继续使用 .then 调用
                 return res;
@@ -62,7 +62,7 @@
                   error: err,
                 };
                 // 上报 fetch 请求信息给服务器
-                reportError(_fetchTrace);
+                reportInfo(_fetchTrace);
                 throw err;
               }, // onrejected
             );

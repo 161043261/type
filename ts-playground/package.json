@@ -4,10 +4,8 @@
   "description": "Playground for HTML, CSS, JS, TS",
   "main": "index.html",
   "scripts": {
-    "test": "vitest",
     "format": "prettier --write ./src",
-    "build": "babel src/draft -d lib/",
-    "dev": "vite"
+    "build": "tsc"
   },
   "author": "161043261.github.io",
   "license": "ISC",

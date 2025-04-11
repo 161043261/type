@@ -49,11 +49,11 @@ function xhrReplace() {
         // 计算 xhr 请求时长
         this._xhrTrace.elapsedTime = endTime - this._xhrTrace.startTime;
         // 上报 xhr 请求信息给服务器
-        const reportError = (xhrTrace) => {
+        const reportInfo = (xhrTrace) => {
           console.log("上报 xhr 请求信息");
           console.log(xhrTrace);
         };
-        reportError(this._xhrTrace);
+        reportInfo(this._xhrTrace);
         // 执行原始的 send 方法
       });
       originalSend.apply(this, args);
@@ -85,7 +85,7 @@ function fetchReplace() {
         url,
       };
 
-      const reportError = (xhrTrace) => {
+      const reportInfo = (xhrTrace) => {
         console.log("上报 fetch 请求信息");
         console.log(xhrTrace);
       };
@@ -103,7 +103,7 @@ function fetchReplace() {
           resClone.text().then((data) => {
             _fetchTrace.responseText = data;
             // 上报 fetch 请求信息给服务器
-            reportError(_fetchTrace);
+            reportInfo(_fetchTrace);
           });
           // 返回原始 res, 外部继续使用 .then 调用
           return res;
@@ -117,10 +117,50 @@ function fetchReplace() {
             error: err,
           };
           // 上报 fetch 请求信息给服务器
-          reportError(_fetchTrace);
+          reportInfo(_fetchTrace);
           throw err;
         }, // onrejected
       );
     };
   });
+}
+
+let preHref = document.location.href;
+function historyReplace() {
+  const reportInfo = (k, v) => {
+    console.log("上报路由改变");
+    console.log(k, v);
+  };
+
+  const replaceAop = (sourceObj, propKey, wrapper) => {
+    if (!sourceObj || !(propKey in sourceObj)) return;
+    const originalFn = sourceObj[propKey];
+    const wrappedFn = wrapper(originalFn);
+    sourceObj[propKey] = wrappedFn;
+  };
+
+  const historyReplaceFn = (originalHistoryFn) => {
+    return function (...args) {
+      const url = args.length > 2 ? args[2] : undefined;
+      if (url) {
+        const from = preHref;
+        const to = String(url);
+        preHref = to;
+        // 上报路由改变
+        reportInfo("routeChange", { from, to });
+      }
+      return originalHistoryFn.apply(this, args);
+    };
+  };
+  replaceAop(window.history, "pushState", historyReplaceFn);
+  replaceAop(window.history, "replaceState", historyReplaceFn);
+}
+
+function addClickListener() {
+  document.addEventListener('click', ({ target }) => {
+    const tagName = target.tagName.toLowerCase();
+    if (tagName === 'body') {
+      return null
+    }
+  })
 }

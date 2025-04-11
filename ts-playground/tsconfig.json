@@ -2,13 +2,14 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "strict": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "ESNext",
     "outDir": "./dist",
     "baseUrl": "./",
+    "sourceRoot": "./src/js",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -18,5 +19,5 @@
     "noFallthroughCasesInSwitch": false,
     "sourceMap": true
   },
-  "exclude": ["node_modules", "vite.config.ts"]
+  "exclude": ["node_modules"]
 }
