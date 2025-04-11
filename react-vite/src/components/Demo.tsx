@@ -38,7 +38,7 @@ export const ComponentDemo: React.FC = () => {
       <input type="file" ref={fileRef} onChange={handleUpload} />
 
       <div>
-        <button onClick={() => setAlive(!isAlive)}>setAlive</button>
+        <button type="button" onClick={() => setAlive(!isAlive)}>setAlive</button>
         {isAlive && <Modal />}
       </div>
     </main>

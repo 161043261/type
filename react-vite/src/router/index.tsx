@@ -14,6 +14,7 @@ import UseMemoDemo from "../pages/UseMemo";
 import { UseCallbackDemo } from "../pages/UseCallback";
 import MemoUseCallback from "../pages/MemoUseCallback";
 import { UseDebugValueDemo } from "../pages/UseDebugValue";
+import ErrorBoundaryDemo from "../pages/error/ErrorBoundaryDemo";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
     path: "/useDebugValue",
     element: <UseDebugValueDemo />,
   },
+  {
+    path: '/error',
+    element: <ErrorBoundaryDemo />
+  }
 ]);
 
 export default router;
