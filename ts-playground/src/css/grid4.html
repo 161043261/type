@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .header {
+        grid-area: header;
+      }
+      .sidebar {
+        grid-area: sidebar;
+      }
+      .content {
+        grid-area: content;
+      }
+
+      .wrapper {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3, 200px);
+        /* header 占 2 个单元格 */
+        /* sidebar 占 1 个单元格 */
+        /* content 占 2 个单元格 */
+        /* . 代表空单元格 */
+        grid-template-areas:
+          ". header header"
+          "sidebar content content";
+        background: var(--color-1st);
+      }
+
+      .box {
+        background: #333;
+        color: #fff;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="box header">Header</div>
+      <div class="box sidebar">Sidebar</div>
+      <div class="box content">Content</div>
+    </div>
+  </body>
+</html>

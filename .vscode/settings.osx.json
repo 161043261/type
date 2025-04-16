@@ -1,0 +1,126 @@
+{
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultColorDecorators": "auto",
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "currentDocument"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "chat.editor.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "chat.editor.fontSize": 16,
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "cmake.showConfigureWithDebuggerNotification": false,
+  "cmakeIntelliSence.cmakePath": "/opt/homebrew/bin/cmake",
+  "debug.console.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "debug.console.fontSize": 16,
+  "debug.onTaskErrors": "abort",
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.codeLensFontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "editor.codeLensFontSize": 16,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.indentSize": "tabSize",
+  "editor.inlayHints.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "editor.inlayHints.fontSize": 16,
+  "editor.inlineSuggest.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "editor.minimap.enabled": false,
+  "editor.minimap.sectionHeaderFontSize": 16,
+  "editor.mouseWheelZoom": true,
+  "editor.smoothScrolling": true,
+  "editor.suggestFontSize": 16,
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmPasteNative": false,
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "lldb-dap.executable-path": "/opt/homebrew/Cellar/llvm/19.1.7_1/bin/lldb-dap",
+  "makefile.configureOnOpen": true,
+  "markdown.preview.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "markdown.preview.fontSize": 16,
+  "notebook.formatOnCellExecution": true,
+  "notebook.formatOnSave.enabled": true,
+  "notebook.markup.fontSize": 16,
+  "notebook.output.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "notebook.output.fontSize": 16,
+  "notebook.output.wordWrap": true,
+  "prettier.endOfLine": "lf",
+  "prettier.tabWidth": 2,
+  "python.analysis.autoIndent": true,
+  "python.defaultInterpreterPath": "/Users/usr1/venv/bin/python",
+  "redhat.telemetry.enabled": true,
+  "scm.inputFontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "scm.inputFontSize": 16,
+  "screencastMode.fontSize": 24,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.external.linuxExec": "zsh",
+  "terminal.external.osxExec": "zsh",
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.fontFamily": "Iosevka, Cascadia Code, Menlo, DejaVu Sans Mono, YouYuan, Yuanti SC, PingFang SC, Microsoft YaHei",
+  "terminal.integrated.fontSize": 16,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vite.autoStart": false,
+  "workbench.colorCustomizations": {
+    "[Night Owl (No Italics)]": {
+      "statusBar.debuggingBackground": "#E0E8F6"
+    },
+    "[Night Owl Light (No Italics)]": {
+      "statusBar.debuggingBackground": "#E0E8F6"
+    },
+    "[Night Owl Light]": {
+      "statusBar.debuggingBackground": "#E0E8F6"
+    },
+    "[Night Owl]": {
+      "statusBar.debuggingBackground": "#E0E8F6"
+    }
+  },
+  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.editor.wrapTabs": true,
+  "workbench.iconTheme": "catppuccin-latte",
+  "workbench.list.smoothScrolling": true
+}

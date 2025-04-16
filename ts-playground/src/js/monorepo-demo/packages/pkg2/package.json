@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo-demo/pkg2",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "files": ["dist"],
+  "author": "161043261.github.io",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.1"
+}

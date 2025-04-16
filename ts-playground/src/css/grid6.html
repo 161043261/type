@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .wrapper,
+      .wrapper2,
+      .wrapper3,
+      .wrapper4 {
+        display: grid;
+        grid-template-columns: 100px 200px 100px;
+        gap: 5px;
+        /* 每行 50px */
+        grid-auto-rows: 50px;
+        .wrapper3 {
+          /* 对齐单元格的中点, 中点对齐 */
+          justify-items: center;
+        }
+      }
+
+      .wrapper {
+        /* 对齐单元格的起始边缘, 左对齐 */
+        justify-items: start;
+      }
+
+      .wrapper2 {
+        /* 对齐单元格的结束边缘, 右对齐 */
+        justify-items: end;
+      }
+
+      .wrapper3 {
+        /* 对齐单元格的中点, 中点对齐 */
+        justify-items: center;
+      }
+
+      .wrapper4 {
+        /* 拉伸以填充整个单元格, 默认 */
+        justify-items: stretch;
+      }
+    </style>
+  </head>
+  <body>
+    justify-items: start;
+    <div class="wrapper">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+
+    justify-items: end;
+    <div class="wrapper2">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+
+    justify-items: center;
+    <div class="wrapper3">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+
+    justify-items: stretch;
+    <div class="wrapper4">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "ts-playground",
+  "version": "1.0.0",
+  "description": "Playground for HTML, CSS, JS, TS",
+  "main": "index.html",
+  "scripts": {
+    "format": "prettier --write ./src",
+    "build": "tsc"
+  },
+  "author": "161043261.github.io",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "ts-playground": "file:",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.9.3",
+    "@types/ws": "^8.5.13",
+    "prettier": "^3.3.3"
+  },
+  "type": "module",
+  "packageManager": "pnpm@10.7.1+sha512.2d92c86b7928dc8284f53494fb4201f983da65f0fb4f0d40baafa5cf628fa31dae3e5968f12466f17df7e97310e30f343a648baea1b9b350685dafafffdf5808"
+}

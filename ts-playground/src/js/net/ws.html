@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family:
+          "Menlo", "DejaVu Sans Mono", "Cascadia Code", "PingFang SC",
+          "Microsoft YaHei", monospace;
+      }
+
+      .loginForm {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 10px;
+        width: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul id="list"></ul>
+
+    <label for="input">input</label>
+    <input type="text" id="input" />
+    <button type="button" id="send">send</button>
+    <button type="button" id="stop">stop</button>
+
+    <hr />
+    <button type="button" id="sendBeacon">sendBeacon</button>
+
+    <div class="loginForm">
+      <label for="username">账号</label>
+      <input id="username" type="text" />
+      <br />
+      <label for="password">密码</label>
+      <input id="password" type="password" />
+      <button type="button" id="login">登录</button>
+    </div>
+  </body>
+
+  <!-- <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/api/json");
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      } else {
+        console.log(xhr.status);
+      }
+    };
+    xhr.send();
+  </script> -->
+
+  <!-- <script>
+    fetch("http://localhost:3000/api/json")
+      .then((resp) => resp.text())
+      .then((resp) => {
+        console.log(resp);
+      });
+  </script> -->
+
+  <!-- <script>
+    const sse = new EventSource("http://localhost:3000/api/sse");
+    sse.addEventListener("open", (e) => {
+      console.log(e.target);
+    });
+    sse.addEventListener("network", (e) => {
+      console.log(e.data);
+    });
+  </script> -->
+
+  <script>
+    // WebSocket
+    const list = document.querySelector("#list");
+    const ws = new WebSocket("ws://localhost:8080");
+    ws.addEventListener("open", () => {
+      console.log("Dial start");
+    });
+    ws.addEventListener("message", (e) => {
+      const data = JSON.parse(e.data);
+      const li = document.createElement("li");
+      if (data.state === 2) {
+        li.innerText = data.msg;
+        list.appendChild(li);
+      }
+    });
+    const input = document.querySelector("#input");
+    const sendBtn = document.querySelector("#send");
+    const stopBtn = document.querySelector("#stop");
+    sendBtn.addEventListener("click", () => {
+      if (input.value) {
+        ws.send(input.value);
+        input.value = "";
+      }
+    });
+    stopBtn.addEventListener("click", () => {
+      ws.close();
+      console.log("Dial stop");
+    });
+    const sendBeaconBtn = document.querySelector("#sendBeacon");
+    sendBeaconBtn.addEventListener("click", () => {
+      navigator.sendBeacon("http://localhost:3000/api/beacon");
+    });
+  </script>
+
+  <script>
+    // JWT
+    const loginBtn = document.querySelector("#login");
+    const username = document.querySelector("#username");
+    const password = document.querySelector("#password");
+    loginBtn.onclick = () => {
+      fetch("http://localhost:3000/api/login", {
+        body: JSON.stringify({
+          username: username.value,
+          password: password.value,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
+        .then((resp) => resp.json())
+        .then((resp) => {
+          console.log(resp.token);
+          localStorage.setItem("token", resp.token);
+          location.href = "list.html";
+        });
+    };
+  </script>
+</html>
