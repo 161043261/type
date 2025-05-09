@@ -419,7 +419,7 @@ context 对比 props: 不需要每一层手动添加 props
 
 高阶组件: 装饰模式
 
-高阶组件是一个函数, 入参是一个组件, 返回一个装饰后的增强组件
+高阶组件是一个无副作用的纯函数, 入参是一个组件, 返回一个装饰后的增强组件
 
 ```jsx
 const WithPropsProxy = (WrappedComponent) => {
