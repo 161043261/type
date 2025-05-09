@@ -1,0 +1,95 @@
+<!-- xhr + AOP, 请参考 https://161043261.github.io/framework/trace  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function xhrReplace() {
+        if (!("XMLHttpRequest" in window)) {
+          return;
+        }
+        const xhrProto = XMLHttpRequest.prototype;
+        // 重写 XMLHttpRequest 原型上的 open 方法
+
+        /**
+         *
+         * @param {object} sourceObj 重写的对象
+         * @param {string} propKey 重写的属性键
+         * @param {function} wrapper 包裹函数
+         */
+        const replaceAop = (sourceObj, propKey, wrapper) => {
+          if (!(propKey in sourceObj)) return;
+          const originalFn = sourceObj[propKey];
+          const wrappedFn = wrapper(originalFn);
+          sourceObj[propKey] = wrappedFn;
+        };
+
+        // 重写 XMLHttpRequest 原型上的 open 方法
+        replaceAop(xhrProto, "open", (originalOpen) => {
+          return function (...args) {
+            // 获取 xhr 请求信息
+            this._xhrTrace = {
+              method:
+                typeof args[0] === "string" ? args[0].toUpperCase() : args[0],
+              url: args[1],
+              startTime: new Date().getTime(),
+              type: "xhr",
+            };
+            // 执行原始的 open 方法
+            originalOpen.apply(this, args);
+          };
+        });
+
+        // 重写 XMLHttpRequest 原型上的 send 方法
+        replaceAop(xhrProto, "send", (originalSend) => {
+          return function (...args) {
+            // 请求结束时触发, 不管请求是成功还是失败
+            this.addEventListener("loadend", () => {
+              const { responseType, response, status } = this;
+              const endTime = new Date().getTime();
+              this._xhrTrace.reqData = args[0];
+              this._xhrTrace.status = status;
+              if (["", "json", "text"].indexOf(responseType) !== -1) {
+                this._xhrTrace.responseText =
+                  typeof response === "object"
+                    ? JSON.stringify(response)
+                    : response;
+              }
+              // 计算 xhr 请求时长
+              this._xhrTrace.elapsedTime = endTime - this._xhrTrace.startTime;
+              // 上报 xhr 请求信息给服务器
+              const reportInfo = (xhrTrace) => {
+                console.log("上报 xhr 请求信息");
+                console.log(xhrTrace);
+              };
+              reportInfo(this._xhrTrace);
+              // 执行原始的 send 方法
+            });
+            originalSend.apply(this, args);
+          };
+        });
+      }
+      xhrReplace();
+
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log(xhr.response);
+          }
+        }
+      };
+      xhr.open(
+        "GET",
+        "https://ys.mihoyo.com/main/character/liyue?char=11",
+        true,
+      );
+      xhr.send();
+    </script>
+  </head>
+  <body>
+    XMLHttpRequest Demo
+  </body>
+</html>

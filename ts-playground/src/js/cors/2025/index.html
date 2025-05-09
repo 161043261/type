@@ -1,0 +1,51 @@
+<!-- 跨域 localStorage 共享 -->
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主页面</title>
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAADNJREFUWEft0EERAAAEAEEqCSiiSsTw2UtwszldG4+lAQIECBAgQIAAAQIECBAgQOBb4AB/Sk/BsZm+TwAAAABJRU5ErkJggg=="
+      alt="base64"
+      draggable="false"
+      width="20rem"
+    />
+  </head>
+  <body>
+    <button onclick="setData()">写数据</button>
+    <button onclick="getData()">读数据</button>
+    <script>
+      let iframe;
+      (function () {
+        iframe = document.createElement("iframe");
+        iframe.src = "http://127.0.0.1:2024/index.html";
+        // iframe.style.display = "none";
+        document.body.appendChild(iframe);
+      })();
+      let age = 0;
+      function setData() {
+        const message = {
+          action: "set",
+          key: "user",
+          value: JSON.stringify({ name: "米哈游发 offer", age: ++age }),
+        };
+        iframe.contentWindow.postMessage(message, "http://127.0.0.1:2024");
+      }
+      function getData() {
+        const message = { action: "get", key: "user" };
+        iframe.contentWindow.postMessage(message, "http://127.0.0.1:2024");
+      }
+      window.addEventListener("message", function (event) {
+        if (event.origin !== "http://127.0.0.1:2024") return;
+        const { action, key, value } = event.data;
+        if (action === "get") {
+          console.log("读数据成功:", JSON.parse(value));
+        }
+        if (action === "set") {
+          console.log("写数据成功");
+        }
+      });
+    </script>
+  </body>
+</html>
