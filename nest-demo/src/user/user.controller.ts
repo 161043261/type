@@ -9,7 +9,6 @@ import {
   Version,
   Request,
   Response,
-  Query,
   Headers,
   HttpCode,
   Session,
@@ -24,7 +23,17 @@ import {
   Response as ExpressResponse,
 } from 'express';
 import * as svgCaptcha from 'svg-captcha';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
+@ApiTags('UserController')
+@ApiBearerAuth()
 // @Controller('user')
 @Controller({
   path: 'user',
@@ -100,22 +109,28 @@ export class UserController {
   // curl http://localhost:3000/v1/user?name="whoami"
   @Get()
   @Version('1') // 接口版本，只有该方法有 /v1
+  //? swagger
+  @ApiOperation({ summary: 'Find all users', description: 'Find all users' })
+  @ApiQuery({ name: 'page', description: 'For pagination' })
+  @ApiResponse({ status: 200, description: '200 OK' })
   findAll(@Request() req: ExpressRequest) {
     console.log(req.query);
     return this.userService.findAll();
   }
 
   // curl http://localhost:3000/v2/user?name="whoami"
-  @Get()
-  @Version('2') // 接口版本，只有该方法有 /v2
-  findAll2(@Query() query: Record<string, unknown>) {
-    console.log(query);
-    return this.userService.findAll();
-  }
+  // @Get()
+  // @Version('2') // 接口版本，只有该方法有 /v2
+  // findAll2(@Query() query: Record<string, unknown>) {
+  //   console.log(query);
+  //   return this.userService.findAll();
+  // }
 
   // curl http://localhost:3000/user/1
   @Get(':id') // url 路径参数
   // id 只能是 string 类型
+  //? swagger
+  @ApiParam({ name: 'id', description: 'The user ID', required: true })
   findOne(@Param('id') id: string, @Request() req: ExpressRequest) {
     console.log(id); // 1
     console.log(req.params); // { id: '1' }

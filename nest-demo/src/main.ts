@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { join } from 'node:path';
 import { GlobalResponseInterceptor } from './common/res_interceptor';
 import { GlobalExceptionFilter } from './common/err_filter';
 // import { LoginGuard } from './login/login.guard';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 function globalMiddleware(
   req: ExpressRequest,
@@ -26,6 +28,17 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true,
   });
+  const options = new DocumentBuilder()
+    .addBearerAuth()
+    .setTitle('nest-demo title')
+    .setDescription('nest-demo description')
+    .setVersion('1')
+    .build();
+  // @ts-ignore
+  const document = SwaggerModule.createDocument(app, options);
+  // @ts-ignore
+  SwaggerModule.setup('/api-docs', app, document);
+
   app.enableCors();
 
   app.enableVersioning({
@@ -53,7 +66,9 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   app.useGlobalPipes(new ValidationPipe());
-  // app.useGlobalGuards(new LoginGuard());
+  // app.useGlobalGuards(new Log
+  // inGuard());
+
   await app.listen(process.env.PORT ?? 3000);
 }
 

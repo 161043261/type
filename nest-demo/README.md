@@ -931,3 +931,69 @@ export class LoginGuard implements CanActivate {
 ```bash
 pnpm add @nestjs/swagger swagger-ui-express
 ```
+
+```ts
+// ./src/main.ts
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    cors: true,
+  });
+  const options = new DocumentBuilder()
+    .addBearerAuth() // swagger 发送请求时，自动携带 token
+    .setTitle('nest-demo title')
+    .setDescription('nest-demo description')
+    .setVersion('1')
+    .build();
+  // @ts-ignore
+  const document = SwaggerModule.createDocument(app, options);
+  // @ts-ignore
+  SwaggerModule.setup('/api-docs', app, document);
+  await app.listen(process.env.PORT ?? 3000);
+}
+
+bootstrap();
+```
+
+controller 分组
+
+```ts
+// ./src/user/user.controller.ts
+@ApiTags('UserController')
+@ApiBearerAuth() // swagger 发送请求时，自动携带 token
+@Controller('user')
+export class UserController {
+  @Get()
+  @ApiOperation({ summary: 'Find all users', description: 'Find all users' })
+  @ApiQuery({ name: 'page', description: 'For pagination' })
+  @ApiResponse({ status: 200, description: '200 OK' })
+  findAll(@Request() req: ExpressRequest) {
+    return this.userService.findAll();
+  }
+
+  @Get(':id') // url 路径参数
+  @ApiParam({ name: 'id', description: 'The user ID', required: true })
+  findOne(@Param('id') id: string, @Request() req: ExpressRequest) {
+    return this.userService.findOne(Number.parseInt(id));
+  }
+
+  @Post()
+  create(@Request() req: ExpressRequest, @Body() body: CreateUserDto) {
+    return this.userService.create(body);
+  }
+}
+```
+
+```ts
+// ./src/dto/create-user.dto.ts
+export class CreateUserDto {
+  @ApiProperty({ example: 'whoami' })
+  name: string;
+  @ApiProperty({
+    example: 22,
+    type: 'number',
+    required: true,
+    enum: [22, 23, 24],
+  })
+  age: number;
+}
+```

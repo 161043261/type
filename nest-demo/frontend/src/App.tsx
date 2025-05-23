@@ -52,6 +52,7 @@ function App() {
     aTag.download = 'latestFile.zip';
     aTag.click();
   };
+  
   return (
     <>
       <InputLabel>

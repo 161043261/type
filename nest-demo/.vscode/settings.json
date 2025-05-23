@@ -1,3 +1,22 @@
 {
-  "editor.fontFamily": "Iosevka SS04, Iosevka SS04 Expanded, Cascadia Code SemiLight, Sarasa Gothic SC"
+  "editor.fontFamily": "Iosevka SS04, Iosevka SS04 Expanded, Cascadia Code SemiLight, Sarasa Gothic SC",
+  "dbcode.connections": [
+    {
+      "connectionId": "mn_28CUR-KX9cGJEAH9po",
+      "name": "MySQL",
+      "driver": "mysql",
+      "connectionType": "host",
+      "host": "localhost",
+      "port": 3306,
+      "ssl": false,
+      "username": "root",
+      "password": "",
+      "savePassword": "secretStorage",
+      "readOnly": false,
+      "connectionTimeout": 30,
+      "driverOptions": {
+        "retrievePublickey": true
+      }
+    }
+  ]
 }
