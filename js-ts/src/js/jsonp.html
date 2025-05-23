@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">山回路转不见君, 雪上空留马行处</div>
+  </body>
+  <script>
+    function jsonp(req) {
+      const script = document.createElement("script");
+      const url = `${req.url}?callback=${req.callback.name}`;
+      script.src = url;
+      document.getElementsByTagName("head")[0].appendChild(script);
+    }
+    function namedCallback(res) {
+      alert(`JSONP: ${res.data}`);
+    }
+    jsonp({
+      url: "http://localhost:8080",
+      callback: namedCallback,
+    });
+  </script>
+</html>

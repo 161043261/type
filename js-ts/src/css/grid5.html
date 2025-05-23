@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .six {
+        grid-column-start: span 2;
+      }
+
+      .wrapper,
+      .wrapper2,
+      .wrapper3 {
+        display: grid;
+        margin: 50px;
+        gap: 10px;
+      }
+
+      .wrapper {
+        grid-template-columns: 100px 200px 100px;
+        /* 单元格先行后列排列 */
+        grid-auto-flow: row;
+        /* 每行 50px */
+        grid-auto-rows: 50px;
+      }
+
+      .wrapper2 {
+        grid-template-rows: 50px 50px;
+        /* 单元格先列后行排列 */
+        grid-auto-flow: column;
+        /* 每列 100px */
+        grid-auto-columns: 100px;
+      }
+
+      .wrapper3 {
+        grid-template-columns: 100px 200px 100px;
+        /* 单元格先行后列排列, 尽可能填满 */
+        grid-auto-flow: row dense;
+        /* 每行 50px */
+        grid-auto-rows: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    grid-auto-flow: row;
+    <div class="wrapper">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">Eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+
+    grid-auto-flow: column;
+    <div class="wrapper2">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">Eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+
+    grid-auto-flow: row dense;
+    <div class="wrapper3">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+      <div class="seven item">Seven</div>
+      <div class="eight item">Eight</div>
+      <div class="nine item">Nine</div>
+    </div>
+  </body>
+</html>

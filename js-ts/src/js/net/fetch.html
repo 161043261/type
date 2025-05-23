@@ -1,0 +1,82 @@
+<!-- fetch + AOP, 请参考 https://161043261.github.io/framework/trace  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function fetchReplace() {
+        if (!("fetch" in window)) {
+          return;
+        }
+        const replaceAop = (sourceObj, propKey, wrapper) => {
+          if (!(propKey in sourceObj)) return;
+          const originalFn = sourceObj[propKey];
+          const wrappedFn = wrapper(originalFn);
+          sourceObj[propKey] = wrappedFn;
+        };
+
+        replaceAop(window, "fetch", (originalFetch) => {
+          return function (url, config) {
+            const startTime = new Date().getTime();
+            // config ? (config.method ?? "GET") : "GET";
+            // (config && config.method) || "GET";
+            const method = config?.method ?? "GET";
+            let _fetchTrace = {
+              type: "fetch",
+              method,
+              reqData: config && config.body,
+              url,
+            };
+
+            const reportInfo = (xhrTrace) => {
+              console.log("上报 fetch 请求信息");
+              console.log(xhrTrace);
+            };
+
+            return originalFetch.apply(window, [url, config]).then(
+              (res) => {
+                // res.clone() 克隆响应, 防止响应被标记为已消费
+                const resClone = res.clone();
+                const endTime = new Date().getTime();
+                _fetchTrace = {
+                  ..._fetchTrace,
+                  elapsedTime: endTime - startTime,
+                  status: resClone.status,
+                };
+                resClone.text().then((data) => {
+                  _fetchTrace.responseText = data;
+                  // 上报 fetch 请求信息给服务器
+                  reportInfo(_fetchTrace);
+                });
+                // 返回原始 res, 外部继续使用 .then 调用
+                return res;
+              }, // onfulfilled
+              (err) => {
+                const endTime = new Date().getTime();
+                _fetchTrace = {
+                  ..._fetchTrace,
+                  elapsedTime: endTime - startTime,
+                  status: 0,
+                  error: err,
+                };
+                // 上报 fetch 请求信息给服务器
+                reportInfo(_fetchTrace);
+                throw err;
+              }, // onrejected
+            );
+          };
+        });
+      }
+      fetchReplace();
+
+      fetch("https://ys.mihoyo.com/main/character/liyue?char=11", {
+        method: "GET",
+      }).then(console.log);
+    </script>
+  </head>
+  <body>
+    fetch Demo
+  </body>
+</html>
