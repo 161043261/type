@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "Iosevka SS04, Iosevka SS04 Expanded, Cascadia Code SemiLight, Sarasa Gothic SC",
+  "editor.fontFamily": "Fira Code, Cascadia Code, Menlo, Yuanti SC, Sarasa Mono SC, PingFang SC, Microsoft YaHei",
   "dbcode.connections": [
     {
       "connectionId": "mn_28CUR-KX9cGJEAH9po",

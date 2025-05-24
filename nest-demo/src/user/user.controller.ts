@@ -106,7 +106,7 @@ export class UserController {
     return this.userService.create(body);
   }
 
-  // curl http://localhost:3000/v1/user?name="whoami"
+  // curl http://localhost:3000/v1/user?name=whoami
   @Get()
   @Version('1') // 接口版本，只有该方法有 /v1
   //? swagger
@@ -118,7 +118,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  // curl http://localhost:3000/v2/user?name="whoami"
+  // curl http://localhost:3000/v2/user?name=whoami
   // @Get()
   // @Version('2') // 接口版本，只有该方法有 /v2
   // findAll2(@Query() query: Record<string, unknown>) {

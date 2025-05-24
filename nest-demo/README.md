@@ -997,3 +997,78 @@ export class CreateUserDto {
   age: number;
 }
 ```
+
+## 连接数据库
+
+```bash
+pnpm add @nestjs/typeorm typeorm mysql2
+```
+
+```ts
+// ./src/app.module.ts
+@Module({
+  imports: [
+    UserModule,
+    ConfigModule.makeDynamic({ path: '/sr' }),
+    UploadModule,
+    LoginModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      username: 'root',
+      password: 'pass',
+      host: 'localhost',
+      port: 3306,
+      database: 'db0',
+      // 可以自动加载 entity
+      // entities: [join(__dirname, './**/*.entity{.js,.ts}')],
+      synchronize: true, // 自动将 entity 同步到数据库
+      retryDelay: 500,
+      retryAttempts: 3, // 连接数据库的重试次数
+      autoLoadEntities: true, // 自动加载 entity
+    }),
+    EmployeeModule,
+  ],
+  // ...
+})
+export class AppModule {}
+```
+
+```ts
+// ./src/employee/employee.entity.ts
+@Entity()
+export class Employee /** 表名 */ {
+  @PrimaryGeneratedColumn()
+  id: number; // 自增主键
+  @Column({ type: 'varchar', length: 255 })
+  name: string; // 字段名
+  @Column({ type: 'enum', enum: [1, 2, 3], default: 1 })
+  age: number;
+  @Column({ select: true, comment: 'myComment', nullable: false })
+  password: string;
+  @Generated('uuid')
+  uuid: string;
+  @CreateDateColumn({ type: 'timestamp' })
+  createTime: Date;
+
+  @Column('simple-array')
+  // 使用 roles.join(',') 存储到数据库
+  roles: string[];
+  @Column('simple-json')
+  // 使用 JSON.stringify(user) 存储到数据库
+  user: { name: string; age: number };
+}
+```
+
+```ts
+// ./src/employee/employee.module.ts
+@Module({
+  imports: [TypeOrmModule.forFeature([Employee])],
+  controllers: [EmployeeController],
+  providers: [EmployeeService],
+})
+export class EmployeeModule {}
+```
+
+```bash
+docker exec -it mysql_container bash
+```

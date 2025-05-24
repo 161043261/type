@@ -6,6 +6,9 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from './config/config.module';
 import { UploadModule } from './upload/upload.module';
 import { LoginModule } from './login/login.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+// import { join } from 'path';
+import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
@@ -13,6 +16,21 @@ import { LoginModule } from './login/login.module';
     ConfigModule.makeDynamic({ path: '/sr' }),
     UploadModule,
     LoginModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      username: 'root',
+      password: 'pass',
+      host: 'localhost',
+      port: 3306,
+      database: 'db0',
+      // 可以自动加载 entity
+      // entities: [join(__dirname, './**/*.entity{.js,.ts}')],
+      synchronize: true, // 自动将 entity 同步到数据库
+      retryDelay: 500,
+      retryAttempts: 3, // 连接数据库的重试次数
+      autoLoadEntities: true, // 自动加载 entity
+    }),
+    EmployeeModule,
   ],
   controllers: [AppController],
   providers: [
