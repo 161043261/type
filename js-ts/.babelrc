@@ -1,0 +1,8 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": []
+}
+// pnpm add -D @babel/core @babel/preset-env @babel/preset-react
+// pnpm add -D @babel/cli
+// pnpm add -D @babel/register
+// pnpm exec ./example.jsx

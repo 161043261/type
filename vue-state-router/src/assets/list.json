@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "name": "item1",
+      "price": 1000,
+      "id": 1
+    },
+    {
+      "name": "item2",
+      "price": 2000,
+      "id": 2
+    },
+    {
+      "name": "item3",
+      "price": 3000,
+      "id": 3
+    }
+  ]
+}

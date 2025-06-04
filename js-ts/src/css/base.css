@@ -1,0 +1,45 @@
+:root {
+  --color-1st: #d1f8ef;
+  --color-2nd: #a1e3f9;
+  --color-3rd: #578fca;
+  --color-4th: #fff2f2;
+  --color-5th: #a9b5df;
+  --color-6th: #7886c7;
+  --color-7th: #a3d1c6;
+  --color-8th: #fbffe4;
+  --color-9th: #b3d8a8;
+  font-family: "Iosevka";
+}
+.one {
+  background: var(--color-1st);
+}
+.two {
+  background: var(--color-2nd);
+}
+.three {
+  background: var(--color-3rd);
+}
+.four {
+  background: var(--color-4th);
+}
+.five {
+  background: var(--color-5th);
+}
+.six {
+  background: var(--color-6th);
+}
+.seven {
+  background: var(--color-7th);
+}
+.eight {
+  background: var(--color-8th);
+}
+.nine {
+  background: var(--color-9th);
+}
+.item {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
