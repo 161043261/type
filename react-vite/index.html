@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/react.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N0va Desktop Extractor</title>
+    <style>
+      * {
+        font-family:
+          "Iosevka", "Menlo", "DejaVu Sans Mono", "Cascadia Code", "YouYuan",
+          "Yuanti SC", "PingFang SC", "Microsoft YaHei", monospace;
+      }
+
+      .container {
+        width: 600px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px lightblue;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      #extractBtn {
+        padding: 5px 5px;
+      }
+
+      #msgBox {
+        color: red;
+      }
+
+      button {
+        border: none;
+        border-radius: 10px;
+        background-color: azure;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- react -->
+    <div id="header"></div>
+    <!-- 虚拟 dom -->
+    <div id="root"></div>
+  </body>
+
+  <script crossorigin type="module" src="/src/main.tsx"></script>
+</html>

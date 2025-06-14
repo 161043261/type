@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "base.css";
+
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        gap: 10px 20px;
+        /* row-gap: 10px; column-gap: 20px; */
+        grid-auto-rows: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="one item">One</div>
+      <div class="two item">Two</div>
+      <div class="three item">Three</div>
+      <div class="four item">Four</div>
+      <div class="five item">Five</div>
+      <div class="six item">Six</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+.msg {
+  width: 100px;
+  height: 30px;
+  /* 固定定位的参考点: (浏览器) 窗口 */
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  margin-left: -50px;
+  background: white;
+  border: 1px solid grey;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+}

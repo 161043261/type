@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let preHref = document.location.href;
+      function historyReplace() {
+        const reportInfo = (k, v) => {
+          console.log("上报路由改变");
+          console.log(k, v);
+        };
+
+        const replaceAop = (sourceObj, propKey, wrapper) => {
+          if (!sourceObj || !(propKey in sourceObj)) return;
+          const originalFn = sourceObj[propKey];
+          const wrappedFn = wrapper(originalFn);
+          sourceObj[propKey] = wrappedFn;
+        };
+
+        const historyReplaceFn = (originalHistoryFn) => {
+          return function (...args) {
+            const url = args.length > 2 ? args[2] : undefined;
+            if (url) {
+              const from = preHref;
+              const to = String(url);
+              preHref = to;
+              // 上报路由改变
+              reportInfo("routeChange", { from, to });
+            }
+            return originalHistoryFn.apply(this, args);
+          };
+        };
+        replaceAop(window.history, "pushState", historyReplaceFn);
+        replaceAop(window.history, "replaceState", historyReplaceFn);
+      }
+
+      historyReplace();
+
+      // const p1 = new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     history.pushState({}, "", "/pushState");
+      //     resolve();
+      //   }, 10000);
+      // });
+
+      // p1.then(() => {
+      //   setTimeout(() => {
+      //     history.replaceState({}, "", "/replaceState");
+      //   }, 10000);
+      // });
+    </script>
+
+    <script>
+      function addClickListener() {
+        const reportInfo = (data) => {
+          console.log("上报用户点击事件");
+          console.log(data);
+        };
+        document.addEventListener("click", ({ target }) => {
+          if (!target) return null;
+          const tagName = target.tagName.toLowerCase();
+          if (tagName === "body" || tagName === "html") {
+            return null;
+          }
+          const id = target.id ? ` id="${target.id}"` : "";
+          let classNames = target.classList.value;
+          if (classNames !== "") classNames = ` class="${classNames}"`;
+          const innerText = target.innerText;
+          const dom = `<${tagName}${id}${classNames}>${innerText}</${tagName}>`;
+          reportInfo({ type: "click", dom });
+        });
+      }
+      addClickListener();
+    </script>
+  </head>
+  <body>
+    pushState, replaceState
+    <div
+      style="width: 200px; height: 200px; background: lightblue"
+      id="trace-lightblue"
+    ></div>
+    <div
+      style="width: 200px; height: 200px; background: lightpink"
+      id="trace-lightpink"
+      class="bg-red-500 rounded-lg"
+    >
+      <button type="button">点我</button>
+    </div>
+  </body>
+</html>
