@@ -8,6 +8,9 @@ import { NotFound } from '../pages/NotFound'
 import Layout from '../layout'
 import Loader from '@/pages/LoaderAction/Loader.tsx'
 import Action from '@/pages/LoaderAction/Action.tsx'
+import Price from '@/pages/state/Price.tsx'
+import Mhy from '@/pages/state/Mhy.tsx'
+import Kun from '@/pages/state/Kun.tsx'
 
 const data = [
   { name: 'Microsoft', age: 1 },
@@ -99,6 +102,18 @@ export const router = createBrowserRouter([
   {
     path: '/antd',
     Component: Layout,
+  },
+  {
+    path: '/state/price',
+    Component: Price,
+  },
+  {
+    path: '/state/mhy',
+    Component: Mhy,
+  },
+  {
+    path: '/state/kun',
+    Component: Kun,
   },
   {
     path: '*',
