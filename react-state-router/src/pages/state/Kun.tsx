@@ -1,44 +1,44 @@
-import useKunStore from '@/store/kun'
-
-function Left() {
-  console.log('Update left')
-  const { name, age, hobbies, setSing, setDance } = useKunStore()
-  return (
-    <div className="bg-blue-300">
-      <div>name: {name}</div>
-      <div>age: {age}</div>
-      <ul>
-        {Object.values(hobbies).map((val, idx) => (
-          <li key={idx}>{val}</li>
-        ))}
-      </ul>
-      <div className="flex gap-5">
-        <button onClick={() => setSing((hobbies.sing += '!'))}>setSing</button>
-        <button onClick={() => setDance((hobbies.dance += '!'))}>setDance</button>
-      </div>
-    </div>
-  )
-}
-
-function Right() {
-  console.log('Update right')
-  //// const { name, hobbies } = useKunStore()
-  const name = useKunStore((state) => state.name)
-  const sing = useKunStore((state) => state.hobbies.sing)
-  return (
-    <div className="bg-pink-300">
-      <div>name: {name}</div>
-      <div>sing: {sing}</div>
-    </div>
-  )
-}
+import { KunLeft, KunLeft2, KunLeft3, KunLeft4 } from './KunLeft'
+import { KunRight, KunRight2, KunRight3, KunRight4 } from './KunRight'
+import { KunMiddle, KunMiddle2, KunMiddle3, KunMiddle4 } from './KunMiddle'
 
 export default function Kun() {
   console.log('Kun')
   return (
-    <div className="flex gap-10">
-      <Left />
-      <Right />
-    </div>
+    <>
+      <div className="flex gap-10">
+        <h1>vanilla</h1>
+        <KunLeft />
+        <KunMiddle />
+        <KunRight />
+      </div>
+
+      <hr />
+
+      <div className="flex gap-10">
+        <h1>immer</h1>
+        <KunLeft2 />
+        <KunMiddle2 />
+        <KunRight2 />
+      </div>
+
+      <hr />
+
+      <div className="flex gap-10">
+        <h1>logger + vanilla</h1>
+        <KunLeft3 />
+        <KunMiddle3 />
+        <KunRight3 />
+      </div>
+
+      <hr />
+
+      <div className="flex gap-10">
+        <h1>logger + immer</h1>
+        <KunLeft4 />
+        <KunMiddle4 />
+        <KunRight4 />
+      </div>
+    </>
   )
 }
