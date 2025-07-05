@@ -1,0 +1,71 @@
+[buildPlans.Iosevka]
+exportGlyphNames = false
+family = "Iosevka"
+noCvSs = true
+serifs = "sans"
+spacing = "normal"
+
+[buildPlans.Iosevka.variants]
+inherits = "ss05"
+
+[buildPlans.Iosevka.variants.design]
+ampersand = "closed"
+brace = "straight"
+capital-g = "toothed-serifless-hookless"
+capital-j = "serifless"
+capital-m = "hanging-serifless"
+capital-q = "crossing"
+f = "flat-hook-serifless-crossbar-at-x-height"
+four = "closed-serifless"
+g = "single-storey-serifless"
+j = "serifless"
+k = "straight-serifless"
+l = "serifed-flat-tailed"
+nine = "closed-contour"
+r = "hookless-serifless"
+zero = "dotted"
+
+[buildPlans.Iosevka.ligations]
+inherits = "javascript"
+
+[buildPlans.Iosevka.weights.Regular]
+css = 400
+menu = 400
+shape = 400
+
+[buildPlans.Iosevka.weights.Bold]
+css = 700
+menu = 700
+shape = 700
+
+[buildPlans.Iosevka.weights.Light]
+css = 300
+menu = 300
+shape = 300
+
+[buildPlans.Iosevka.weights.Medium]
+css = 500
+menu = 500
+shape = 500
+
+[buildPlans.Iosevka.weights.SemiBold]
+css = 600
+menu = 600
+shape = 600
+
+[buildPlans.Iosevka.widths.Normal]
+css = "normal"
+menu = 5
+shape = 500
+
+[buildPlans.Iosevka.slopes.Upright]
+angle = 0
+css = "normal"
+menu = "upright"
+shape = "upright"
+
+[buildPlans.Iosevka.slopes.Italic]
+angle = 9.4
+css = "italic"
+menu = "italic"
+shape = "italic"

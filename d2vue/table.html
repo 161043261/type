@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15x25 Flex Table</title>
+    <style>
+      .table {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid #ccc;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .cell {
+        width: 4vw;
+        height: 6vh;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="table"></div>
+  </body>
+
+  <script>
+    const table = document.querySelector('.table')
+    for (let i = 0; i < 15; i++) {
+      const row = document.createElement('div')
+      row.classList.add('row')
+      for (let j = 0; j < 25; j++) {
+        const cell = document.createElement('div')
+        cell.classList.add('cell')
+        row.appendChild(cell)
+      }
+      table.appendChild(row)
+    }
+  </script>
+</html>
