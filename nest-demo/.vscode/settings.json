@@ -1,0 +1,22 @@
+{
+  "editor.fontFamily": "Fira Code, Cascadia Code, Menlo, Yuanti SC, Sarasa Mono SC, PingFang SC, Microsoft YaHei",
+  "dbcode.connections": [
+    {
+      "connectionId": "mn_28CUR-KX9cGJEAH9po",
+      "name": "MySQL",
+      "driver": "mysql",
+      "connectionType": "host",
+      "host": "localhost",
+      "port": 3306,
+      "ssl": false,
+      "username": "root",
+      "password": "",
+      "savePassword": "secretStorage",
+      "readOnly": false,
+      "connectionTimeout": 30,
+      "driverOptions": {
+        "retrievePublickey": true
+      }
+    }
+  ]
+}
